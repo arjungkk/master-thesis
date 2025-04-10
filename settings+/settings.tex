@@ -124,40 +124,36 @@
 \usepackage[
     style=ieee,   % style of the bibliography, entries are sorted in alphabetic order. "ieee" is another common style.
     backend=biber,      % based on package 'biber' 
-    bibencoding=ascii   % ASCII Text encoding; may use "utf8" instead
+    bibencoding=utf8   % ASCII Text encoding; may use "utf8" instead
 ] {biblatex}
 
 % --------------------------------------------------------------------------------
 %                               PATHS & FILES
 % --------------------------------------------------------------------------------
 % Fix paths for standalone compiling
-\ifstandalone
-    \def \home {..}
-\else
-    \def \home {.}
-\fi
+%\def \home {D://MS/Thesis/master-thesis}
 
 % Package: scrlayer-scrpage
 % \def \stylePath {\home/settings+/style/page}
-\input{\home/settings+/style/page}  % Load page style
+\input{D://MS/Thesis/master-thesis/settings+/style/page}  % Load page style
 
 % Package: graphicx
-\graphicspath{{\home/images/}}  % Set path to images
+\graphicspath{{D://MS/Thesis/master-thesis/images/}}  % Set path to images
 
 % Package: listings
-\input{\home/settings+/style/code.tex}  % Set path to style file
-\lstset{inputpath={\home/code/}} % Default path to code listings
+\input{D://MS/Thesis/master-thesis/settings+/style/code.tex}  % Set path to style file
+\lstset{inputpath={D://MS/Thesis/master-thesis/code/}} % Default path to code listings
 
 % Package: glossaries
-\input{\home/settings+/style/symbols}  % Set path to symbols list style file
-\input{\home/settings+/style/acronyms}  % Set path to acronym list style file
-\input{\home/references/glossary_acronyms}  % Load glossary, symbol and acronyms list
+\input{D://MS/Thesis/master-thesis/settings+/style/symbols}  % Set path to symbols list style file
+\input{D://MS/Thesis/master-thesis/settings+/style/acronyms}  % Set path to acronym list style file
+\input{D://MS/Thesis/master-thesis/references/glossary_acronyms}  % Load glossary, symbol and acronyms list
 
 % Package: biblatex
-\addbibresource{\home/references/references.bib}  % Set path to bib resources
+\addbibresource{D://MS/Thesis/master-thesis/references/references.bib} % Set path to bib resources
 
 % Custom variables
-\input{\home/settings+/variables}
+\input{D://MS/Thesis/master-thesis/settings+/variables}
 % --------------------------------------------------------------------------------
 %                                   OPTIONAL
 % --------------------------------------------------------------------------------

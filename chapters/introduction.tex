@@ -11,15 +11,70 @@
 
 \chapter{Introduction}
 \label{Chapter::Introduction}
-    This chapter outlines the motivation for this thesis in the field of electrical engineering. Possible problems that could be encountered during the development and evaluation process are also discussed. Here: 
+    %This chapter outlines the motivation for this thesis
 
 \section{Motivation}
 \label{Section::Motivation}
-    This Thesis targets a key topic of electrical engineering \cite{Piezoelectirc_Sensors_and_Actors}. SI-Units can be written its text as \SI{50}{\ms}. \gls{symb:Pi} \gls{VRBD} \gls{Biofouling}
+   
+     Creep is a time-dependent deformation of materials under sustained stress at elevated temperatures. It plays a critical role in industries such as aerospace(eg: Turbine blades and vanes in jet engine), energy(eg: high temperature pipelines), and manufacturing(eg: concrete structures). Understanding and mitigating creep behavior is essential for ensuring the long-term reliability of components subjected to high-temperature environments. 
+     
+     Prediction of creep behavior and strength of materials at high temperatures is crucial in the design of structures used at elevated temperatures. For instance, oil vessels in a refinery have to be resistant against the stresses caused by hot fluids for long durations.[M.E. Kassner, M.T. Pérez-Prado
+     Erratum to “five-power-law creep in single phase metals and alloys” [progr. mater. sci. 45 (2000) 1–102]
+     Prog. Mater. Sci., 45 (2000), p. 273]
+     Traditional methods for analyzing creep behavior faces significant challenges as experimental creep tests are time consuming (few months to years). It incurs substantial costs and often yields limited data. Furthermore, numerical simulations using traditional methods can be computationally intensive, demanding fine meshes and iterative solvers that can take hours or even days to run, hindering timely and comprehensive analysis of creep in engineering components. These limitations underscore the need for more efficient and predictive approaches to address the critical role of creep in various industries.
+    
+    Recent advances in \textit{machine learning (ML)} and \textit{numerical simulation} provide a transformative opportunity to reduce the experimental burden while increasing predictive power. ML models, trained on either simulated or experimental datasets, can act as \textit{surrogate models} that rapidly approximate complex physical processes such as creep. However, building these models effectively requires a thoughtful design of experiments, robust data generation and preprocessing, and intelligent sampling methods, such as \textit{active learning}. Data-driven models are increasingly used due to their straightforward methodology, precise predictive capabilities, reduced costs, and high scalability across different materials and conditions.[ Nava et al. (2023)]
+    
+    This thesis is motivated by the need to combine \textit{physics-based numerical models} with \textit{data-driven machine learning} to accurately and efficiently predict the creep behavior of metallic materials.    
+    
+\section{Research Context \& AID4GREENEST Project}
+\label{Section::Research_Context_&_AID4GREENEST_Project}
+    %\Blindtext
+    This work is carried out in the context of the \textbf{AID4GREENEST} project, which is funded by the European Union (EU). It aims to developrange of new Artificial Intelligence-based rapid characterisation methods and modeling tools for the steel sector.["https://aid4greenest.eu/about/"] A core goal of the project is to reduce the cost and time of materials qualification by integrating advanced simulations, smart data sampling, and machine learning.
+    
+    Specifically, the \texttt{Lagamine} finite element software, developed at the University of Liège, is used to simulate the creep behavior of metallic alloys under varying loads, temperatures, and microstructural parameters. The generated data forms the backbone of this study’s ML training dataset. By combining domain knowledge from materials science with data science techniques, AID4GREENEST seeks to support faster and more sustainable innovation in material development.\\
+    
+     
+    \noindent This thesis serves as a prestudy by:
+    
+    \begin{itemize}
+	    \item Exploring efficient representations of creep curves from standard tests.
+	    \item Developing data-driven techniques to create an optimal training dataset.
+	    \item Implementing ML-based surrogate models to replicate the simulation outputs efficiently.
+	\end{itemize}
+	
+\section{Research Objectives}
+\label{Section::Research_Objective}
+	
+	The key objectives of this thesis include:
+	
+	\begin{itemize}
+		\item Conducting a literature review on creep behavior, ML applications, and numerical simulation techniques.
+		\item Preprocessing and exploring the design space of creep test data.
+		\item Investigating different mathematical representations for creep test curves.
+		\item Developing a classification model to define valid simulation parameter ranges.
+		\item Implementing active learning strategies to optimize data selection.
+		\item Training and evaluating ML regression models to predict creep curves.
+	\end{itemize}
+	
+\subsection{Structure of the Thesis}
+\label{Section::Structure_of_the_Thesis}
 
-\section{Problem and Research Questions}
-\label{Section::Problem_and_Research_Questions}
-    \Blindtext
+The remainder of this thesis is structured as follows:
+
+\begin{itemize}
+	\item \textbf{Chapter 2:} \\
+	Discusses the theory of creep in metals, previous modeling approaches, and recent developments in machine learning for material science.
+	
+	\item \textbf{Chapter 3:} \\
+	Explains the numerical simulation setup, data generation, preprocessing steps, sampling strategies, and ML models used.
+	
+	\item \textbf{Chapter 4:} \\
+	Presents model performance, comparisons of sampling and feature extraction strategies, and insights on surrogate modeling.
+	
+	\item \textbf{Chapter 5:} \\
+	Summarizes key contributions and outlines directions for extending this research to real materials and hybrid ML-physics models.
+\end{itemize}
 
 \ifstandalone
     \printglossary

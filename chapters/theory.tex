@@ -9,189 +9,168 @@
 % ----------------------------------------------------------------------------
 \begin{document}
 
-\ifstandalone
-    \selectlanguage{ngerman}  % Toggle ON/OFF
+\chapter{Background \& Related Works}
+\label{Chapter::Background_&_Related_Works} % Outline text
 
-    % Language-specific settings that change automatically
-    \input{settings+/language}
-\fi
+\section{Creep Behavior in Metallic Materials}
+\label{Section::Creep_Behavior_in_Metallic_Materials}
 
-\chapter{Theoretical Background}
-\label{Chapter::Theoretical_Background} % Outline text
-This chapter provides background knowledge to understand the concepts in the thesis.
+\subsection{Fundamentals of Creep}
+\label{Section::Fundamentals_of_Creep}
 
-% Background topics that are necessary to understand your thesis
-\section{Theoretical Topic}
-\label{Section::Theoretical_Topic}
-    Text..
+Creep is a time-dependent, permanent deformation that occurs in materials subjected to constant stress and elevated temperatures, typically above 30\% of their melting temperature. In metals, creep can significantly influence the mechanical integrity of components operating in high-temperature environments such as gas turbines, nuclear reactors, and jet engines.
 
-\section{Examples for Your Document}
-    
-    \subsection{Example of Glossary}
-    \gls{Biofouling}
-    
-    \subsection{Example of Symbols}
-    Examples of the use of symbols in a document. Symbols and also acronyms are introduced in a table at the begin of the document. To jump to this table, simply click on the symbol or acronym, it provides a hyperlink to the table.\\
-    \gls{symb:height}
-    \gls{symb:energy}
-    \gls{symb:A}
-    \gls{symb:B}
-    \gls{symb:C}
-    \gls{symb:D}
-    \gls{symb:E}
-    \gls{symb:F}
-    \gls{symb:G}
-    \gls{symb:H}
-    \gls{symb:I}
-    \gls{symb:J}
-    \gls{symb:K}
-    \gls{symb:L}
-    \gls{symb:M}
-    \gls{symb:N}
-    \gls{symb:O}
-    \gls{symb:P}
-    \gls{symb:Q}
-    \gls{symb:R}
-    \gls{symb:S}
-    \gls{symb:T}
-    \gls{symb:U}
-    \gls{symb:V}
-    \gls{symb:W}
-    \gls{symb:X}
-    \gls{symb:Y}
-    \gls{symb:Z}
-    
-    \subsection{Example of Acronmys}
-    First use of the Acronym \gls{aA} prints long version with short version in brackets, second and following use will print only the short version: \gls{aA}
-    
-    \subsection{Special Characters}
-    Registered: \TReg\\
-    Copyright: \TCop\\
-    Trademark: \TTra\\
-    
-    Großzügig Gréànauôbl Ç.\\
-    !"§/()=?öäüß-.,<>\\
-    
-    \subsection{Example of Lists}
-    \begin{itemize}
-      \item List entries start with the \verb|\item| command!
-      \item Individual entries are indicated with a black dot, a so-called bullet.
-      \item The text in the entries may be of any length.
-    \end{itemize}
-    
-    \subsection{Blind Text}
-    \Blindtext
-    
-    \subsection{Example of an Equation}
-    \begin{equation}
-        \label{eq::Central_Projection}
-            \left[\begin{array}{@{}c@{}} {}^c x_{\overline{p}} \\ {}^c y_{\overline{p}} \\ 1 \end{array} \right] =
-            \underbrace{\left[\begin{array}{cccc}
-                c & 0 & 0 & 0 \\
-                0 & c & 0 & 0 \\
-                0 & 0 & 1 & 0
-            \end{array} \right]}_{\text{projection matrix}}
-            \left[\begin{array}{@{}c@{}} {}^k X_p \\ {}^k Y_p \\ {}^k Z_p \\ 1 \end{array} \right] =
-            \left[\begin{array}{@{}c@{}} c \cdot {}^k X_p \\ c \cdot {}^k Y_p \\ {}^k Z_p \end{array} \right] =
-            \left[\begin{array}{@{}c@{}} c \dfrac{{}^k X_p}{{}^k Z_p} \\ c \dfrac{{}^k Y_p}{{}^k Z_p} \\ 1 \end{array} \right]
-    \end{equation}
-    
-    \subsection{Example of Figure}
-    \begin{figure}[ht]
-            \centering
-            \includegraphics[width=\textwidth]{theory/Pinhole-Camera-Model-Multiple-View-Geometry-in-Computer-Vision.pdf}
-            \caption[Mathematical model of a pinhole camera]{Mathematical model of a pinhole camera \cite{Multiple_View_Geometry_in_Computer_Vision}.}
-            \label{fig::Pinhole_Camera_Model}
-        \end{figure}
-    
+The creep strain $\epsilon(t)$ in a material is a function of both time and temperature and can be expressed empirically through various models. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates. 
 
-    \subsection{Example of Reference}
-    Reference Figure \ref{fig::Pinhole_Camera_Model} and Equation \ref{eq::Central_Projection}.
-    Reference source \cite{3D_introductorytechniques}. Also check out code~\ref{Code:Super Code}.
 
-    \subsection{Example of a Table}
-    \begin{table*}[ht]
-        \centering
-        \caption[Datasets for 3D reconstruction]{Datasets for stereoscopic 3D reconstruction with ground-truth information.}
-        \label{Table::Dataset_attributes}
-        \begin{tabular}{|c|c|c|c|c|}
-            \hline
-            ~                        & Dynamic & Truth Type       & Remarks\\
-            \hline
-            \color{blue} Tsukuba      & --      & Manual           & The first data with GT\\
-            \color{orange} Middlebury & --      & Structured Light & Most famous 3D data with GT \\
-            \color{red} Hamlyn        & $X$     & partly available & Robotic surgery\\
-            \color{cyan} Kitti        & $X$     & Lidar            & Autonomous driving\\
-            \color{green} EndoVis     & $X$     & Structured Light & Robotic surgery\\
-            \hline
-        \end{tabular}
-        \begin{tablenotes}
-            \small
-            \item * This is an example footnote for the table.
-        \end{tablenotes}
-    \end{table*}
+\subsection{Stages of Creep: Primary, Secondary, and Tertiary}
 
-    \subsection{Example of Inserted Code}
-    \label{Section::Insert_Code}
-    You can use the package listings to import code directly from files. 
-    \lstinputlisting[language=C++,
-                     caption=Descriptive Caption Text,
-                     label=Code:Super Code]
-    {theory/cuda_example.cu}
+A typical creep curve, plotting strain versus time under constant load and temperature, consists of three distinct stages:
 
-    In addition to this, it is also possible to directly input your code in \LaTeX.
-    \begin{lstlisting}[language=C++,
-                       caption=Another Descriptive Caption Text,
-                       label=Code:Super Code2]
-     // Some example
-     callFunction();
-    \end{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/creep_stages.png}
+	\caption{Schematic of the three stages of creep behavior in metals.}
+	\label{fig:creep_stages}
+\end{figure}
 
-    \subsection{Example of ToDo-Notes}
-    \label{Section::ToDo}
-    With \verb|\todo{Example ToDo note}| you can define your own ToDo notes.
-    \todo{Example ToDo note}
+\begin{itemize}
+	\item \textbf{Primary Creep:}  
+	Also known as transient creep, this stage is characterized by a decreasing creep rate. It results from the competition between strain hardening and recovery mechanisms. Dislocations multiply and interact, increasing internal resistance to further deformation.
+	
+	\item \textbf{Secondary Creep:}  
+	Also referred to as steady-state creep, this stage features a nearly constant creep rate. It reflects a dynamic balance between work hardening and recovery. This stage is the most predictable and often used for long-term design analysis.
+	
+	\item \textbf{Tertiary Creep:}  
+	In this final stage, the creep rate accelerates until failure. Mechanisms such as grain boundary void formation, microcracking, and necking dominate, leading to localized damage and rupture. This stage is typically excluded from design due to its unpredictability.
+\end{itemize}
 
-    We prefer the inline ToDo notes, but you can also use floating ones by using the command \verb|\todo[noinline]{Example ToDo note}|.
-    % \todo[noinline]{Example ToDo note}
+\subsection{Mechanisms of Creep Deformation}
 
-    You can add your ToDos to the Table of Contents with \verb|\todototoc|, or you can print a separate list of ToDo notes with \verb|\listoftodos|.
-    If you prefer, you can also just color your text.
+Creep deformation in metals is governed by several atomic and dislocation-level mechanisms. The dominant mechanism depends on temperature, stress, grain size, and diffusion conditions.
 
-    \subsection{Coloring Text}
-    \label{Section::Colors}
-    You can color text by using predefined commands such as \verb|\red{text}|.
-    Colors we provide are as follows: \red{red}, \green{green}, \blue{blue}, and \orange{orange}. Also, feel free to make up your own colors and add them to the \verb|settings+/variables.tex| file. This can be done in a few easy steps:
-    \begin{itemize}
-        \item Name a color and define it (see \url{https://latexcolor.com/} for ideas)\\
-              \verb|\definecolor{dollarbill}{rgb}{0.52, 0.73, 0.4}|
-        \item Optional: Create a shorthand command with the new color\\
-              \verb|\newcommand\myColor[1]{\textcolor{dollarbill}{\textbf{#1}}}|
-        \item Done! Color a text with the new color\\
-              \verb|\textcolor{dollarbill}{Text}|\\
-              or via shorthand\\
-              \verb|\myColor{Text}|
-    \end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/creep_mechanisms.png}
+	\caption{Overview of different creep mechanisms based on stress and temperature \cite{modelling_three_stage}.}
+	\label{fig:creep_mechanisms}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Dislocation (Power-Law) Creep:}  
+	Dominant at intermediate temperatures and high stresses. It involves the motion of dislocations through the crystal lattice, and the creep rate follows a power-law relationship with stress. Creep strain rate is given by:
+	\[
+	\dot{\epsilon} = A \sigma^n \exp\left(-\frac{Q}{RT}\right)
+	\]
+	where $n$ is the stress exponent (typically 3–8), $Q$ is activation energy, $R$ is the gas constant, and $T$ is absolute temperature.
+	
+	\item \textbf{Nabarro-Herring Creep:}  
+	Occurs at high temperatures and low stresses in materials with large grain sizes. Atoms diffuse through the lattice, causing elongation in the direction of the applied stress and contraction perpendicular to it.
+	
+	\item \textbf{Coble Creep:}  
+	Similar to Nabarro-Herring creep but involves diffusion along grain boundaries instead of through the bulk. It is significant in fine-grained materials and becomes prominent at lower temperatures than Nabarro-Herring creep.
+	
+	\item \textbf{Grain Boundary Sliding (GBS):}  
+	Grain boundaries slide past each other, sometimes accommodated by dislocation motion or diffusion. This mechanism becomes more significant at very high temperatures or under cyclic thermal loading.
+	
+	\item \textbf{Climb-Glide Mechanism:}  
+	Dislocations move by glide in specific planes and climb to overcome obstacles by absorbing or emitting vacancies. This enables continued plastic flow even when glide is hindered.
+	
+\end{itemize}
+
+These mechanisms may act simultaneously, with the dominant mechanism shifting depending on the material and operating environment. Detailed studies, such as those by Chatterjee and Roy \cite{chatterjee_creep}, have shown that microstructural features like precipitate coarsening, dislocation density evolution, and subgrain formation play critical roles in determining creep performance.
+
+\subsection{Experimental and Phenomenological Models}
+
+Traditional modeling of creep relies on experimental data and phenomenological models such as:
+
+\begin{itemize}
+	\item \textbf{Norton’s Law:} $\dot{\epsilon} = A \sigma^n \exp{\left(-\frac{Q}{RT}\right)}$, where $\dot{\epsilon}$ is the creep rate, $\sigma$ is stress, $Q$ is the activation energy, $R$ is the gas constant, and $T$ is the temperature.
+	\item \textbf{$\theta$-Projection Models:} Represent the creep curve analytically over time using parameters fitted from experimental data \cite{modelling_three_stage}.
+\end{itemize}
+
+These models are limited in their ability to generalize across materials and loading conditions, prompting the need for simulation- and ML-based approaches.
+
+
+\section{Numerical Modeling of Creep}
+
+\subsection{Finite Element Approaches}
+
+Finite element analysis (FEA) provides a powerful framework for simulating creep deformation in complex geometries and loading conditions. Constitutive models describing creep behavior are embedded into material subroutines and solved within FE codes. Lagamine, the FEA tool used in this thesis, includes time-integration schemes suitable for large strain, time-dependent plasticity problems, enabling robust modeling of the full creep lifecycle.
+
+Numerical models offer the advantage of extrapolating creep behavior under untested conditions. However, these models require extensive calibration and may become computationally expensive for high-dimensional parametric studies.
+
+\subsection{Creep Law Implementations}
+
+Several phenomenological creep laws have been implemented in finite element solvers, such as:
+
+\begin{itemize}
+	\item \textbf{Norton-Bailey Law:} Useful for steady-state creep, with creep strain rate expressed as a power-law function of stress and temperature.
+	\item \textbf{$\theta$-Projection Models:} Introduced to represent all three creep stages with fitted parameters \cite{modelling_three_stage}.
+	\item \textbf{Time Hardening and Strain Hardening Laws:} Capture primary and secondary creep stages by modifying the effective stress as a function of accumulated creep strain or time.
+\end{itemize}
+
+Such models are often calibrated against experimental or synthetic data using optimization techniques. The implementation of these models in software like Lagamine enables generation of creep curves for a wide range of loading and material parameters.
+
+\subsection{Limitations of Classical Numerical Methods}
+
+Despite their accuracy, classical numerical models face several limitations:
+
+\begin{itemize}
+	\item \textbf{High computational cost:} Especially when exploring large material parameter spaces or performing uncertainty quantification.
+	\item \textbf{Sensitivity to parameterization:} Requires precise identification of model constants, which may not be available from experiments.
+	\item \textbf{Limited extrapolation:} Classical models may fail outside calibrated regimes or when microstructural effects are dominant.
+\end{itemize}
+
+As described in \cite{limitations_creep_fea}, these challenges motivate the development of surrogate models that approximate the numerical outputs with significantly reduced computational effort.
+
+
+
+
+\section{Machine Learning in Materials Science}
+
+In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery, property prediction, and design of new materials. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through predictive modeling and data-driven insights, particularly in areas such as creep behavior analysis, microstructure-property correlation, and optimization of processing parameters.
+
+\subsection{Dimensionality Reduction and Principal Component Analysis (PCA)}
+
+Materials datasets often include numerous features derived from composition, microstructure, or simulation parameters. To handle this complexity, dimensionality reduction techniques such as Principal Component Analysis (PCA) are frequently used. PCA identifies the principal axes of variation in the dataset and projects high-dimensional data onto a lower-dimensional subspace while retaining maximum variance \cite{bishop2006pattern}.
+
+In the context of creep behavior prediction, PCA can reduce the dimensionality of microstructural or stress-strain time-series data, allowing machine learning models to focus on the most informative features. This not only improves computational efficiency but can also reveal underlying physical trends.
+
+\subsection{Surrogate Modeling}
+
+Surrogate models, also known as metamodels or response surface models, are simplified predictive models that approximate the behavior of complex physical systems or simulations. In materials science, surrogate models are widely applied to approximate finite element simulations of creep and deformation, allowing for faster optimization and uncertainty quantification.
+
+Common surrogate modeling techniques include:
+
+\begin{itemize}
+	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces.
+	\item \textbf{Gaussian Process Regression (GPR)}: Offers uncertainty estimation along with predictions, making it suitable for active learning applications.
+	\item \textbf{Artificial Neural Networks (ANNs)}: Capture nonlinear relationships between material features and properties, effective in high-dimensional datasets.
+\end{itemize}
+
+These models are crucial in active learning frameworks, where new data points are selected iteratively to improve model performance with minimal simulation or experimental effort \cite{settles2010active}.
+
+\subsection{Microstructure–Property Prediction}
+
+ML techniques are also increasingly used to establish quantitative links between microstructural features (e.g., grain size, orientation, precipitate distribution) and macroscopic properties such as yield strength, creep rate, or fracture toughness.
+
+Convolutional Neural Networks (CNNs), for example, have been applied to analyze microstructure images and predict mechanical performance. Meanwhile, feature-based approaches combining engineered descriptors with classical ML models (e.g., random forests, support vector machines) have demonstrated strong predictive performance when paired with domain knowledge.
+
+\subsection{Integration with Simulation}
+
+Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modeling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation \cite{wessel2004modelling, kruzic2003limitations}.
+
+Additionally, ML can aid inverse modeling: inferring material parameters or damage laws from experimental creep curves, where traditional optimization is infeasible or underdetermined.
+
+   
 
 % You can use this to add content for standalone documents if you like
 % In this case we would like to show the references.
 \ifstandalone
-    % Bibliography
-    \printbibliography[heading=bibintoc]                         \cleardoublepage
-
-% ----------------------------------------------------------------------------
-% Appendix and Glossary
-% ----------------------------------------------------------------------------
-%     \pagenumbering{Alph} % A, B, C..
-
-% %     % Appendix
-%     \input{chapters/appendix}                                          \clearpage
-
-% %     % Symbol list also counts as a glossary object
-%     \printglossary[type=main]  % main glossary
-
-% %     % Either print all entries or only used entries for all lists
-%     \glsaddallunused
+	\printglossary
+	\printbibliography[heading=bibintoc]
 \fi
+
 
 \end{document}
