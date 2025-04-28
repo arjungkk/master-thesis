@@ -27,8 +27,25 @@ This thesis is motivated by the need to combine \textit{physics-based numerical 
 	
 \section{Research Questions and Goals}
 \label{Section::Research_Questions_and_Goals}
+the work is structured around key research questions:
 
-Some of the research questions that are
+\begin{itemize}
+	\item \textbf{RQ1:} How can standard creep curves be represented efficiently for machine learning regression?
+	\item \textbf{RQ2:} What is the appropriate size and nature of the latent feature space to retain critical creep curve characteristics?
+	\item \textbf{RQ3:} Can purely data-driven ML models accurately predict creep behavior, or is prior physical knowledge necessary to guide learning?
+	\item \textbf{RQ4:} How can sampling strategies such as active learning improve dataset quality and model performance compared to random or structured sampling?
+\end{itemize}
+
+To address these questions, the thesis involves:
+
+\begin{itemize}
+	\item Generating a dataset of creep simulations based on Morch’s phenomenological model.
+	\item Exploring different mathematical representations of creep curves (e.g., PCA, polynomial fitting).
+	\item Implementing and comparing various regression models (e.g., Gaussian Process Regression, Neural Networks).
+	\item Investigating sampling strategies to optimize the selection of simulation inputs (e.g., random sampling, Latin Hypercube Sampling, uncertainty-driven active learning).
+\end{itemize}
+
+The focus is thus not only on building accurate surrogate models, but also on understanding the interplay between physics-based simulation data, machine learning, and efficient exploration of high-dimensional design spaces.
 	
 
 \section{Research Context \& AID4GREENEST Project}
