@@ -45,11 +45,20 @@ To address these questions, the thesis involves:
 	\item Investigating sampling strategies to optimize the selection of simulation inputs (e.g., random sampling, Latin Hypercube Sampling, uncertainty-driven active learning).
 \end{itemize}
 
-The focus is thus not only on building ssurrogate models, but also on understanding the interplay between physics-based simulation data, machine learning, and efficient exploration of high-dimensional design spaces.
+The focus is thus not only on building surrogate models, but also on understanding the interplay between physics-based simulation data, machine learning, and efficient exploration of high-dimensional design spaces.
 	
 
 \section{Research Context \& the AID4GREENEST Project}
 \label{Section::Research_Context_&_AID4GREENEST_Project}
+
+This work is conducted within the framework of the \textbf{AID4GREENEST} project (EU Horizon Europe Grant No.~101091912), an initiative aiming to accelerate material innovation for the steel industry using artificial intelligence, advanced simulations, and smart data generation \cite{aid4greenest}.
+
+The specific focus of this thesis is on developing methodologies for efficient creep modeling using data generated from physics-based simulations. The simulation engine employed is the finite element software \texttt{Lagamine}, developed at the University of Liège, which implements several advanced thermomechanical constitutive models.
+
+Of particular relevance to this study is the creep model developed by \textbf{Morch} and collaborators \cite{morch2022creep}. This model captures primary, secondary, and tertiary creep stages through internal variables representing dislocation structures and damage evolution. Although the underlying microstructure features (such as subgrain size, dislocation density) are not explicitly varied in this thesis, their influence is implicitly embedded in the creep model parameters.
+
+Thus, the synthetic dataset generated through Lagamine simulations reflects the behavior of a \textit{parametric phenomenological creep law} rather than directly simulating real microstructure evolutions. This distinction is crucial in correctly framing the scope and limitations of the machine learning models developed in this work.
+
 
 This work is carried out in the context of the \textbf{AID4GREENEST} project, which is funded by the European Union (EU). It aims to develop a range of new Artificial Intelligence-based rapid characterisation methods and modeling tools for the steel sector \cite{aid4greenest}. A core goal of the project is to reduce the cost and time of materials qualification by integrating advanced simulations, smart data sampling, and machine learning.
 
