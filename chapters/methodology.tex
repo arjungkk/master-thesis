@@ -9,11 +9,177 @@
 % ----------------------------------------------------------------------------
 \begin{document}
 	
-
+	\chapter{Methodology}
+	\label{Chapter::Methodology}
 	
-\ifstandalone
-	\printglossary
-	\printbibliography[heading=bibintoc]
-\fi
+	This chapter presents the methodology followed to simulate creep behavior, generate a synthetic dataset, represent creep curves efficiently, develop machine learning surrogate models, and implement an active learning framework for data-efficient model improvement. The approach combines numerical simulation with data-driven learning.
+	
+	\section{Overview of Workflow}
+	\label{Section::Workflow}
+	
+	Figure~\ref{fig:workflow} illustrates the complete hybrid modeling pipeline. It includes:
+	
+	\begin{enumerate}
+		\item Generation of synthetic creep curves using the Lagamine finite element solver.
+		\item Dimensionality reduction using PCA, kernel PCA, and $\theta$-projection models.
+		\item Surrogate model training using ensemble regressors.
+		\item Iterative data enrichment using active learning with feasibility filtering.
+	\end{enumerate}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/workflow_diagram.png}
+		\caption{Workflow combining simulation, representation, surrogate learning, and active sampling.}
+		\label{fig:workflow}
+	\end{figure}
+	
+	\section{Finite Element Simulation Setup}
+	\label{Section::FEM}
+	
+	\subsection*{Simulation Environment and Material Model}
+	
+	All simulations were performed using the nonlinear finite element solver \texttt{Lagamine}, developed at the University of Liège. It supports large-strain, time-dependent, and thermomechanical creep analysis. The underlying constitutive model is based on Morch's internal variable formulation \cite{morch2022creep} and models all three creep stages.
+	
+	The material simulated is \textbf{30CrMoNiV5-11}, a creep-resistant alloy steel widely used in power and aerospace applications. It is part of the materials portfolio studied in the AID4GREENEST project \cite{aid4greenest}.
+	
+	\subsection*{Material Properties}
+	
+	The nominal composition and mechanical properties are shown in Tables~\ref{tab:chemical_composition} and \ref{tab:mechanical_properties}.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Chemical composition of 30CrMoNiV5-11 steel (wt.\%).}
+		\label{tab:chemical_composition}
+		\begin{tabular}{lcc}
+			\toprule
+			\textbf{Element} & \textbf{Min (\%)} & \textbf{Max (\%)} \\
+			\midrule
+			C & 0.28 & 0.34 \\
+			Si & — & 0.15 \\
+			Mn & 0.30 & 0.80 \\
+			P & — & 0.01 \\
+			S & — & 0.007 \\
+			Cr & 1.10 & 1.40 \\
+			Ni & 0.50 & 0.75 \\
+			Mo & 1.00 & 1.20 \\
+			V & 0.25 & 0.35 \\
+			Fe & \multicolumn{2}{c}{Balance} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Mechanical properties of 30CrMoNiV5-11 in heat-treated condition.}
+		\label{tab:mechanical_properties}
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Property} & \textbf{Value} \\
+			\midrule
+			Yield Strength (Rp0.2) & ≥ 539 MPa \\
+			Tensile Strength (Rm) & ≥ 692 MPa \\
+			Elongation & 14\% \\
+			Brinell Hardness & ~432 HB \\
+			Density & 7.85 g/cm³ \\
+			Elastic Modulus & 289–464 GPa \\
+			Thermal Conductivity & 42–44 W/m·K \\
+			Specific Heat Capacity & 443–711 J/kg·K \\
+			Thermal Expansion & 14 × 10⁻⁶ /K \\
+			Poisson’s Ratio & 0.24 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection*{Geometry and Boundary Conditions}
+	
+	The simulated test geometry replicates a uniaxial tensile creep experiment. Symmetry conditions were used to reduce computational cost. Constant stress was applied at the specimen top, with fixed constraints at the bottom. Time integration spanned up to 10,000 hours using adaptive time stepping.
+	
+	\section{Simulation Parameters and Design Space}
+	\label{Section::Design_Space}
+	
+	The simulations spanned a broad parametric space using Latin Hypercube Sampling and logarithmic scaling for sensitive parameters:
+	
+	\begin{table}[H]
+		\centering
+		\caption{Input parameters and sampling ranges.}
+		\label{tab:param_ranges}
+		\begin{tabular}{lcc}
+			\toprule
+			\textbf{Parameter} & \textbf{Symbol} & \textbf{Range} \\
+			\midrule
+			Stress & $\sigma$ [MPa] & 150–300 \\
+			Hardening coefficient & $b$ & 1–20 \\
+			Activation energy & $Q$ [kJ/mol] & 50–120 \\
+			Creep stiffness & $K$ & 500–4500 \\
+			Stress exponent & $n$ & 6.5–8.0 \\
+			Softening parameter & $S_c$ & 1.5–45 \\
+			Softening rate & $s_c$ & 0.5–5 \\
+			Creep coefficient & $k_c$ & 0.75–6 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	A total of 3376 valid simulations were used for training and testing ML models.
+	
+	\section{Creep Curve Representation}
+	\label{Section::Curve_Features}
+	
+	Each creep curve was sampled at 100 logarithmically spaced time points. Dimensionality was reduced using:
+	
+	\begin{itemize}
+		\item \textbf{PCA} (4 components, 95\% variance retained),
+		\item \textbf{Kernel PCA} with RBF and polynomial kernels (γ = 0.01, degree = 6),
+		\item \textbf{Theta projection} using 4 analytical fit parameters.
+	\end{itemize}
+	
+	For incomplete simulations, missing points were padded with zeros or held constant at last strain.
+	
+	\section{Surrogate Modeling}
+	\label{Section::Surrogate_Model}
+	
+	The reduced features were predicted using supervised regression models:
+	
+	\begin{itemize}
+		\item Random Forest Regressor
+		\item Gradient Boosting Regressor
+		\item Stacking Regressor
+		\item Voting Regressor (best performance)
+	\end{itemize}
+	
+	Each model mapped the 8 input parameters to PCA/KPCA or $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
+	
+	\section{Active Learning}
+	\label{Section::Active_Learning}
+	
+	An active learning loop was implemented to reduce the need for dense sampling:
+	
+	\begin{itemize}
+		\item \textbf{Feasibility filter}: Isolation Forest trained on valid/invalid samples.
+		\item \textbf{Label space}: Theta values used for diversity-based selection.
+		\item \textbf{Query strategy}: Select points farthest from current label distribution.
+		\item \textbf{Feedback loop}: Each batch updated the training data and retrained the model.
+	\end{itemize}
+	
+	\section{Evaluation Metrics}
+	\label{Section::Evaluation}
+	
+	Performance was assessed on a test set using:
+	
+	\begin{itemize}
+		\item RMSE on PCA reconstruction
+		\item Minimum creep rate error
+		\item Rupture time prediction error
+		\item Visual similarity of curve reconstructions
+		\item Inverse model accuracy (curve $\rightarrow$ parameters)
+	\end{itemize}
+	
+	Cross-validation and error plots were used to benchmark models.
+	
+	\clearpage
+		
+	\ifstandalone
+		\printglossary
+		\printbibliography[heading=bibintoc]
+	\fi
 	
 \end{document}
