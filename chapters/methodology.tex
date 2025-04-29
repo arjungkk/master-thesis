@@ -36,13 +36,13 @@
 	\section{Finite Element Simulation Setup}
 	\label{Section::FEM}
 	
-	\subsection*{Simulation Environment and Material Model}
+	\subsection{Simulation Environment and Material Model}
 	
 	All simulations were performed using the nonlinear finite element solver \texttt{Lagamine}, developed at the University of Liège. It supports large-strain, time-dependent, and thermomechanical creep analysis. The underlying constitutive model is based on Morch's internal variable formulation \cite{morch2022creep} and models all three creep stages.
 	
 	The material simulated is \textbf{30CrMoNiV5-11}, a creep-resistant alloy steel widely used in power and aerospace applications. It is part of the materials portfolio studied in the AID4GREENEST project \cite{aid4greenest}.
 	
-	\subsection*{Material Properties}
+	\subsection{Material Properties}
 		
 	The nominal composition and mechanical properties are shown in Tables~\ref{tab:chemical_composition} and \ref{tab:mechanical_properties} \cite{pauly_30crmoniv5_11}.
 	
@@ -90,7 +90,7 @@
 		\end{tabular}
 	\end{table}
 	
-	\subsection*{Geometry and Boundary Conditions}
+	\subsection{Geometry and Boundary Conditions}
 	
 	The simulated test geometry replicates a uniaxial tensile creep experiment. Symmetry conditions were used to reduce computational cost. Constant stress was applied at the specimen top, with fixed constraints at the bottom. Time integration spanned up to 10,000 hours using adaptive time stepping.
 	
@@ -130,7 +130,7 @@
 	
 	Each finite element simulation outputs a creep strain–time curve sampled at 100 logarithmically spaced time points. To enable machine learning, these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The approaches implemented in this thesis are grouped into the following categories:
 	
-	\subsection*{A. Mathematical Models}
+	\subsection{A. Mathematical Models}
 	
 	\subsubsection*{1. $\theta$-Projection Model}
 	
@@ -166,7 +166,7 @@
 	
 	This model allows fitting of curves that exhibit all three classical creep stages and provides stage-wise decomposition of the strain history.
 	
-	\subsection*{B. Data-Driven Representations}
+	\subsection{B. Data-Driven Representations}
 	
 	\subsubsection*{1. Principal Component Analysis (PCA)}
 	
@@ -182,7 +182,7 @@
 	
 	Kernel PCA enables better representation of curves with non-linear deformation trends across time.
 	
-	\subsection*{C. Interpolation and Alignment Strategy}
+	\subsection{C. Interpolation and Alignment Strategy}
 	
 	To ensure compatibility across all models, all curves were sampled at fixed logarithmic time intervals. Incomplete curves (e.g., early rupture) were aligned using two strategies:
 	\begin{itemize}
