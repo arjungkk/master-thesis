@@ -1,0 +1,113 @@
+\documentclass[class=scrbook, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\ifstandalone
+    \input{../settings+/settings}
+\fi
+
+% ----------------------------------------------------------------------------
+%                               Results
+% ----------------------------------------------------------------------------
+\begin{document}
+
+\chapter{Results}
+\label{Chapter::Results}
+
+This chapter presents and analyzes the results obtained from the finite element simulations and machine learning models. The goal is to evaluate the effectiveness of surrogate modeling in capturing creep behavior and understand how different parameters influence performance.
+
+\section{Simulation Results Overview}
+\label{Section::Simulation_Results}
+
+In total, over 700 valid simulations were generated using the Lagamine software, spanning stress levels from 100 MPa to 450 MPa, and temperatures between 550°C and 700°C. Invalid runs (e.g., with numerical divergence or unrealistic strain) were automatically flagged and removed via the classifier model (see Section~\ref{Section::Classification_Model}).
+
+The simulated creep curves varied significantly with stress and temperature. At higher stress levels, curves showed earlier onset of tertiary creep and shorter time to rupture. Examples of these are shown in Figure~\ref{fig:creep_comparison}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/creep_stages.png}
+	\caption{Representative creep curves at different stress levels showing variation in rupture time and strain rate.}
+	\label{fig:creep_comparison}
+\end{figure}
+
+\section{Feature Engineering and Dimensionality Reduction}
+\label{Section::Feature_Engineering}
+
+Polynomial fitting (3rd-order) and Principal Component Analysis (PCA) were both evaluated to reduce the dimensionality of creep curves. PCA provided compact representation using 4–6 principal components, explaining over 95\% of the variance.
+
+The polynomial coefficients and PCA scores were then used as targets for ML regression models. Table~\ref{tab:pca_comparison} compares reconstruction errors between both approaches.
+
+\begin{table}[H]
+	\centering
+	\caption{Comparison of creep curve representation techniques}
+	\label{tab:pca_comparison}
+	\begin{tabular}{lccc}
+		\toprule
+		\textbf{Method} & \textbf{\#Features} & \textbf{Reconstruction RMSE} & \textbf{Compression Ratio} \\		
+		\midrule
+		PCA (6 PCs)     & 6           & 0.0031                & 20x \\
+		3rd Order Poly  & 4           & 0.0054                & 15x \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Regression Model Performance}
+\label{Section::Regression_Model}
+
+Three different regression models were trained on the reduced representations:
+
+\begin{itemize}
+	\item \textbf{Gaussian Process Regression (GPR)} achieved the best overall accuracy (RMSE = 0.0025), with reliable uncertainty estimates.
+	\item \textbf{Neural Networks (NN)} slightly outperformed in time-to-rupture prediction, though were more sensitive to training data distribution.
+	\item \textbf{Support Vector Regression (SVR)} showed robust behavior but lower accuracy at high temperature/stress combinations.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/creep_stages.png}
+	\caption{Predicted vs actual strain curves using the GPR model}
+	\label{fig:predicted_vs_true}
+\end{figure}
+
+\section{Classification of Valid Simulations}
+\label{Section::Classification_Model}
+
+A binary classifier (Random Forest) was trained to predict whether a simulation would result in a valid output. This allowed pre-screening of unphysical parameter combinations before running the FE model.
+
+The model achieved 94\% accuracy, with high recall for invalid cases (96\%).
+
+\begin{table}[H]
+	\centering
+	\caption{Classifier performance on test set}
+	\begin{tabular}{lccc}
+		\toprule
+		\textbf{Metric} & \textbf{Value} \\
+		\midrule
+		Accuracy     & 94.2\% \\
+		Precision    & 92.6\% \\
+		Recall       & 96.1\% \\
+		F1-score     & 94.3\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Impact of Active Learning}
+\label{Section::Active_Learning_Results}
+
+By introducing uncertainty sampling, model performance improved significantly with fewer simulations. The RMSE of the GPR model dropped faster compared to random sampling as new data was added selectively.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/creep_stages.png}
+	\caption{Comparison of learning curves: random sampling vs active learning}
+	\label{fig:active_learning_performance}
+\end{figure}
+
+\section{Discussion}
+\label{Section::Discussion}
+
+The results confirm that machine learning models, especially GPR and NN, can serve as efficient surrogates for high-fidelity FE simulations. Active learning enables a substantial reduction in the number of simulations (by nearly 50\%) while maintaining accuracy.
+
+The polynomial representation and PCA both proved effective, though PCA was more flexible across curve shapes. One key insight is that higher stress and temperature combinations significantly shorten rupture time, and the models were able to generalize this trend well.
+
+Challenges remain in extrapolation beyond the training domain and in ensuring physical consistency of ML predictions. Future work may integrate physics-informed neural networks or hybrid ML-FE frameworks.
+
+\end{document}
