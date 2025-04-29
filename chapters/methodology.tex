@@ -97,18 +97,22 @@
 	\section{Simulation Parameters and Design Space}
 	\label{Section::Design_Space}
 	
-	The simulations spanned a broad parametric space using Latin Hypercube Sampling and logarithmic scaling for sensitive parameters:
+	The simulations covered a high-dimensional parameter space representative of physically relevant material and loading conditions. Sampling was done using \textbf{Latin Hypercube Sampling (LHS)} to ensure uniform coverage of the design space. 
+	
+	However, in accordance with Morand et al. \cite{morand2022efficient}, the hardening coefficient \( b \) was sampled on a \textbf{logarithmic scale}. This decision was based on the observation that small changes in \( b \) significantly impact the shape and slope of the creep curve, especially in the early stages. Logarithmic sampling ensured better representation of the steep regions in the creep response space and helped avoid degenerate curves with flat or purely linear behavior.
+	
+	The final sampled parameter space is summarized in Table~\ref{tab:param_ranges}.
 	
 	\begin{table}[H]
 		\centering
-		\caption{Input parameters and sampling ranges.}
+		\caption{Input parameters and sampling ranges. Note: \( b \) was sampled logarithmically.}
 		\label{tab:param_ranges}
 		\begin{tabular}{lcc}
 			\toprule
 			\textbf{Parameter} & \textbf{Symbol} & \textbf{Range} \\
 			\midrule
 			Stress & $\sigma$ [MPa] & 150–300 \\
-			Hardening coefficient & $b$ & 1–20 \\
+			Hardening coefficient & $b$ & 1–20 (log-scale) \\
 			Activation energy & $Q$ [kJ/mol] & 50–120 \\
 			Creep stiffness & $K$ & 500–4500 \\
 			Stress exponent & $n$ & 6.5–8.0 \\
@@ -119,7 +123,7 @@
 		\end{tabular}
 	\end{table}
 	
-	A total of 3376 valid simulations were used for training and testing ML models.
+	A total of 3376 simulations were generated. Each simulation produced a full creep strain vs. time curve and was used for surrogate model training or active learning evaluation.	
 	
 	\section{Creep Curve Representation}
 	\label{Section::Curve_Features}
