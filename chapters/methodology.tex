@@ -1,167 +1,87 @@
-\chapter{Methodology}
-\label{Chapter::Methodology}
+\documentclass[class=scrbook, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\ifstandalone
+\input{../settings+/settings}
+\fi
 
-This chapter presents the methodology followed to simulate creep behavior, generate a synthetic dataset, represent creep curves efficiently, develop machine learning surrogate models, and implement an active learning framework for data-efficient model improvement. The approach combines numerical simulation with data-driven learning.
-
-\section{Overview of Workflow}
-\label{Section::Workflow}
-
-Figure~\ref{fig:workflow} illustrates the complete hybrid modeling pipeline. It includes:
-
-\begin{enumerate}
-	\item Generation of synthetic creep curves using the Lagamine finite element solver.
-	\item Dimensionality reduction using PCA, kernel PCA, and $\theta$-projection models.
-	\item Surrogate model training using ensemble regressors.
-	\item Iterative data enrichment using active learning with feasibility filtering.
-\end{enumerate}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{figures/workflow_diagram.png}
-	\caption{Workflow combining simulation, representation, surrogate learning, and active sampling.}
-	\label{fig:workflow}
-\end{figure}
-
-\section{Finite Element Simulation Setup}
-\label{Section::FEM}
-
-\subsection*{Simulation Environment and Material Model}
-
-All simulations were performed using the nonlinear finite element solver \texttt{Lagamine}, developed at the University of Liège. It supports large-strain, time-dependent, and thermomechanical creep analysis. The underlying constitutive model is based on Morch's internal variable formulation \cite{morch2022creep} and models all three creep stages.
-
-The material simulated is \textbf{30CrMoNiV5-11}, a creep-resistant alloy steel widely used in power and aerospace applications. It is part of the materials portfolio studied in the AID4GREENEST project \cite{aid4greenest}.
-
-\subsection*{Material Properties}
-
-The nominal composition and mechanical properties are shown in Tables~\ref{tab:chemical_composition} and \ref{tab:mechanical_properties}.
-
-\begin{table}[H]
-	\centering
-	\caption{Chemical composition of 30CrMoNiV5-11 steel (wt.\%).}
-	\label{tab:chemical_composition}
-	\begin{tabular}{lcc}
-		\toprule
-		\textbf{Element} & \textbf{Min (\%)} & \textbf{Max (\%)} \\
-		\midrule
-		C & 0.28 & 0.34 \\
-		Si & — & 0.15 \\
-		Mn & 0.30 & 0.80 \\
-		P & — & 0.01 \\
-		S & — & 0.007 \\
-		Cr & 1.10 & 1.40 \\
-		Ni & 0.50 & 0.75 \\
-		Mo & 1.00 & 1.20 \\
-		V & 0.25 & 0.35 \\
-		Fe & \multicolumn{2}{c}{Balance} \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\caption{Mechanical properties of 30CrMoNiV5-11 in heat-treated condition.}
-	\label{tab:mechanical_properties}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Property} & \textbf{Value} \\
-		\midrule
-		Yield Strength (Rp0.2) & ≥ 539 MPa \\
-		Tensile Strength (Rm) & ≥ 692 MPa \\
-		Elongation & 14\% \\
-		Brinell Hardness & ~432 HB \\
-		Density & 7.85 g/cm³ \\
-		Elastic Modulus & 289–464 GPa \\
-		Thermal Conductivity & 42–44 W/m·K \\
-		Specific Heat Capacity & 443–711 J/kg·K \\
-		Thermal Expansion & 14 × 10⁻⁶ /K \\
-		Poisson’s Ratio & 0.24 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\subsection*{Geometry and Boundary Conditions}
-
-The simulated test geometry replicates a uniaxial tensile creep experiment. Symmetry conditions were used to reduce computational cost. Constant stress was applied at the specimen top, with fixed constraints at the bottom. Time integration spanned up to 10,000 hours using adaptive time stepping.
-
-\section{Simulation Parameters and Design Space}
-\label{Section::Design_Space}
-
-The simulations spanned a broad parametric space using Latin Hypercube Sampling and logarithmic scaling for sensitive parameters:
-
-\begin{table}[H]
-	\centering
-	\caption{Input parameters and sampling ranges.}
-	\label{tab:param_ranges}
-	\begin{tabular}{lcc}
-		\toprule
-		\textbf{Parameter} & \textbf{Symbol} & \textbf{Range} \\
-		\midrule
-		Stress & $\sigma$ [MPa] & 150–300 \\
-		Hardening coefficient & $b$ & 1–20 \\
-		Activation energy & $Q$ [kJ/mol] & 50–120 \\
-		Creep stiffness & $K$ & 500–4500 \\
-		Stress exponent & $n$ & 6.5–8.0 \\
-		Softening parameter & $S_c$ & 1.5–45 \\
-		Softening rate & $s_c$ & 0.5–5 \\
-		Creep coefficient & $k_c$ & 0.75–6 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-A total of 3376 valid simulations were used for training and testing ML models.
-
-\section{Creep Curve Representation}
-\label{Section::Curve_Features}
-
-Each creep curve was sampled at 100 logarithmically spaced time points. Dimensionality was reduced using:
-
-\begin{itemize}
-	\item \textbf{PCA} (4 components, 95\% variance retained),
-	\item \textbf{Kernel PCA} with RBF and polynomial kernels (γ = 0.01, degree = 6),
-	\item \textbf{Theta projection} using 4 analytical fit parameters.
-\end{itemize}
-
-For incomplete simulations, missing points were padded with zeros or held constant at last strain.
-
-\section{Surrogate Modeling}
-\label{Section::Surrogate_Model}
-
-The reduced features were predicted using supervised regression models:
-
-\begin{itemize}
-	\item Random Forest Regressor
-	\item Gradient Boosting Regressor
-	\item Stacking Regressor
-	\item Voting Regressor (best performance)
-\end{itemize}
-
-Each model mapped the 8 input parameters to PCA/KPCA or $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
-
-\section{Active Learning}
-\label{Section::Active_Learning}
-
-An active learning loop was implemented to reduce the need for dense sampling:
-
-\begin{itemize}
-	\item \textbf{Feasibility filter}: Isolation Forest trained on valid/invalid samples.
-	\item \textbf{Label space}: Theta values used for diversity-based selection.
-	\item \textbf{Query strategy}: Select points farthest from current label distribution.
-	\item \textbf{Feedback loop}: Each batch updated the training data and retrained the model.
-\end{itemize}
-
-\section{Evaluation Metrics}
-\label{Section::Evaluation}
-
-Performance was assessed on a test set using:
-
-\begin{itemize}
-	\item RMSE on PCA reconstruction
-	\item Minimum creep rate error
-	\item Rupture time prediction error
-	\item Visual similarity of curve reconstructions
-	\item Inverse model accuracy (curve $\rightarrow$ parameters)
-\end{itemize}
-
-Cross-validation and error plots were used to benchmark models.
-
-\clearpage
+% ----------------------------------------------------------------------------
+%                                Introduction
+% ----------------------------------------------------------------------------
+\begin{document}
+	
+	\chapter{Introduction}
+	\label{Chapter::Introduction}
+	%This chapter outlines the motivation for this thesis
+	
+	\section{Motivation}
+	\label{Section::Motivation}
+	
+	Creep is a time-dependent deformation of materials under sustained stress at elevated temperatures \cite{kang2019creep}. It plays a critical role in industries such as aerospace (e.g., turbine blades and vanes in jet engines), energy (e.g., high-temperature pipelines), and manufacturing (e.g., concrete structures). Understanding and mitigating creep behavior is essential for ensuring the long-term reliability of components subjected to high-temperature environments. 
+	
+	Prediction of creep behavior and strength of materials at high temperatures is crucial in the design of structures used at elevated temperatures. For instance, oil vessels in a refinery have to be resistant against the stresses caused by hot fluids for long durations \cite{kassner2000erratum}. Traditional methods for analyzing creep behavior face significant challenges, as experimental creep tests are time-consuming (often taking months to years) \cite{evans2012creep}. They incur substantial costs. Furthermore, numerical simulations using traditional methods can be computationally intensive, demanding fine meshes and iterative solvers that can take hours or even days to run, hindering timely and comprehensive analysis of creep in engineering components. These limitations underscore the need for more efficient and predictive approaches to address the critical role of creep in various industries.
+	
+	Recent advances in \textit{machine learning \textbf{(ML)}} and \textit{numerical simulation} provide a transformative opportunity to reduce the experimental burden while increasing predictive power. ML models, trained on either simulated or experimental datasets or a hybrid of both, can act as \textit{surrogate models} \cite{yabuuchi2020machine} that rapidly approximate complex physical processes such as creep. However, building these models effectively requires a thoughtful design of experiments, robust data generation and preprocessing, and intelligent sampling methods, such as \textit{active learning} \cite{lookman2019active}. Data-driven models are increasingly used due to their fast predictive capabilities, reduced costs, and high scalability across different materials and conditions \cite{nava2023landslide}.
+	
+	This thesis is motivated by the need to combine \textit{physics-based numerical models} with \textit{data-driven machine learning} to accurately and efficiently predict the creep behavior of metallic materials.    
+	
+	
+	\section{Research Questions and Goals}
+	\label{Section::Research_Questions_and_Goals}
+	the work is structured around key research questions:
+	
+	\begin{itemize}
+		\item \textbf{RQ1:} How can standard creep curves be represented efficiently for machine learning regression?
+		\item \textbf{RQ2:} What is the appropriate size and nature of the latent feature space to retain critical creep curve characteristics?
+		\item \textbf{RQ3:} Can purely data-driven ML models accurately predict creep behavior, or is prior physical knowledge necessary to guide learning?
+		\item \textbf{RQ4:} How can sampling strategies such as active learning improve dataset quality and model performance compared to random or structured sampling?
+	\end{itemize}
+	
+	To address these questions, the thesis involves:
+	
+	\begin{itemize}
+		\item Generating a dataset of creep simulations based on Morch’s phenomenological model \cite{morch2022creep}.
+		\item Exploring different mathematical representations of creep curves (e.g., PCA, polynomial fitting).
+		\item Implementing and comparing various regression models (e.g., Gaussian Process Regression, Neural Networks).
+		\item Investigating sampling strategies to optimize the selection of simulation inputs (e.g., random sampling, Latin Hypercube Sampling, uncertainty-driven active learning).
+	\end{itemize}
+	
+	The focus is thus not only on building surrogate models, but also on understanding the interplay between physics-based simulation data, machine learning, and efficient exploration of high-dimensional design spaces.
+	
+	
+	\section{Research Context \& the AID4GREENEST Project}
+	\label{Section::Research_Context_&_AID4GREENEST_Project}
+	
+	This work is conducted within the framework of the \textbf{AID4GREENEST} project (EU Horizon Europe Grant No.~101091912), an initiative aiming to accelerate material innovation for the steel industry using artificial intelligence, advanced simulations, and smart data generation \cite{aid4greenest}.
+	
+	The specific focus of this thesis is on developing methodologies for efficient creep modeling using data generated from physics-based simulations. The simulation engine employed is the finite element software \texttt{Lagamine}, developed at the University of Liège, which implements several advanced thermomechanical constitutive models.
+	
+	Of particular relevance to this study is the creep model developed by \textbf{Morch} and collaborators \cite{morch2022creep}. This model captures primary, secondary, and tertiary creep stages through internal variables representing dislocation structures and damage evolution. The synthetic dataset generated through Lagamine simulations reflects the behavior of a \textit{parametric phenomenological creep law} rather than directly simulating real microstructure evolutions. 
+	
+	\section{Structure of the Thesis}
+	\label{Section::Structure_of_the_Thesis}
+	
+	The remainder of this thesis is organized as follows:
+	
+	\begin{itemize}
+		\item \textbf{Chapter 2: Background and Related Works} \\
+		Provides a background on creep mechanisms, phenomenological and microstructural modeling approaches, and an overview of machine learning applications in materials science.
+		
+		\item \textbf{Chapter 3: Methodology} \\
+		Describes the finite element simulation setup, the synthetic data generation workflow, feature engineering methods, sampling strategies, machine learning models used, and the active learning framework implemented.
+		
+		\item \textbf{Chapter 4: Results} \\
+		Presents the results obtained from the finite element simulations, feature extraction techniques, machine learning models, and active learning performance.
+		
+		\item \textbf{Chapter 5: Discussion} \\
+		Analyzes the implications of the results, interprets the model behavior, evaluates the strengths and limitations of the approach, and compares findings to the existing literature.
+		
+		\item \textbf{Chapter 6: Conclusions and Outlook} \\
+		Summarizes the major findings of the thesis, discusses challenges encountered, and outlines directions for future research in hybrid physics–machine learning modeling of creep behavior.
+	\end{itemize}
+	
+\ifstandalone
+	\printglossary
+	\printbibliography[heading=bibintoc]
+\fi
+	
+\end{document}
