@@ -124,15 +124,70 @@
 	\section{Creep Curve Representation}
 	\label{Section::Curve_Features}
 	
-	Each creep curve was sampled at 100 logarithmically spaced time points. Dimensionality was reduced using:
+	Each finite element simulation outputs a creep strain–time curve sampled at 100 logarithmically spaced time points. To enable machine learning, these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The approaches implemented in this thesis are grouped into the following categories:
 	
+	\subsection*{A. Mathematical Models}
+	
+	\subsubsection*{1. $\theta$-Projection Model}
+	
+	The $\theta$-projection model is a semi-empirical equation used to represent creep strain evolution with four scalar parameters:
+	
+	\[
+	\varepsilon(t) = \theta_1 + \theta_2 \left(1 - e^{-t/\theta_3}\right) + \theta_4 t
+	\]
+	
+	Where:
 	\begin{itemize}
-		\item \textbf{PCA} (4 components, 95\% variance retained),
-		\item \textbf{Kernel PCA} with RBF and polynomial kernels (γ = 0.01, degree = 6),
-		\item \textbf{Theta projection} using 4 analytical fit parameters.
+		\item $\theta_1$ accounts for initial strain,
+		\item $\theta_2$ and $\theta_3$ describe the primary creep stage,
+		\item $\theta_4$ captures steady-state (secondary) creep.
 	\end{itemize}
 	
-	For incomplete simulations, missing points were padded with zeros or held constant at last strain.
+	This model is widely used for engineering creep prediction and provides a compact description of the strain evolution using physically interpretable terms. It does not explicitly capture tertiary creep behavior.
+	
+	\subsubsection*{2. Three-Stage Creep Model}
+	
+	The three-stage model, introduced by Wessel et al. \cite{modelling_three_stage}, is designed to model the complete creep lifecycle by decomposing the total strain into three components:
+	
+	\[
+	\varepsilon(t) = \varepsilon_1(t) + \varepsilon_2(t) + \varepsilon_3(t)
+	\]
+	
+	Where:
+	\begin{itemize}
+		\item $\varepsilon_1(t)$ models primary creep, typically using a logarithmic or saturating exponential function.
+		\item $\varepsilon_2(t)$ represents secondary creep with a constant strain rate over time.
+		\item $\varepsilon_3(t)$ accounts for tertiary creep, commonly represented using a damage-based or exponential growth function.
+	\end{itemize}
+	
+	This model allows fitting of curves that exhibit all three classical creep stages and provides stage-wise decomposition of the strain history.
+	
+	\subsection*{B. Data-Driven Representations}
+	
+	\subsubsection*{1. Principal Component Analysis (PCA)}
+	
+	PCA is a linear dimensionality reduction technique that projects high-dimensional creep strain curves onto a smaller orthogonal basis. Each curve is represented as a linear combination of a few principal components, preserving most of the variance in the data. In this work, PCA was applied after interpolating all strain curves to a uniform length of 100 points.
+	
+	\subsubsection*{2. Kernel Principal Component Analysis (Kernel PCA)}
+	
+	Kernel PCA generalizes PCA to non-linear transformations by mapping the data into a higher-dimensional feature space using kernel functions. Two types of kernels were used:
+	\begin{itemize}
+		\item Polynomial kernel (degree 6)
+		\item Radial Basis Function (RBF) kernel with $\gamma = 0.01$
+	\end{itemize}
+	
+	Kernel PCA enables better representation of curves with non-linear deformation trends across time.
+	
+	\subsection*{C. Interpolation and Alignment Strategy}
+	
+	To ensure compatibility across all models, all curves were sampled at fixed logarithmic time intervals. Incomplete curves (e.g., early rupture) were aligned using two strategies:
+	\begin{itemize}
+		\item \textbf{Zero padding:} Remaining time points filled with zero strain.
+		\item \textbf{Max-hold padding:} Remaining values held constant at the final valid strain.
+	\end{itemize}
+	
+	These aligned, equal-length vectors were then used as targets or inputs to the machine learning models depending on the learning task.
+	
 	
 	\section{Surrogate Modeling}
 	\label{Section::Surrogate_Model}
