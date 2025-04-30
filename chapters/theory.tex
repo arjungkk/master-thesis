@@ -52,16 +52,17 @@ Creep deformation in metals is governed by several atomic and dislocation-level 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/creep_mechanisms.png}
-	\caption{Overview of different creep mechanisms based on stress and temperature \cite{modelling_three_stage}.}
+	\caption{Overview of different creep mechanisms based on stress and temperature \cite{wessel2004modelling}.}
 	\label{fig:creep_mechanisms}
 \end{figure}
 
 \begin{itemize}
 	\item \textbf{Dislocation (Power-Law) Creep:}  
 	Dominant at intermediate temperatures and high stresses. It involves the motion of dislocations through the crystal lattice, and the creep rate follows a power-law relationship with stress. Creep strain rate is given by:
-	\[
-	\dot{\epsilon} = A \sigma^n \exp\left(-\frac{Q}{RT}\right)
-	\]
+	\begin{equation}
+		\dot{\varepsilon} = A \sigma^n \exp\left(-\frac{Q}{RT}\right)
+		\label{eq:powerlaw}
+	\end{equation}
 	where $n$ is the stress exponent (typically 3–8), $Q$ is activation energy, $R$ is the gas constant, and $T$ is absolute temperature.
 	
 	\item \textbf{Nabarro-Herring Creep:}  
@@ -80,14 +81,38 @@ Creep deformation in metals is governed by several atomic and dislocation-level 
 
 These mechanisms may act simultaneously, with the dominant mechanism shifting depending on the material and operating environment. Detailed studies, such as those by Chatterjee and Roy \cite{chatterjee_creep}, have shown that microstructural features like precipitate coarsening, dislocation density evolution, and subgrain formation play critical roles in determining creep performance.
 
-\subsection{Experimental and Phenomenological Models}
+\subsection{Phenomenological and Semi-Physical Creep Models}
 
-Traditional modeling of creep relies on experimental data and phenomenological models such as:
+Creep has been modeled using both empirical and semi-physical approaches:
 
 \begin{itemize}
-	\item \textbf{Norton’s Law:} $\dot{\epsilon} = A \sigma^n \exp{\left(-\frac{Q}{RT}\right)}$, where $\dot{\epsilon}$ is the creep rate, $\sigma$ is stress, $Q$ is the activation energy, $R$ is the gas constant, and $T$ is the temperature.
-	\item \textbf{$\theta$-Projection Models:} Represent the creep curve analytically over time using parameters fitted from experimental data \cite{modelling_three_stage}.
+	\item \textbf{Norton’s Law:} Equation~$\ref{eq:powerlaw}$ models steady-state creep with a power-law stress dependency.
+	\item \textbf{Larson–Miller Parameter (LMP):} Converts long-term creep tests into master curves using a time–temperature parameter \cite{larson1954time}.
+	\item \textbf{Monkman–Grant Relationship:} Links minimum creep rate with rupture time empirically \cite{monkman1956relationship}.
+	\item \textbf{Wilshire Models:} Incorporate yield stress into the stress exponent for a more physical interpretation \cite{wilshire2007creep}.
 \end{itemize}
+
+Recent studies also emphasize the comparative effectiveness of creep extrapolation models. For instance, the work of Sattar et al. evaluates curve fitting of the Kachanov–Rabotnov model to Norton–Bailey law using regression-based damage evolution for SS-316 material \cite{sattar2021damage}, providing a structured path for analytical creep life extension.
+
+
+\subsection{Microstructural and Physical Models}
+
+Dislocation-based and damage-informed models provide more accuracy for long-term predictions:
+
+\begin{equation}
+	\dot{\varepsilon} = \frac{\rho_m b v_g}{M}
+\end{equation}
+
+where $\rho_m$ is mobile dislocation density, $b$ the Burgers vector, and $v_g$ the dislocation velocity. Work from Ghoniem and the ULiege research group extends this by evolving internal variables like:
+
+\begin{itemize}
+	\item Static and mobile dislocation densities
+	\item Subgrain radius and boundary effects
+	\item Cavitation and damage
+\end{itemize}
+
+Such models are implemented in FEM tools like \texttt{Lagamine} to simulate thermal fatigue and multi-axial creep \cite{morch2022creep}.
+
 
 These models are limited in their ability to generalize across materials and loading conditions, prompting the need for simulation- and ML-based approaches.
 
@@ -106,7 +131,7 @@ Several phenomenological creep laws have been implemented in finite element solv
 
 \begin{itemize}
 	\item \textbf{Norton-Bailey Law:} Useful for steady-state creep, with creep strain rate expressed as a power-law function of stress and temperature.
-	\item \textbf{$\theta$-Projection Models:} Introduced to represent all three creep stages with fitted parameters \cite{modelling_three_stage}.
+	\item \textbf{$\theta$-Projection Models:} Introduced to represent all three creep stages with fitted parameters \cite{brown2002extrapolation}.
 	\item \textbf{Time Hardening and Strain Hardening Laws:} Capture primary and secondary creep stages by modifying the effective stress as a function of accumulated creep strain or time.
 \end{itemize}
 
@@ -122,9 +147,7 @@ Despite their accuracy, classical numerical models face several limitations:
 	\item \textbf{Limited extrapolation:} Classical models may fail outside calibrated regimes or when microstructural effects are dominant.
 \end{itemize}
 
-As described in \cite{limitations_creep_fea}, these challenges motivate the development of surrogate models that approximate the numerical outputs with significantly reduced computational effort.
-
-
+As described in \cite{wessel2004modelling}, these challenges motivate the development of surrogate models that approximate the numerical outputs with significantly reduced computational effort.
 
 
 \section{Machine Learning in Materials Science}
@@ -163,7 +186,57 @@ Numerical simulations — particularly finite element methods (FEM) — remain c
 
 Additionally, ML can aid inverse modeling: inferring material parameters or damage laws from experimental creep curves, where traditional optimization is infeasible or underdetermined.
 
-   
+\section{Active Learning and Data-Driven Design}
+
+The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data — whether through experiments or simulations — remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training.
+
+\subsection{Motivation for Active Learning in Creep Prediction}
+
+Creep behavior simulations involve evaluating material responses under varying stress, temperature, and microstructural parameters. The parameter space is typically large and high-dimensional, making uniform sampling (e.g., full-factorial or random) computationally inefficient. Additionally, regions of the parameter space may lead to invalid or non-convergent results in numerical models.
+
+Active learning addresses this by enabling:
+\begin{itemize}
+	\item \textbf{Efficient exploration} of the design space.
+	\item \textbf{Reduction in simulation cost} by focusing only on informative or uncertain regions.
+	\item \textbf{Improved generalization} of ML models using fewer training points.
+\end{itemize}
+
+\subsection{Active Learning Strategies}
+
+Several strategies have been explored in the literature:
+
+\begin{itemize}
+	\item \textbf{Uncertainty Sampling:} Points where the current model is most uncertain are prioritized for evaluation.
+	\item \textbf{Query-by-Committee (QBC):} An ensemble of models is trained, and points with the highest disagreement among them are selected \cite{morand2022efficient}.
+	\item \textbf{Feasibility-Based Selection:} Particularly useful in simulations where many parameter sets lead to non-physical or non-convergent outputs. A classifier can first be trained to identify valid regions \cite{heese2019optimized}.
+\end{itemize}
+
+These techniques help in focusing computational effort where it is most impactful — a major advantage in creep modeling, where simulations are often expensive and time-consuming.
+
+\subsection{Applications in Microstructure–Property Exploration}
+
+In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al. \cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
+
+Such frameworks are ideal for use in surrogate modeling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
+
+\subsection{Sampling Strategies in Practice}
+
+In this thesis, several sampling strategies are explored to efficiently generate data for surrogate modeling of creep behavior:
+
+\begin{itemize}
+	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space.
+	
+	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behavior.
+	
+	\item \textbf{Logarithmic Sampling:} Used to better capture sensitivity in highly nonlinear regions of the parameter space. For example, when material parameters like the hardening coefficient $b$ span several orders of magnitude, logarithmic sampling ensures sufficient resolution in low-value regions that may otherwise be underrepresented.
+	
+	\item \textbf{Active Learning:} An iterative strategy where the ML model itself identifies which regions of the design space require more data. Methods include uncertainty sampling and query-by-committee (QBC).
+\end{itemize}
+
+Logarithmic sampling is particularly beneficial when exploring creep laws with exponential or power-law behavior, as it avoids oversampling in regions with diminishing returns. By combining LHS with logarithmic scaling and active learning, this thesis aims to balance space-filling coverage with model-aware refinement of the dataset.
+
+Ultimately, these strategies enable a tight feedback loop between simulation and surrogate model improvement, making them ideal for high-dimensional, computationally expensive systems like creep prediction.
+  
 
 % You can use this to add content for standalone documents if you like
 % In this case we would like to show the references.
