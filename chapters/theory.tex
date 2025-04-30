@@ -44,7 +44,74 @@ A typical creep curve, plotting strain versus time under constant load and tempe
 	\item \textbf{Tertiary Creep:}  
 	In this final stage, the creep rate accelerates until failure. Mechanisms such as grain boundary void formation, microcracking, and necking dominate, leading to localized damage and rupture. This stage is typically excluded from design due to its unpredictability.
 \end{itemize}
-  
+ 
+\subsection{Mechanisms of Creep Deformation}
+
+Creep deformation in metals is governed by several atomic and dislocation-level mechanisms. The dominant mechanism depends on temperature, stress, grain size, and diffusion conditions.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/creep_mechanisms.png}
+	\caption{Overview of different creep mechanisms based on stress and temperature \cite{habraken2024lect}.}
+	\label{fig:creep_mechanisms}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Dislocation (Power-Law) Creep:}  
+	Dominant at intermediate temperatures and high stresses. It involves the motion of dislocations through the crystal lattice, and the creep rate follows a power-law relationship with stress. Creep strain rate is given by:
+	\begin{equation}
+		\dot{\varepsilon} = A \sigma^n \exp\left(-\frac{Q}{RT}\right)
+		\label{eq:powerlaw}
+	\end{equation}
+	where $n$ is the stress exponent (typically 3–8), $Q$ is activation energy, $R$ is the gas constant, and $T$ is absolute temperature.
+	
+	\item \textbf{Nabarro-Herring Creep:}  
+	Occurs at high temperatures and low stresses in materials with large grain sizes. Atoms diffuse through the lattice, causing elongation in the direction of the applied stress and contraction perpendicular to it.
+	
+	\item \textbf{Coble Creep:}  
+	Similar to Nabarro-Herring creep but involves diffusion along grain boundaries instead of through the bulk. It is significant in fine-grained materials and becomes prominent at lower temperatures than Nabarro-Herring creep.
+	
+	\item \textbf{Grain Boundary Sliding (GBS):}  
+	Grain boundaries slide past each other, sometimes accommodated by dislocation motion or diffusion. This mechanism becomes more significant at very high temperatures or under cyclic thermal loading.
+	
+	\item \textbf{Climb-Glide Mechanism:}  
+	Dislocations move by glide in specific planes and climb to overcome obstacles by absorbing or emitting vacancies. This enables continued plastic flow even when glide is hindered.
+	
+\end{itemize}
+
+These mechanisms may act simultaneously, with the dominant mechanism shifting depending on the material and operating environment. Detailed studies, such as those by Chatterjee and Roy \cite{chatterjee_creep}, have shown that microstructural features like precipitate coarsening, dislocation density evolution, and subgrain formation play critical roles in determining creep performance.
+
+\subsection{Phenomenological and Semi-Physical Creep Models}
+\label{Section::Creep_Models_Phenomenological}
+
+Creep behavior has traditionally been modeled using a variety of empirical and semi-physical formulations. These models aim to describe the relationship between stress, temperature, and time-dependent strain, providing analytical tools for design and life prediction.
+
+\begin{itemize}
+	\item \textbf{Norton’s Law:} Equation~$\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical model for engineering design under high temperatures.
+	
+	\item \textbf{Larson–Miller Parameter (LMP):} A time–temperature parameter defined as $P = T(C + \log t_r)$, where $T$ is the absolute temperature, $t_r$ the rupture time, and $C$ a material constant. This model allows short-term test data at higher temperatures to be extrapolated to predict long-term creep life at service conditions \cite{larson1954time}.
+	
+	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$ \cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
+	
+	\item \textbf{Wilshire Models:} These models extend the classical power-law formulation by incorporating yield stress into the stress exponent, enabling a more physically motivated description of creep behavior. They are often used for high-strength materials where the classical Norton–Bailey model fails to capture nonlinearities \cite{wilshire2007creep}.
+\end{itemize}
+
+\vspace{1em}
+
+\noindent \textbf{Damage-Based Models: Kachanov–Rabotnov Formulation}
+
+While the models above describe creep rate and rupture time based on phenomenological fits, they do not explicitly account for damage evolution during the tertiary stage of creep. To address this, damage mechanics-based models such as the \textbf{Kachanov–Rabotnov model} introduce a time-evolving damage variable, $\omega(t)$, representing the material’s degradation state.
+
+The creep strain rate and damage evolution are given by:
+
+\[
+\dot{\varepsilon} = A \sigma^n (1 - \omega)^m, \quad \dot{\omega} = B \sigma^n (1 - \omega)^k
+\]
+
+where $A$, $B$, $n$, $m$, and $k$ are material constants. The variable $\omega$ increases from 0 to 1, with failure predicted when $\omega = 1$. This model enables simulation of all three creep stages, including the accelerating tertiary regime.
+
+Recent work by Sattar et al. \cite{sattar2021damage} applied this formulation to SS-316 stainless steel, comparing it with the classical Norton–Bailey law. Using regression-based curve fitting, they successfully calibrated the Kachanov–Rabotnov model and demonstrated its improved performance in capturing the full creep lifecycle. Their results support the use of such damage-informed models for more accurate extrapolation of creep life, particularly in components operating under complex loading conditions.
+
 
 % You can use this to add content for standalone documents if you like
 % In this case we would like to show the references.
