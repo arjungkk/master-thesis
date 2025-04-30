@@ -12,7 +12,38 @@
 \chapter{Background \& Related Works}
 \label{Chapter::Background_&_Related_Works} % Outline text
 
+\section{Creep Behavior in Metallic Materials}
+\label{Section::Creep_Behavior_in_Metallic_Materials}
 
+\subsection{Fundamentals of Creep}
+\label{Section::Fundamentals_of_Creep}
+
+Creep is a time-dependent, permanent deformation that occurs in materials subjected to constant stress and elevated temperatures, typically above 30\% of their melting temperature in Kelvin \cite{frost1982deformation}. In metals, creep can significantly influence the mechanical integrity of components operating in high-temperature environments such as gas turbines, nuclear reactors, and jet engines.
+
+The creep strain, $\epsilon(t)$, in a material, is a function of both time and temperature and can be expressed empirically through various models. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates \cite{frost1982deformation, dieter1986mechanical}. 
+
+
+\subsection{Stages of Creep: Primary, Secondary, and Tertiary}
+
+A typical creep curve, plotting strain versus time under constant load and temperature, consists of three distinct stages:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/creep_stages.png}
+	\caption{Schematic of the three stages of creep behavior in metals \cite{dieter1986mechanical}.}
+	\label{fig:creep_stages}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Primary Creep:}  
+	Also known as transient creep, this stage is characterized by a decreasing creep rate. It results from the competition between strain hardening and recovery mechanisms. Dislocations multiply and interact, increasing internal resistance to further deformation.
+	
+	\item \textbf{Secondary Creep:}  
+	Also referred to as steady-state creep, this stage features a nearly constant creep rate. It reflects a dynamic balance between work hardening and recovery. This stage is the most predictable and often used for long-term design analysis.
+	
+	\item \textbf{Tertiary Creep:}  
+	In this final stage, the creep rate accelerates until failure. Mechanisms such as grain boundary void formation, microcracking, and necking dominate, leading to localized damage and rupture. This stage is typically excluded from design due to its unpredictability.
+\end{itemize}
   
 
 % You can use this to add content for standalone documents if you like
