@@ -81,36 +81,7 @@ Creep deformation in metals is governed by several atomic and dislocation-level 
 
 These mechanisms may act simultaneously, with the dominant mechanism shifting depending on the material and operating environment. Detailed studies, such as those by Chatterjee and Roy \cite{chatterjee_creep}, have shown that microstructural features like precipitate coarsening, dislocation density evolution, and subgrain formation play critical roles in determining creep performance.
 
-\subsection{Phenomenological and Semi-Physical Creep Models}
-\label{Section::Creep_Models_Phenomenological}
 
-Creep behavior has traditionally been modeled using a variety of empirical and semi-physical formulations. These models aim to describe the relationship between stress, temperature, and time-dependent strain, providing analytical tools for design and life prediction.
-
-\begin{itemize}
-	\item \textbf{Norton’s Law:} Equation~$\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical model for engineering design under high temperatures.
-	
-	\item \textbf{Larson–Miller Parameter (LMP):} A time–temperature parameter defined as $P = T(C + \log t_r)$, where $T$ is the absolute temperature, $t_r$ the rupture time, and $C$ a material constant. This model allows short-term test data at higher temperatures to be extrapolated to predict long-term creep life at service conditions \cite{larson1954time}.
-	
-	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$ \cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
-	
-	\item \textbf{Wilshire Models:} These models extend the classical power-law formulation by incorporating yield stress into the stress exponent, enabling a more physically motivated description of creep behavior. They are often used for high-strength materials where the classical Norton–Bailey model fails to capture nonlinearities \cite{wilshire2007creep}.
-\end{itemize}
-
-\vspace{1em}
-
-\noindent \textbf{Damage-Based Models: Kachanov–Rabotnov Formulation}
-
-While the models above describe creep rate and rupture time based on phenomenological fits, they do not explicitly account for damage evolution during the tertiary stage of creep. To address this, damage mechanics-based models such as the \textbf{Kachanov–Rabotnov model} introduce a time-evolving damage variable, $\omega(t)$, representing the material’s degradation state.
-
-The creep strain rate and damage evolution are given by:
-
-\[
-\dot{\varepsilon} = A \sigma^n (1 - \omega)^m, \quad \dot{\omega} = B \sigma^n (1 - \omega)^k
-\]
-
-where $A$, $B$, $n$, $m$, and $k$ are material constants. The variable $\omega$ increases from 0 to 1, with failure predicted when $\omega = 1$. This model enables simulation of all three creep stages, including the accelerating tertiary regime.
-
-Recent work by Sattar et al. \cite{sattar2021damage} applied this formulation to SS-316 stainless steel, comparing it with the classical Norton–Bailey law. Using regression-based curve fitting, they successfully calibrated the Kachanov–Rabotnov model and demonstrated its improved performance in capturing the full creep lifecycle. Their results support the use of such damage-informed models for more accurate extrapolation of creep life, particularly in components operating under complex loading conditions.
 
 
 % You can use this to add content for standalone documents if you like
