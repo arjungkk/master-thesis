@@ -195,16 +195,16 @@
 	\section{Surrogate Modeling}
 	\label{Section::Surrogate_Model}
 	
-	The reduced features were predicted using supervised regression models:
+	Surrogate models act as fast, predictive approximations of the high-fidelity FEM simulations. They enable rapid inference and inverse modeling of creep behavior. The following regressors were trained:
 	
 	\begin{itemize}
-		\item Random Forest Regressor
-		\item Gradient Boosting Regressor
-		\item Stacking Regressor
-		\item Voting Regressor (best performance)
+		\item \textbf{Random Forest Regressor (RFR)}: An ensemble of decision trees that outputs the average prediction. It handles non-linearities and interactions without needing feature scaling.
+		\item \textbf{Gradient Boosting Regressor (GBR)}: Builds an additive model in a forward stage-wise fashion, minimizing error via gradient descent. GBR offered higher precision but required tuning to avoid overfitting.
+		\item \textbf{Stacking Regressor}: Combines predictions of multiple base regressors (e.g., RFR, GBR) using a meta-model, allowing diverse model benefits to be aggregated.
+		\item \textbf{Voting Regressor}: Uses a weighted average of predictions from base learners. It showed robust and consistent performance across targets like PCA features and $\theta$-projection parameters.
 	\end{itemize}
-	
-	Each model mapped the 8 input parameters to PCA/KPCA or $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
+
+	The models were trained using the scikit-learn framework. Hyperparameters were selected using grid search with 5-fold cross-validation.	Each model mapped the 8 input parameters to $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
 	
 	\section{Active Learning}
 	\label{Section::Active_Learning}
