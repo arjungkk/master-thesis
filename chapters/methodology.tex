@@ -132,7 +132,7 @@
 	
 	\subsection{A. Mathematical Models}
 	
-	\subsubsection*{1. $\theta$-Projection Model}
+	\subsubsection{1. $\theta$-Projection Model}
 	
 	The $\theta$-projection model \cite{brown2002extrapolation} is a semi-empirical equation used to represent creep strain evolution with four scalar parameters:
 	
@@ -148,7 +148,7 @@
 	
 	This model is widely used for engineering creep prediction and provides a compact description of the strain evolution using physically interpretable terms. It does not explicitly capture tertiary creep behavior.
 	
-	\subsubsection*{2. Three-Stage Creep Model}
+	\subsubsection{2. Three-Stage Creep Model}
 	
 	The three-stage model, introduced by \textit{Wessel et al.} \cite{wessel2004modelling}, is designed to model the complete creep lifecycle by decomposing the total strain into three components:
 	
@@ -167,11 +167,11 @@
 	
 	\subsection{B. Data-Driven Representations}
 	
-	\subsubsection*{1. Principal Component Analysis (PCA)}
+	\subsubsection{1. Principal Component Analysis (PCA)}
 	
 	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied to strain-time series interpolated at 100 logarithmically spaced time points. The first few principal components typically captured over 95\% of the total variance, enabling significant reduction in feature dimensionality without major loss of information.
 	
-	\subsubsection*{2. Kernel Principal Component Analysis (Kernel PCA)}
+	\subsubsection{2. Kernel Principal Component Analysis (Kernel PCA)}
 	
 	Kernel PCA generalizes PCA to non-linear transformations by mapping the data into a higher-dimensional feature space using kernel functions. Two types of kernels were used:
 	\begin{itemize}
