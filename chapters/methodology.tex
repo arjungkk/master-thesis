@@ -221,17 +221,17 @@
 	\section{Evaluation Metrics}
 	\label{Section::Evaluation}
 	
-	Performance was assessed on a test set using:
+	o assess model performance comprehensively, several metrics were evaluated:
 	
 	\begin{itemize}
-		\item RMSE on PCA reconstruction
-		\item Minimum creep rate error
-		\item Rupture time prediction error
-		\item Visual similarity of curve reconstructions
-		\item Inverse model accuracy (curve $\rightarrow$ parameters)
+		\item \textbf{RMSE on PCA Reconstruction}: Measures error in predicted principal components, reflecting the ability to reconstruct the original curve shape.
+		\item \textbf{Minimum Creep Rate Error}: Evaluated accuracy in capturing the slope of the secondary stage, which is critical for design applications.
+		\item \textbf{Rupture Time Prediction Error}: The difference between predicted and actual rupture times, useful for lifecycle assessments.
+		\item \textbf{Visual Similarity}: Overlay plots of predicted vs. true creep curves were generated to validate qualitative matching.
+		\item \textbf{Inverse Accuracy}: Measured the accuracy of recovering simulation input parameters from curve features using inverse modeling.
 	\end{itemize}
 	
-	Cross-validation and error plots were used to benchmark models.
+	These metrics collectively ensured both predictive accuracy and physical relevance of the surrogate models.
 	
 	\clearpage
 		
