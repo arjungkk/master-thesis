@@ -148,21 +148,6 @@ Finite element analysis (FEA) provides a powerful framework for simulating creep
 
 Numerical models offer the advantage of extrapolating creep behavior under untested conditions. However, these models require extensive calibration and may become computationally expensive for high-dimensional parametric studies.
 
-\subsection{Creep Law Implementations}
-
-Several phenomenological creep laws have been implemented in finite element solvers, such as:
-
-\begin{itemize}
-	\item \textbf{Norton-Bailey Law:} Useful for steady-state creep, with creep strain rate expressed as a power-law function of stress and temperature.
-	\item \textbf{$\theta$-Projection Models:} Introduced to represent all three creep stages with fitted parameters \cite{brown2002extrapolation}.
-	\item \textbf{Time Hardening and Strain Hardening Laws:} Capture primary and secondary creep stages by modifying the effective stress as a function of accumulated creep strain or time.
-\end{itemize}
-
-Such models are often calibrated against experimental or synthetic data using optimization techniques. The implementation of these models in software like Lagamine enables generation of creep curves for a wide range of loading and material parameters. 
-
-The modified theta projection method has also been proposed for capturing all creep stages using fewer empirical parameters, enhancing its extrapolation capabilities \cite{liu2020theta}. This aligns well with the trends in creep law implementations in FEA codes.
-
-
 \subsection{Limitations of Classical Numerical Methods}
 
 Despite their accuracy, classical numerical models face several limitations:
