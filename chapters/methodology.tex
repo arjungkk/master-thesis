@@ -92,7 +92,7 @@
 	
 	\subsection{Geometry and Boundary Conditions}
 	
-	The geometry and boundary conditions can be found in the figure ~\ref{tab:geometry}
+	The geometry and boundary conditions can be found in the table ~\ref{tab:geometry}
 	
 	\begin{table}[H]
 		\centering
@@ -253,6 +253,24 @@
 	\end{itemize}
 	
 	Together, these metrics ensured both the quantitative accuracy and qualitative validity of the developed surrogate models.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Summary of evaluation metrics used for surrogate model performance.}
+		\label{tab:evaluation_metrics}
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Metric} & \textbf{Description} \\
+			\midrule
+			RMSE & Root mean squared error of reconstructed strain curves \\
+			Rupture Time Error & Deviation in predicted vs. actual rupture time \\
+			Minimum Creep Rate Error & Accuracy in predicting steady-state creep slope \\
+			Visual Similarity & Curve overlap for qualitative match \\
+			Inverse Accuracy & Accuracy in retrieving simulation input from curves \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
 	
 	
 	\clearpage
