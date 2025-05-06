@@ -203,8 +203,10 @@
 		\item \textbf{Stacking Regressor}: Combines predictions of multiple base regressors (e.g., RFR, GBR) using a meta-model, allowing diverse model benefits to be aggregated.
 		\item \textbf{Voting Regressor}: Uses a weighted average of predictions from base learners. It showed robust and consistent performance across targets like PCA features and $\theta$-projection parameters.
 	\end{itemize}
-
-	The models were trained using the scikit-learn framework. Hyperparameters were selected using grid search with 5-fold cross-validation.	Each model mapped the 8 input parameters to $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
+	
+	These models provide a balance between interpretability, computational speed, and non-linear regression performance, making them well-suited for surrogate modeling in material simulations.
+	
+	The models were trained using the scikit-learn framework. Hyperparameters were selected using grid search with 5-fold cross-validation. Each model mapped the 8 input parameters to $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
 	
 	\section{Active Learning}
 	\label{Section::Active_Learning}
