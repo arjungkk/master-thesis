@@ -212,7 +212,7 @@
 	An active learning loop was implemented to reduce the need for dense sampling:
 	
 	\begin{itemize}
-		\item \textbf{Feasibility filter}: Isolation Forest trained on valid/invalid samples.
+		\item \textbf{Feasibility filter}: An Isolation Forest model was trained to identify whether a set of input parameters would result in valid simulation output, helping avoid computationally wasted queries.
 		\item \textbf{Label space}: Theta values used for diversity-based selection.
 		\item \textbf{Query strategy}: Select points farthest from current label distribution.
 		\item \textbf{Feedback loop}: Each batch updated the training data and retrained the model.
