@@ -186,30 +186,48 @@
 	
 	\subsection{B. Data-Driven Representations}
 	
+	Prior to performing dimensionality reduction, the synthetic dataset was partitioned into training and test sets, following an 80\%–20\% ratio. This allowed unbiased performance assessment of subsequent machine learning models.
+	
+	The creep strain–time data, inherently sampled at 100 logarithmically spaced intervals, posed specific challenges due to variations in rupture times. In particular, early rupture curves introduced missing values or infinite entries, necessitating specialized preprocessing to ensure stable application of PCA and kernel PCA.
+	
+	Three strategies were implemented to handle early rupture scenarios:
+	
+	\begin{enumerate}
+		\item \textbf{Zero padding:} Missing data points after rupture were replaced with zeros, effectively truncating the creep curve and clearly marking the rupture event.
+		
+		\item \textbf{Max strain padding:} After rupture, the creep strain values were held constant at the last observed strain, ensuring smooth continuity and preventing abrupt changes.
+		
+		\item \textbf{Normalization by rupture time:} Each creep curve was normalized based on its rupture time, converting absolute time scales to a relative scale (from 0 to 1). This approach aligns the deformation trajectories across samples, effectively mitigating variations caused by early ruptures.
+	\end{enumerate}
+	
+	These preprocessing methods significantly improved data consistency, eliminating NaNs and infinite values, thereby enhancing the robustness of the dimensionality reduction processes.
+	
 	\subsubsection{1. Principal Component Analysis (PCA)}
 	
-	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied to strain-time series interpolated at 100 logarithmically spaced time points. The first few principal components typically captured over 95\% of the total variance, enabling significant reduction in feature dimensionality without major loss of information.
+	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. Typically, the first few principal components captured over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
 	
 	\subsubsection{2. Kernel Principal Component Analysis (Kernel PCA)}
 	
-	Kernel PCA generalizes PCA to non-linear transformations by mapping the data into a higher-dimensional feature space using kernel functions. Two types of kernels were used:
+	Kernel PCA extends PCA by performing nonlinear transformations of data into a higher-dimensional feature space using kernel functions, enabling better representation of nonlinear deformation trends across creep curves. Two kernels were explored in this study:
+	
 	\begin{itemize}
-		\item Polynomial kernel (degree 6)
-		\item Radial Basis Function (RBF) kernel with $\gamma = 0.01$
+		\item \textbf{Polynomial kernel (degree 6)}, capturing polynomially nonlinear features.
+		\item \textbf{Radial Basis Function (RBF) kernel} with hyperparameter $\gamma = 0.01$, suitable for more complex, localized nonlinear patterns.
 	\end{itemize}
 	
-	Kernel PCA enables better representation of curves with non-linear deformation trends across time. It was particularly useful for distinguishing non-monotonic curve shapes or abrupt transitions in the creep stages.
+	Kernel PCA proved particularly useful in distinguishing curves with non-monotonic behavior or abrupt transitions between creep stages, which linear PCA could not represent adequately.
 	
 	\subsection{C. Interpolation and Alignment Strategy}
 	
-	To ensure compatibility across all models, all curves were sampled at fixed logarithmic time intervals. Incomplete curves (e.g., early rupture) were aligned using two strategies:
+	All creep curves were uniformly sampled at 100 logarithmically spaced time intervals to facilitate consistent model input. Early ruptures necessitated alignment strategies, implemented as follows:
+	
 	\begin{itemize}
-		\item \textbf{Zero padding:} Remaining time points filled with zero strain.
-		\item \textbf{Max-hold padding:} Remaining values held constant at the final valid strain.
+		\item \textbf{Zero padding}, marking clear rupture points.
+		\item \textbf{Max-hold padding}, ensuring continuity after rupture.
 	\end{itemize}
 	
-	These aligned, equal-length vectors were then used as targets or inputs to the machine learning models depending on the learning task.
-	
+	The aligned and normalized creep curves formed the final dataset used as input to the machine learning surrogate models and dimensionality reduction techniques.
+		
 	
 	\section{Surrogate Modeling}
 	\label{Section::Surrogate_Model}
