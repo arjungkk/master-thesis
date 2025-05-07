@@ -167,22 +167,23 @@
 	
 	This model is widely used for engineering creep prediction and provides a compact description of the strain evolution using physically interpretable terms. It does not explicitly capture tertiary creep behavior.
 	
-	\subsubsection{2. Three-Stage Creep Model}
+	\subsubsection{2. Three-Stages of Creep Model}
 	
-	The three-stage model, introduced by \textit{Wessel et al.} \cite{wessel2004modelling}, is designed to model the complete creep lifecycle by decomposing the total strain into three components:
+	The three-stages of creep model introduced by Dacol and Caetano~\cite{dacol2022modelling} describes the creep strain evolution using a unified analytical expression that captures all three classical stages of creep. The model is given by:
 	
 	\[
-	\varepsilon(t) = \varepsilon_1(t) + \varepsilon_2(t) + \varepsilon_3(t)
+	\varepsilon_e(t) = k \cdot e^{\alpha \cdot t^{\beta}}
 	\]
 	
-	Where:
+	where:
 	\begin{itemize}
-		\item $\varepsilon_1(t)$ models primary creep, typically using a logarithmic or saturating exponential function.
-		\item $\varepsilon_2(t)$ represents secondary creep with a constant strain rate over time.
-		\item $\varepsilon_3(t)$ accounts for tertiary creep, commonly represented using a damage-based or exponential growth function.
+		\item \( \varepsilon_e(t) \) is the creep strain at time \( t \),
+		\item \( k \) is a constant for a given temperature and load,
+		\item \( \alpha \) and \( \beta \) are material-dependent fitting parameters, subject to \( \alpha > 0 \), \( \beta < 1 \), and \( \alpha \ll \beta \).
 	\end{itemize}
 	
-	This model allows fitting of curves that exhibit all three classical creep stages and provides stage-wise decomposition of the strain history.
+	This model enables a continuous representation of the primary, secondary, and tertiary creep stages in a compact exponential-power law formulation, and is particularly suitable for long-term extrapolation of creep data.
+
 	
 	\subsection{B. Data-Driven Representations}
 	
