@@ -237,7 +237,7 @@
 		\label{fig:kpca}
 	\end{figure}
 	
-	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with KPCA(using different kernels) and the model was saved. Then an inverser transformation of the model was applied to reconstruct the creep curves from the test set.
+	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with KPCA(using different kernels) and the model was saved. Then an inverse transformation of the model was applied to reconstruct the creep curves from the test set.
 	
 	Kernel PCA proved particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
 	
@@ -267,7 +267,7 @@
 	
 	\subsection*{1. Random Forest Regressor (RFR)}
 	
-	The Random Forest Regressor is an ensemble method based on decision trees, where predictions are made by averaging the output of multiple trees trained on bootstrapped samples of the dataset \cite{breiman2001random}. It naturally captures non-linear relationships and feature interactions, and is robust to outliers and overfitting. In this work, RFR was used as a baseline model due to its interpretability and fast training time.
+	The Random Forest Regressor is an ensemble method based on decision trees, where predictions are made by averaging the output of multiple trees trained on bootstrapped samples of the dataset \cite{breiman2001random}. It naturally captures non-linear relationships and feature interactions, and is robust to outliers and over-fitting. In this work, RFR was used as a baseline model due to its interpretability and fast training time.
 	
 	\subsection*{2. Gradient Boosting Regressor (GBR)}
 	
