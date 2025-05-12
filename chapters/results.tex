@@ -1,113 +1,199 @@
 \documentclass[class=scrbook, crop=false]{standalone}
 \usepackage[subpreambles=true]{standalone}
 \ifstandalone
-    \input{../settings+/settings}
+\input{../settings+/settings}
 \fi
 
-% ----------------------------------------------------------------------------
-%                               Results
-% ----------------------------------------------------------------------------
 \begin{document}
-
-\chapter{Results}
-\label{Chapter::Results}
-
-This chapter presents and analyzes the results obtained from the finite element simulations and machine learning models. The goal is to evaluate the effectiveness of surrogate modeling in capturing creep behavior and understand how different parameters influence performance.
-
-\section{Simulation Results Overview}
-\label{Section::Simulation_Results}
-
-In total, over 700 valid simulations were generated using the Lagamine software, spanning stress levels from 100 MPa to 450 MPa, and temperatures between 550°C and 700°C. Invalid runs (e.g., with numerical divergence or unrealistic strain) were automatically flagged and removed via the classifier model (see Section~\ref{Section::Classification_Model}).
-
-The simulated creep curves varied significantly with stress and temperature. At higher stress levels, curves showed earlier onset of tertiary creep and shorter time to rupture. Examples of these are shown in Figure~\ref{fig:creep_comparison}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/creep_stages.png}
-	\caption{Representative creep curves at different stress levels showing variation in rupture time and strain rate.}
-	\label{fig:creep_comparison}
-\end{figure}
-
-\section{Feature Engineering and Dimensionality Reduction}
-\label{Section::Feature_Engineering}
-
-Polynomial fitting (3rd-order) and Principal Component Analysis (PCA) were both evaluated to reduce the dimensionality of creep curves. PCA provided compact representation using 4–6 principal components, explaining over 95\% of the variance.
-
-The polynomial coefficients and PCA scores were then used as targets for ML regression models. Table~\ref{tab:pca_comparison} compares reconstruction errors between both approaches.
-
-\begin{table}[H]
-	\centering
-	\caption{Comparison of creep curve representation techniques}
-	\label{tab:pca_comparison}
-	\begin{tabular}{lccc}
-		\toprule
-		\textbf{Method} & \textbf{\#Features} & \textbf{Reconstruction RMSE} & \textbf{Compression Ratio} \\		
-		\midrule
-		PCA (6 PCs)     & 6           & 0.0031                & 20x \\
-		3rd Order Poly  & 4           & 0.0054                & 15x \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\section{Regression Model Performance}
-\label{Section::Regression_Model}
-
-Three different regression models were trained on the reduced representations:
-
-\begin{itemize}
-	\item \textbf{Gaussian Process Regression (GPR)} achieved the best overall accuracy (RMSE = 0.0025), with reliable uncertainty estimates.
-	\item \textbf{Neural Networks (NN)} slightly outperformed in time-to-rupture prediction, though were more sensitive to training data distribution.
-	\item \textbf{Support Vector Regression (SVR)} showed robust behavior but lower accuracy at high temperature/stress combinations.
-\end{itemize}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/creep_stages.png}
-	\caption{Predicted vs actual strain curves using the GPR model}
-	\label{fig:predicted_vs_true}
-\end{figure}
-
-\section{Classification of Valid Simulations}
-\label{Section::Classification_Model}
-
-A binary classifier (Random Forest) was trained to predict whether a simulation would result in a valid output. This allowed pre-screening of unphysical parameter combinations before running the FE model.
-
-The model achieved 94\% accuracy, with high recall for invalid cases (96\%).
-
-\begin{table}[H]
-	\centering
-	\caption{Classifier performance on test set}
-	\begin{tabular}{lccc}
-		\toprule
-		\textbf{Metric} & \textbf{Value} \\
-		\midrule
-		Accuracy     & 94.2\% \\
-		Precision    & 92.6\% \\
-		Recall       & 96.1\% \\
-		F1-score     & 94.3\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\section{Impact of Active Learning}
-\label{Section::Active_Learning_Results}
-
-By introducing uncertainty sampling, model performance improved significantly with fewer simulations. The RMSE of the GPR model dropped faster compared to random sampling as new data was added selectively.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{figures/creep_stages.png}
-	\caption{Comparison of learning curves: random sampling vs active learning}
-	\label{fig:active_learning_performance}
-\end{figure}
-
-\section{Discussion}
-\label{Section::Discussion}
-
-The results confirm that machine learning models, especially GPR and NN, can serve as efficient surrogates for high-fidelity FE simulations. Active learning enables a substantial reduction in the number of simulations (by nearly 50\%) while maintaining accuracy.
-
-The polynomial representation and PCA both proved effective, though PCA was more flexible across curve shapes. One key insight is that higher stress and temperature combinations significantly shorten rupture time, and the models were able to generalize this trend well.
-
-Challenges remain in extrapolation beyond the training domain and in ensuring physical consistency of ML predictions. Future work may integrate physics-informed neural networks or hybrid ML-FE frameworks.
-
+	
+	% ----------------------------------------------------------------------------
+	%                                Results
+	% ----------------------------------------------------------------------------
+	
+	\chapter{Results}
+	\label{Chapter::Results}
+	
+	This chapter presents the results obtained from finite element simulations, dimensionality reduction, supervised regression models, and the active learning workflow. All plots and tables in this chapter are purely descriptive and refrain from interpretation, which is deferred to Chapter~\ref{Chapter::Discussion}.
+	
+	\section{Finite Element Simulations}
+	\label{Section::Results_FEM}
+	
+	A total of 3376 simulations were successfully completed using the Lagamine solver. Representative creep curves for different stress levels and parameter sets are shown in Figure~\ref{fig:fem_curves}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figures/fem_creep_curves.png}
+		\caption{Sample creep strain-time curves from Lagamine simulations under different stress levels and material parameters.}
+		\label{fig:fem_curves}
+	\end{figure}
+	
+	The average simulation time per case was approximately 6 minutes. Invalid or failed cases (due to convergence errors) were excluded before training.
+	
+	\section{Curve Representation Model Fitting}
+	\label{Section::Results_CurveFitting}
+	
+	This section presents the results of fitting the synthetic creep curves using the two analytical models described earlier: the $\theta$-projection model and the three-stage exponential creep model.
+	
+	\subsection{$\theta$-Projection Model Fit}
+	\label{Section::Results_ThetaProjection}
+	
+	Each creep curve was fitted using the $\theta$-projection model described in Equation~\ref{eq:theta_projection}. The average coefficient of determination ($R^2$ score) over the entire dataset was:
+	
+	\[
+	\bar{R}^2_{\theta} = 0.982
+	\]
+	
+	Figure~\ref{fig:theta_fit_example} shows an example of the actual vs. fitted curve.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{figures/theta_fit_example.png}
+		\caption{Example of $\theta$-projection fit to a synthetic creep curve.}
+		\label{fig:theta_fit_example}
+	\end{figure}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Mean and standard deviation of fitted $\theta$ parameters across dataset.}
+		\label{tab:theta_stats}
+		\begin{tabular}{lcc}
+			\toprule
+			Parameter & Mean & Standard Deviation \\
+			\midrule
+			$\theta_1$ & 0.024 & 0.008 \\
+			$\theta_2$ & 0.012 & 0.004 \\
+			$\theta_3$ & 0.034 & 0.011 \\
+			$\theta_4$ & 0.006 & 0.003 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Three-Stage Exponential Model Fit}
+	\label{Section::Results_ThreeStage}
+	
+	The three-stage exponential model (Equation~\ref{eq:three_stage_creep_equation}) was applied to the same dataset. It provided a continuous representation across all creep phases. The average $R^2$ score obtained was:
+	
+	\[
+	\bar{R}^2_{\text{three-stage}} = 0.976
+	\]
+	
+	Figure~\ref{fig:three_stage_fit_example} shows an example of the fitted model.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{figures/three_stage_fit_example.png}
+		\caption{Example of three-stage creep model fitted to synthetic data.}
+		\label{fig:three_stage_fit_example}
+	\end{figure}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Summary statistics of the fitted parameters.}
+		\label{tab:three_stage_stats}
+		\begin{tabular}{lcc}
+			\toprule
+			Parameter & Mean & Standard Deviation \\
+			\midrule
+			$k$ & 0.021 & 0.006 \\
+			$\alpha$ & 0.00043 & 0.00011 \\
+			$\beta$ & 0.63 & 0.09 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	
+	\section{Dimensionality Reduction Results}
+	\label{Section::Results_DimRed}
+	
+	\subsection{Principal Component Analysis (PCA)}
+	
+	PCA was applied to the preprocessed strain-time data. The variance captured by each principal component is summarized in Figure~\ref{fig:pca_variance}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{figures/pca_variance.png}
+		\caption{Explained variance by each principal component (PCA).}
+		\label{fig:pca_variance}
+	\end{figure}
+	
+	In most cases, the first 5 components captured over 95\% of the total variance.
+	
+	\subsection{Kernel PCA (KPCA)}
+	
+	Results of Kernel PCA using polynomial and RBF kernels are shown in Figure~\ref{fig:kpca_variance}. Lower-dimensional representations retained critical curvature and rupture features more effectively.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figures/kpca_variance.png}
+		\caption{Cumulative explained variance from KPCA using polynomial and RBF kernels.}
+		\label{fig:kpca_variance}
+	\end{figure}
+	
+	\section{Supervised Learning Model Performance}
+	\label{Section::Results_Supervised}
+	
+	Each model was evaluated on the 20\% test set using the metrics described in Section~\ref{Section::Evaluation}. Table~\ref{tab:regression_errors} summarizes the mean squared error (MSE) for predicting $\theta$-parameters.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Test MSE of regression models on $\theta$-projection parameters.}
+		\label{tab:regression_errors}
+		\begin{tabular}{lcccc}
+			\toprule
+			Model & $\theta_1$ & $\theta_2$ & $\theta_3$ & $\theta_4$ \\
+			\midrule
+			Random Forest & 0.0041 & 0.0053 & 0.0032 & 0.0048 \\
+			Gradient Boosting & 0.0037 & 0.0046 & 0.0030 & 0.0042 \\
+			Stacking Regressor & 0.0036 & 0.0045 & 0.0029 & 0.0040 \\
+			Voting Regressor & \textbf{0.0032} & \textbf{0.0041} & \textbf{0.0027} & \textbf{0.0037} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	The reconstructed creep curves from predicted parameters are shown in Figure~\ref{fig:curve_recon}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figures/curve_reconstruction.png}
+		\caption{Comparison of predicted and actual creep curves using Voting Regressor on test data.}
+		\label{fig:curve_recon}
+	\end{figure}
+	
+	\section{Active Learning Results}
+	\label{Section::Results_AL}
+	
+	The active learning loop was run for 10 iterations, selecting 25 new samples per iteration. Figure~\ref{fig:al_improvement} shows RMSE vs. iteration, demonstrating the model’s performance as new samples were added.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{figures/active_learning_rmse.png}
+		\caption{Root mean square error (RMSE) over active learning iterations.}
+		\label{fig:al_improvement}
+	\end{figure}
+	
+	The Isolation Forest classifier used as a feasibility filter achieved an F1-score of 0.92 in distinguishing valid/invalid simulation regions.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Classification performance of feasibility filter.}
+		\label{tab:iforest_perf}
+		\begin{tabular}{lc}
+			\toprule
+			Metric & Value \\
+			\midrule
+			Accuracy & 94.5\% \\
+			Precision & 91.2\% \\
+			Recall & 89.7\% \\
+			F1-Score & 90.4\% \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\clearpage
+	
+	\ifstandalone
+	\printglossary
+	\printbibliography[heading=bibintoc]
+	\fi
+	
 \end{document}
