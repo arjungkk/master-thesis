@@ -12,12 +12,12 @@
 	\chapter{Methodology \& Computational Framework}
 	\label{Chapter::Methodology}
 	
-	This chapter presents the methodology followed to simulate creep behavior, generate a synthetic dataset, represent creep curves efficiently, develop machine learning surrogate models, and implement an active learning framework for data-efficient model improvement. The approach integrates numerical simulation with data-driven learning techniques to model complex creep behavior efficiently.
+	This chapter presents the methodology followed to simulate creep behaviour, generate a synthetic dataset, represent creep curves efficiently, develop machine learning surrogate models, and implement an active learning framework for data-efficient model improvement. The approach integrates numerical simulation with data-driven learning techniques to model complex creep behaviour efficiently.
 	
 	\section{Overview of Workflow}
 	\label{Section::Workflow}
 	
-	Figure~\ref{fig:workflow} illustrates the complete hybrid modeling pipeline. It includes:
+	Figure~\ref{fig:workflow} illustrates the complete hybrid modelling pipeline. It includes:
 	
 	\begin{enumerate}
 		\item Sampling and selection of simulation parameters (Latin Hypercube + log-scaling).
@@ -25,14 +25,14 @@
 		\item Preprocessing and normalization of output strain-time data.
 		\item Curve representation using dimensionality reduction techniques (PCA, Kernel PCA).
 		\item Supervised regression model training (Random Forest, Gradient Boosting, etc.).
-		\item Prediction of creep behavior from material and loading inputs.
+		\item Prediction of creep behaviour from material and loading inputs.
 		\item Iterative improvement using active learning with feasibility filtering.
 	\end{enumerate}
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.9\textwidth]{figures/workflow_diagram.png}
-		\caption{Workflow combining finite element simulation, curve representation, supervised learning, and active learning for creep modeling.}
+		\caption{Overview of Workflow.}
 		\label{fig:workflow}
 	\end{figure}
 	
