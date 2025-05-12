@@ -22,33 +22,6 @@ Creep is a time-dependent, permanent deformation that occurs in materials subjec
 
 The creep strain, $\epsilon(t, T)$, in a material, is a function of both time$(t)$ and temperature$(T)$ and can be expressed empirically through various models like Norton–Bailey Law, Monkman–Grant Relationship, etc. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates \cite{frost1982deformation, dieter1986mechanical}. 
 
-
-\subsection{Stages of Creep: Primary, Secondary, and Tertiary}
-
-A typical creep curve, plotting strain versus time under constant load and temperature, consists of three distinct stages:
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{figures/creep_stages.png}
-	\caption{Characteristics of the three stages of creep behavior in metals \cite{dieter1986mechanical}.}
-	\label{fig:creep_stages}
-\end{figure}
-
-\begin{table}[H]
-	\centering
-	\caption{Comparison of the three stages of creep in metallic materials.}
-	\label{tab:creep_stages}
-	\begin{tabular}{p{3.5cm}p{4.5cm}p{6cm}}
-		\toprule
-		\textbf{Stage} & \textbf{Characteristics} & \textbf{Dominant Mechanisms} \\
-		\midrule
-		\textbf{Primary Creep} & Decelerating strain rate & Elastic and plastic deformation, dislocation movement \\
-		\textbf{Secondary Creep} & Steady-state strain rate & Balance between strain-hardening and recovery (dislocation density saturation) \\
-		\textbf{Tertiary Creep} & Accelerating strain rate until rupture & Grain boundary separation, necking, void formation \\
-		\bottomrule
-	\end{tabular}
-\end{table}
- 
 \subsection{Mechanisms of Creep Deformation}
 
 Creep deformation in metals is governed by several atomic and dislocation-level mechanisms. The dominant mechanism depends on temperature, stress, grain size, and diffusion conditions.
@@ -85,6 +58,35 @@ Creep deformation in metals is governed by several atomic and dislocation-level 
 \end{itemize}
 
 These mechanisms may act simultaneously, with the dominant mechanism shifting depending on the material and operating environment. Detailed studies, such as those by Chatterjee and Roy \cite{chatterjee_creep}, have shown that microstructural features like precipitate coarsening, dislocation density evolution, and subgrain formation play critical roles in determining creep performance.
+
+
+\subsection{Stages of Creep: Primary, Secondary, and Tertiary}
+
+A typical creep curve, plotting strain versus time under constant load and temperature, consists of three distinct stages:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/creep_stages.png}
+	\caption{Characteristics of the three stages of creep behavior in metals \cite{dieter1986mechanical}.}
+	\label{fig:creep_stages}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{Comparison of the three stages of creep in metallic materials.}
+	\label{tab:creep_stages}
+	\begin{tabular}{p{3.5cm}p{4.5cm}p{6cm}}
+		\toprule
+		\textbf{Stage} & \textbf{Characteristics} & \textbf{Dominant Mechanisms} \\
+		\midrule
+		\textbf{Primary Creep} & Decelerating strain rate & Elastic and plastic deformation, dislocation movement \\
+		\textbf{Secondary Creep} & Steady-state strain rate & Balance between strain-hardening and recovery (dislocation density saturation) \\
+		\textbf{Tertiary Creep} & Accelerating strain rate until rupture & Grain boundary separation, necking, void formation \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+ 
+
 
 \subsection{Phenomenological and Semi-Physical Creep Models}
 \label{Section::Creep_Models_Phenomenological}
