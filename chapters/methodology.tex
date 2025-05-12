@@ -249,7 +249,17 @@
 	
 	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behaviour. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modelling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
-	Several regression-based algorithms were implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-projection parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how Supervised Learning was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with PCA and the model was saved. Then an inverser transformation of the model was applied to reconstruct the creep curves from the test set.
+	Several regression-based algorithms were implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-projection parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how Supervised Learning was used. 
+	
+	\begin{enumerate}
+		\item Training set of creep curves obtained from the synthetic data were transformed to theta space with theta projection mapping.
+		\item Creep curve generation using the \texttt{Lagamine} FEM solver.
+		\item Preprocessing and normalization of output strain-time data.
+		\item Curve representation using dimensionality reduction techniques (PCA, Kernel PCA).
+		\item Supervised regression model training (Random Forest, Gradient Boosting, etc.).
+		\item Prediction of creep behavior from material and loading inputs.
+		\item Iterative improvement using active learning with feasibility filtering.
+	\end{enumerate}
 	
 	\begin{figure}[H]
 		\centering
