@@ -212,7 +212,7 @@
 	
 	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. Typically, the first few principal components captured over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
 	
-	Figure~\ref{fig:workflow} illustrates the workflow of how PCA was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with PCA and the model was saved. Then an inverser transformation of the model was applied to reconstruct the creep curves from the test set.
+	Figure~\ref{fig:pca} illustrates the workflow of how PCA was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with PCA and the model was saved. Then an inverser transformation of the model was applied to reconstruct the creep curves from the test set.
 		
 	\begin{figure}[H]
 		\centering
