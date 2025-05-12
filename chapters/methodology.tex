@@ -211,6 +211,13 @@
 	\subsubsection{1. Principal Component Analysis (PCA)}
 	
 	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. Typically, the first few principal components captured over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
+		
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/pca.png}
+		\caption{Workflow combining finite element simulation, curve representation, supervised learning, and active learning for creep modeling.}
+		\label{fig:pca}
+	\end{figure}
 	
 	\subsubsection{2. Kernel Principal Component Analysis (Kernel PCA)}
 	
