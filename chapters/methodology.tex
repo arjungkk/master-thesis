@@ -211,6 +211,8 @@
 	\subsubsection{1. Principal Component Analysis (PCA)}
 	
 	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA was applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. Typically, the first few principal components captured over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
+	
+	Figure~\ref{fig:workflow} illustrates the workflow of how PCA was used. The training set of creep curves obtained from the synthetic data were transformed to lower dimensional space with PCA and the model was saved. Then the inverse PCA was applied to the test set 
 		
 	\begin{figure}[H]
 		\centering
@@ -235,7 +237,7 @@
 		\label{fig:kpca}
 	\end{figure}
 	
-	Kernel PCA proved particularly useful in distinguishing curves with non-monotonic behavior or abrupt transitions between creep stages, which linear PCA could not represent adequately.
+	Kernel PCA proved particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
 	
 	The aligned and normalized creep curves formed the final dataset used as input to the machine learning surrogate models and dimensionality reduction techniques.
 		
@@ -243,7 +245,7 @@
 	\section{Supervised Learning}
 	\label{Section::Supervised_Learning}
 	
-	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behavior. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modeling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
+	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behaviour. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modelling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
 	Several regression-based algorithms were implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-projection parameters.
 	
