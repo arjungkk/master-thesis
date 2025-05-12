@@ -226,7 +226,7 @@
 	\section{Supervised Learning}
 	\label{Section::Supervised_Learning}
 	
-	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behavior. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modeling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast and accurate predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
+	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behavior. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modeling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
 	Several regression-based algorithms were implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to:
 	\begin{itemize}
