@@ -223,21 +223,40 @@
 	The aligned and normalized creep curves formed the final dataset used as input to the machine learning surrogate models and dimensionality reduction techniques.
 		
 	
-	\section{Surrogate Modeling}
-	\label{Section::Surrogate_Model}
+	\section{Supervised Learning}
+	\label{Section::Supervised_Learning}
 	
-	Surrogate models act as fast, predictive approximations of the high-fidelity FEM simulations. They enable rapid inference and inverse modeling of creep behavior. The following regressors \cite{bishop2006pattern} were trained:
+	Supervised learning models were used to approximate the relationships between simulation input parameters and various output representations of creep behavior. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modeling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast and accurate predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
+	Several regression-based algorithms were implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to:
 	\begin{itemize}
-		\item \textbf{Random Forest Regressor (RFR)}: An ensemble of decision trees that outputs the average prediction. It handles non-linearities and interactions without needing feature scaling.
-		\item \textbf{Gradient Boosting Regressor (GBR)}: Builds an additive model in a forward stage-wise fashion, minimizing error via gradient descent. GBR offered higher precision but required tuning to avoid overfitting.
-		\item \textbf{Stacking Regressor}: Combines predictions of multiple base regressors (e.g., RFR, GBR) using a meta-model, allowing diverse model benefits to be aggregated.
-		\item \textbf{Voting Regressor}: Uses a weighted average of predictions from base learners. It showed robust and consistent performance across targets like PCA features and $\theta$-projection parameters.
+		\item $\theta$-projection parameters,
+		\item PCA or kernel PCA features,
+		\item scalar targets such as rupture time and minimum creep rate.
 	\end{itemize}
 	
-	These models provide a balance between interpretability, computational speed, and non-linear regression performance, making them well-suited for surrogate modeling in material simulations.
+	\subsection*{1. Random Forest Regressor (RFR)}
 	
-	The models were trained using the scikit-learn framework. Hyperparameters were selected using grid search with 5-fold cross-validation. Each model mapped the 8 input parameters to $\theta$-values. Time-to-rupture and minimum creep rate were predicted as scalar outputs.
+	The Random Forest Regressor is an ensemble method based on decision trees, where predictions are made by averaging the output of multiple trees trained on bootstrapped samples of the dataset \cite{breiman2001random}. It naturally captures non-linear relationships and feature interactions, and is robust to outliers and overfitting. In this work, RFR was used as a baseline model due to its interpretability and fast training time.
+	
+	\subsection*{2. Gradient Boosting Regressor (GBR)}
+	
+	Gradient Boosting Regressor builds an additive model in a forward, stage-wise fashion by minimizing a specified loss function via gradient descent \cite{friedman2001greedy}. It is particularly effective for structured data with complex patterns. GBR outperformed other single-model regressors in several prediction tasks but required careful hyperparameter tuning to avoid overfitting.
+	
+	\subsection*{3. Stacking Regressor}
+	
+	Stacking, or stacked generalization, is a meta-learning technique where multiple base regressors are combined using a higher-level learner \cite{wolpert1992stacked}. In this study, base models like RFR and GBR were combined and a linear regression model was used as the meta-learner. This approach leveraged the complementary strengths of each algorithm and helped improve generalization.
+	
+	\subsection*{4. Voting Regressor}
+	
+	The Voting Regressor combines multiple base regressors by averaging their predictions (soft voting), which often improves robustness and reduces variance \cite{zhang2012ensemble}. It was found to be the most stable and consistent performer across different output types, including $\theta$ parameters and PCA components.
+	
+	\subsection*{Training and Validation Strategy}
+	
+	All models were trained on the 80\% training split of the data using 5-fold cross-validation for hyperparameter tuning. The final performance was assessed on the held-out 20\% test set. Grid search was employed for key hyperparameters such as the number of estimators, tree depth, and learning rate.
+	
+	These supervised regressors provided an effective solution for capturing the complex input–output relationships inherent in time-dependent, non-linear creep simulations.
+
 	
 	\section{Active Learning}
 	\label{Section::Active_Learning}
