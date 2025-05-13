@@ -206,7 +206,7 @@
 		\item \textbf{Normalization by rupture time:} Each creep curve is normalized based on its rupture time, converting absolute time scales to a relative scale (from 0 to 1). This approach aligns the deformation trajectories across samples, effectively mitigating variations caused by early ruptures.
 	\end{enumerate}
 	
-	These preprocessing methods will significantly improve data consistency, eliminating NaNs and infinite values, thereby enhancing the robustness of dimensionality reduction processes.
+	These preprocessing methods will significantly improve data consistency, eliminating NaNs and infinite values, thereby enhancing the robustness of dimensionality reduction processes. 
 	
 	\subsubsection{1. Principal Component Analysis (PCA)}
 	
@@ -240,8 +240,6 @@
 	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with KPCA(using different kernels) and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
 	
 	Kernel PCA proves to be particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
-	
-	The aligned and normalized creep curves forms the final dataset used as input to the supervised learning models and dimensionality reduction techniques.
 		
 	
 	\section{Supervised Learning}
