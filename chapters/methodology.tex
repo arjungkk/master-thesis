@@ -196,7 +196,7 @@
 	
 	The creep strain–time data poses specific challenges due to variations in rupture times. In particular, early rupture curves introduces missing values or infinite entries, necessitating specialized preprocessing to ensure stable application of PCA and kernel PCA.
 	
-	Three strategies were implemented to handle early rupture scenarios:
+	Three strategies are implemented to handle early rupture scenarios:
 	
 	\begin{enumerate}
 		\item \textbf{Zero padding:} Missing data points after rupture were replaced with zeros, effectively truncating the creep curve and clearly marking the rupture event.
