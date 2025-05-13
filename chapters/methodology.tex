@@ -247,7 +247,7 @@
 	
 	Supervised learning models are used to approximate the relationships between simulation input parameters and the output representations of creep behaviour. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modelling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
-	Several regression-based algorithms are implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models were trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how Supervised Learning was used. 
+	Several regression-based algorithms are implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models are trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how Supervised Learning was used. 
 	
 	\begin{enumerate}
 		\item Training set of creep curves obtained from the synthetic data were transformed to theta space with $\theta$-projection mapping.
