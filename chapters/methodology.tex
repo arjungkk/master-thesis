@@ -23,7 +23,7 @@
 		\item Sampling and selection of simulation parameters (Latin Hypercube + log-scaling).
 		\item Creep curve generation using the \texttt{Lagamine} finite element solver.
 		\item Preprocessing and normalization of output strain-time data.
-		\item Curve representation using dimensionality reduction techniques (PCA, Kernel PCA).
+		\item Curve representation using different models (like PCA, Kernel PCA,  $\theta$-Projection Model, etc.).
 		\item Supervised regression model training (Random Forest, Gradient Boosting, etc.).
 		\item Prediction of creep behaviour from material and loading inputs.
 		\item Iterative improvement using active learning with feasibility filtering.
@@ -318,24 +318,7 @@
 		\item \textbf{Inverse Accuracy}: Measure the accuracy of recovering simulation input parameters from curve features using inverse modelling.
 	\end{itemize}
 	
-	Together, these metrics ensure both the quantitative accuracy and qualitative validity of the developed surrogate models.
-	
-	\begin{table}[H]
-		\centering
-		\caption{Summary of evaluation metrics used for surrogate model performance.}
-		\label{tab:evaluation_metrics}
-		\begin{tabular}{ll}
-			\toprule
-			\textbf{Metric} & \textbf{Description} \\
-			\midrule
-			RMSE & Root mean squared error of reconstructed strain curves \\
-			Rupture Time Error & Deviation in predicted vs. actual rupture time \\
-			Minimum Creep Rate Error & Accuracy in predicting steady-state creep slope \\
-			Visual Similarity & Curve overlap for qualitative match \\
-			Inverse Accuracy & Accuracy in retrieving simulation input from curves \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
+	Together, these metrics ensure both the quantitative accuracy and qualitative validity of the developed models.
 	 	
 	
 	\clearpage
