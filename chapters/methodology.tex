@@ -276,7 +276,7 @@
 	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and a finite element oracle:
 	
 	\begin{itemize}
-		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using Latin Hypercube Sampling in combination with log-scaled sampling of sensitive parameters. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), particularly the $\theta$-projection features.
+		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using Latin Hypercube Sampling in combination with log-scaled sampling of sensitive parameters. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
 		
 		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset was used as the training pool for active learning. This subset served as the seed data for model training and query generation.
 		
