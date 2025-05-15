@@ -286,7 +286,7 @@
 		
 		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searches the input space for new query points $X^*$ that are both feasible and diverse in the learned $\theta$-space. Diversity is promoted to explore under-represented regions of the output space.
 		
-		\item \textbf{Oracle (Lagamine):} Each query $X^*$ was submitted to the \texttt{Lagamine} solver, which either returned a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
+		\item \textbf{Oracle (Lagamine):} Each query $X^*$ is submitted to the \texttt{Lagamine} solver, which either returned a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
 		\item \textbf{Update:} If the simulation converged, the new pair $(X^*, Y^*)$ was added to the dataset. If it failed, $X^*$ was discarded.
 		
