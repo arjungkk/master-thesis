@@ -311,15 +311,15 @@
 			
 			\State Train regression model $f(x)$ using $\mathcal{D}$
 			\For{$q = 1$ to $Q$}
-			\State Use Differential Evolution to propose $X^*$
-			\If{$c(X^*) == \texttt{valid}$}
-			\State Simulate $X^*$ using Lagamine oracle
-			\If{simulation converged}
-			\State Map output to $\theta^*$ using theta projection
-			\State $\mathcal{D} \gets \mathcal{D} \cup \{(X^*, \theta^*)\}$
-			\State Retrain $f(x)$ on updated $\mathcal{D}$
-			\EndIf
-			\EndIf
+				\State Use Differential Evolution to propose $X^*$
+				\If{$c(X^*) == \texttt{valid}$}
+					\State Simulate $X^*$ using Lagamine oracle
+					\If{simulation converged}
+						\State Map output to $\theta^*$ using theta projection
+						\State $\mathcal{D} \gets \mathcal{D} \cup \{(X^*, \theta^*)\}$
+						\State Retrain $f(x)$ on updated $\mathcal{D}$
+					\EndIf
+				\EndIf
 			\EndFor
 			\State \Return Expanded dataset $\mathcal{D}'$
 		\end{algorithmic}
