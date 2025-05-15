@@ -306,22 +306,22 @@
 		\caption{Active Learning for Creep Simulation}
 		\label{alg:active_learning}
 		\begin{algorithmic}[1]
-			\Require Initial dataset $\mathcal{D} = \{(X_i, Y_i)\}_{i=1}^{N}$, pretrained Isolation Forest $c(x)$, query budget $Q$
+			\Require Initial dataset $\mathcal{D} = \{(X_i, Y_i)\}_{i=1}^{N}$, Isolation Forest $c(x)$, query budget $Q$
 			\Ensure Expanded dataset $\mathcal{D}' = \mathcal{D} \cup \{(X^*, Y^*)\}$
 			
-			\State Train regression model $f(x)$ to learn $Y = f(X)$
+			\State Train regression model $f(x)$ using $\mathcal{D}$
 			\For{$q = 1$ to $Q$}
-				\State Use Differential Evolution to propose candidate input $X^*$
-				\If{$c(X^*) == \texttt{valid}$}
-					\State Simulate $X^*$ with Lagamine oracle to obtain creep curve
-					\If{simulation converged}
-						\State Map creep curve to $\theta^*$ values
-						\State $\mathcal{D} \leftarrow \mathcal{D} \cup \{(X^*, \theta^*)\}$
-						\State Retrain regression model $f(x)$ with updated $\mathcal{D}$
-					\EndIf
-				\EndIf
+			\State Use Differential Evolution to propose $X^*$
+			\If{$c(X^*) == \texttt{valid}$}
+			\State Simulate $X^*$ using Lagamine oracle
+			\If{simulation converged}
+			\State Map output to $\theta^*$ using theta projection
+			\State $\mathcal{D} \gets \mathcal{D} \cup \{(X^*, \theta^*)\}$
+			\State Retrain $f(x)$ on updated $\mathcal{D}$
+			\EndIf
+			\EndIf
 			\EndFor
-			\State \Return Expanded dataset $\mathcal{D}$
+			\State \Return Expanded dataset $\mathcal{D}'$
 		\end{algorithmic}
 	\end{algorithm}
 		
