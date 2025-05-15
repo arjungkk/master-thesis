@@ -311,15 +311,15 @@
 			
 			\State Train regression model $f(x)$ to learn $Y = f(X)$
 			\For{$q = 1$ to $Q$}
-			\State Use Differential Evolution to propose candidate input $X^*$
-			\If{$c(X^*) == \texttt{valid}$}
-			\State Simulate $X^*$ with Lagamine oracle to obtain creep curve
-			\If{simulation converged}
-			\State Map creep curve to $\theta^*$ values
-			\State $\mathcal{D} \leftarrow \mathcal{D} \cup \{(X^*, \theta^*)\}$
-			\State Retrain regression model $f(x)$ with updated $\mathcal{D}$
-			\EndIf
-			\EndIf
+				\State Use Differential Evolution to propose candidate input $X^*$
+				\If{$c(X^*) == \texttt{valid}$}
+					\State Simulate $X^*$ with Lagamine oracle to obtain creep curve
+					\If{simulation converged}
+						\State Map creep curve to $\theta^*$ values
+						\State $\mathcal{D} \leftarrow \mathcal{D} \cup \{(X^*, \theta^*)\}$
+						\State Retrain regression model $f(x)$ with updated $\mathcal{D}$
+					\EndIf
+				\EndIf
 			\EndFor
 			\State \Return Expanded dataset $\mathcal{D}$
 		\end{algorithmic}
