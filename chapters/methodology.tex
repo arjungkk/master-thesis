@@ -278,7 +278,7 @@
 	\begin{itemize}
 		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using Latin Hypercube Sampling in combination with log-scaled sampling of sensitive parameters. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
 		
-		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset was used as the training pool for active learning. This subset served as the seed data for model training and query generation.
+		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset is used as the training pool for active learning. This subset served as the seed data for model training and query generation.
 		
 		\item \textbf{Learner ($y = f(x)$):} A supervised regression model (Multi-Layer Perceptron, MLP) was trained to predict $\theta$-projection values from material input parameters.
 		
