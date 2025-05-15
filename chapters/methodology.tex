@@ -284,7 +284,7 @@
 		
 		\item \textbf{Region Filter ($c = g(x)$):} An Isolation Forest is trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remain within the feasible design domain.
 		
-		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searched the input space for new query points $X^*$ that were both feasible and diverse in the learned $\theta$-space. Diversity was promoted to explore under-represented regions of the output space.
+		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searches the input space for new query points $X^*$ that were both feasible and diverse in the learned $\theta$-space. Diversity was promoted to explore under-represented regions of the output space.
 		
 		\item \textbf{Oracle (Lagamine):} Each query $X^*$ was submitted to the \texttt{Lagamine} solver, which either returned a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
