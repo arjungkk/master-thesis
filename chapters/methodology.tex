@@ -280,7 +280,7 @@
 		
 		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset is used as the training pool for active learning. This subset serves as the seed data for model training and query generation.
 		
-		\item \textbf{Learner ($y = f(x)$):} A supervised regression model (Multi-Layer Perceptron, MLP) was trained to predict $\theta$-projection values from material input parameters.
+		\item \textbf{Learner ($y = f(x)$):} A supervised regression model (Multi-Layer Perceptron, MLP) is trained to predict $\theta$-projection values from material input parameters.
 		
 		\item \textbf{Region Filter ($c = g(x)$):} An Isolation Forest was trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remained within the feasible design domain.
 		
