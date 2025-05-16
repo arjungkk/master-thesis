@@ -15,6 +15,37 @@
 	
 	This chapter presents the valid simulation parameter ranges, results obtained from finite element simulations, creep curve representations, supervised regression models, and the active learning sampling results. All plots and tables in this chapter are purely descriptive and refrain from interpretation, which is deferred to Chapter~\ref{Chapter::Discussion}.
 	
+	\section{Simulation Parameters and Design Space}
+	
+	
+		The simulations covered a high-dimensional parameter space representative of physically relevant material and loading conditions. Sampling was done using \textbf{Latin Hypercube Sampling (LHS)} to ensure uniform coverage of the design space. 
+		
+		However, in accordance with \textit{Morand et al.} \cite{morand2022efficient}, the hardening coefficient \( b \) is sampled on a \textbf{logarithmic scale}. This decision was based on the observation that small changes in \( b \) significantly impact the shape and slope of the creep curve, especially in the early stages. Logarithmic sampling ensures better representation of the steep regions in the creep response space.
+		
+		The final sampled parameter space is summarized in Table~\ref{tab:param_ranges}.
+		
+		\begin{table}[H]
+			\centering
+			\caption{Input parameters and sampling ranges. Note: \( b \) was sampled logarithmically.}
+			\label{tab:param_ranges}
+			\begin{tabular}{lcc}
+				\toprule
+				\textbf{Parameter} & \textbf{Symbol} & \textbf{Range} \\
+				\midrule
+				Stress & $\sigma$ [MPa] & 150–300 \\
+				Hardening coefficient & $b$ & 1–20 (log-scale) \\
+				Activation energy & $Q$ [kJ/mol] & 50–120 \\
+				Creep stiffness & $K$ & 500–4500 \\
+				Stress exponent & $n$ & 6.5–8.0 \\
+				Softening parameter & $S_c$ & 1.5–45 \\
+				Softening rate & $s_c$ & 0.5–5 \\
+				Creep coefficient & $k_c$ & 0.75–6 \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A total of 3376 simulations are generated. Each simulation provides a full creep strain vs. time curve and are used for the machine learning models and active learning evaluation.	
+	
 	\section{Finite Element Simulations}
 	\label{Section::Results_FEM}
 	
