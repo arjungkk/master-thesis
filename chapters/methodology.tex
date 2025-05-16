@@ -14,29 +14,7 @@
 	\chapter{Methodology \& Computational Framework}
 	\label{Chapter::Methodology}
 	
-	This chapter presents the methodology followed to answer the research questions proposed in the section~\ref{Section::Research_Questions_and_Goals} of Chapter~\ref{Chapter::Introduction}.
-	
-	\section{Overview of Workflow}
-	\label{Section::Workflow}
-	
-	Figure~\ref{fig:workflow} illustrates the complete hybrid modelling pipeline. It includes:
-	
-	\begin{enumerate}
-		\item Sampling and selection of simulation parameters (Latin Hypercube + log-scaling).
-		\item Creep curve generation using the \texttt{Lagamine} finite element solver.
-		\item Preprocessing and normalization of output strain-time data.
-		\item Curve representation using different models (like PCA, Kernel PCA,  $\theta$-Projection Model, etc.).
-		\item Supervised regression model training (Random Forest, Gradient Boosting, etc.).
-		\item Prediction of creep behaviour from material parameters and loading inputs.
-		\item Iterative improvement using active learning with feasibility filtering.
-	\end{enumerate}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{figures/workflow_diagram.png}
-		\caption{Overall workflow for the hybrid framework combining FEM simulation, curve representation, supervised regression, and active learning.}
-		\label{fig:workflow}
-	\end{figure}
+	This chapter presents the methodology followed to answer the research questions proposed in the section~\ref{Section::Research_Questions_and_Goals} of Chapter~\ref{Chapter::Introduction}.	
 	
 	\section{Synthetic Data Generation Setup}
 	\label{Section::Synthetic_data_generation}
