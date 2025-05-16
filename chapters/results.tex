@@ -207,7 +207,15 @@
 	
 	The parity plots for the seven Morch model parameters are shown in this section for each of the Regression models. The data points are coloured by the stress/load applied.
 	
-	\subsubsubsection{Random Forest Regression} 
+	\subsubsubsection{Random Forest Regression}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figures/pca.png}
+		\caption{Comparison of predicted and actual creep curves using Voting Regressor on test data.}
+		\label{fig:curve_recon}
+	\end{figure}
+	 
 	Each model was evaluated on the 20\% test set using the metrics described in Section~\ref{Section::Evaluation}. Table~\ref{tab:regression_errors} summarizes the mean squared error (MSE) for predicting $\theta$-parameters.
 	
 	\begin{table}[H]
