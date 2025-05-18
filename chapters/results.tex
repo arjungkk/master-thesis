@@ -122,7 +122,11 @@
 	
 	\subsubsection{1. Principal Component Analysis (PCA)}
 	
-	PCA was applied to the preprocessed creep strain-time data. The three strategies to handle the different input vector lengths had different results. For visualization, 6 random curves from the test set are plotted with the original creep curve against the reconstructed creep curve. This is done for all the three strategies. The variance captured by each principal component is summarized in Figure~\ref{fig:pca_variance}.
+	PCA was applied to the preprocessed creep strain-time data. The three strategies to handle the different input vector lengths had different results. For visualization, 6 random curves from the test set are plotted with the original creep curve against the reconstructed creep curve. This is done for all the three strategies. 
+	
+	\subsubsubsection{Zero Padding:}
+	
+	The variance captured by each principal component is summarized in Figure~\ref{fig:pca_variance}.
 	
 	\begin{figure}[H]
 		\centering
@@ -130,9 +134,9 @@
 		\caption{Explained variance by each principal component (PCA).}
 		\label{fig:pca_variance}
 	\end{figure}
+	
 	In most cases, the first 5 components captured over 95\% of the total variance.
 	
-	\subsubsubsection{Zero Padding:}
 	
 	The original vs. the reconstructed creep curves with zero padding is shown in figure~\ref{fig:pca_zero_fill}.
 	
