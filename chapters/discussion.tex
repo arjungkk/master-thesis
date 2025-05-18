@@ -93,6 +93,18 @@ The supervised regression models trained to predict material model parameters al
 
 In summary, a trade-off exists between interpretability and modelling flexibility. While empirical models provide physical insights, they may underperform on highly non-linear or noisy data. Machine learning models achieve higher predictive capacity but lack transparent connection to underlying physics. For future work, incorporating explainable AI techniques (e.g., SHAP values or LIME) could improve trust and transparency in the surrogate predictions.
 
+\section{Robustness and Generalization}
+\label{Section::Discussion_Robustness}
+
+The generalization ability of the developed models is limited by the scope of the synthetic dataset used for training and evaluation. All simulations were generated using a fixed geometry, solver configuration, and loading condition, and the material parameter space was explored using Latin Hypercube Sampling with predefined bounds. Consequently, model performance outside this bounded design space remains untested.
+
+The regression models demonstrated stable performance within the validation split of the synthetic data. However, robustness to noisy or experimentally obtained data remains uncertain. The supervised models were not explicitly regularized against input noise or sampling bias, which may affect reliability in real-world applications. Similarly, while PCA and KPCA were effective in capturing dominant modes of variance, they may underperform on creep curves with anomalous features, such as sudden jumps, secondary shoulders, or incomplete rupture.
+
+The active learning framework offered improvements in data efficiency by focusing on underrepresented areas of the parameter space. Nonetheless, the fact that nearly 50\% of the actively queried points failed to converge highlights sensitivity to small changes in parameter values. This suggests a lack of robustness in the current convergence filter and highlights the need for incorporating probabilistic uncertainty estimation in future iterations.
+
+Overall, while the methodology performs well in a controlled synthetic setting, its robustness and generalization to broader conditions—such as temperature variation, multiaxial loading, or experimental data—remain open challenges that require further validation.
+
+
 
 
 
