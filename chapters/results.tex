@@ -350,6 +350,22 @@
 	
 	Table~\ref{label} shows the comparison between the different models discussed in the section~\ref{Section::Results_CreepCurveRepresentations}.
 	
+	\begin{table}[ht]
+		\centering
+		\caption{Model Errors for Various Dimensionality Reduction Methods}
+		\begin{tabular}{|l|c|c|c|c|c|}
+			\hline
+			\textbf{Model Errors} & \textbf{PCA} & \textbf{kPCA RBF} & \textbf{kPCA Poly} & \textbf{Theta Projection} & \textbf{Three Stages of Creep Model} \\
+			\hline
+			\textbf{RMSE - Strain [-]} & 0.009075 & 0.001537 & 0.000002 & 0.000004 & 0.000007 \\
+			\textbf{Min. Creep Strain Rate} & $5.40 \times 10^{-7}$ & $5.30 \times 10^{-7}$ & $5.54 \times 10^{-7}$ & $5.25 \times 10^{-7}$ & $2.34 \times 10^{-7}$ \\
+			\textbf{Time to Rupture (days)} & 1133 & 9978 & 936 & Nil & Nil \\
+			\hline
+		\end{tabular}
+		\label{tab:model_errors}
+	\end{table}
+	
+	
 	\section{Active Learning Results}
 	\label{Section::Results_AL}
 	
