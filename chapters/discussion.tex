@@ -51,7 +51,7 @@ The inverse modeling task involved predicting seven Morch model parameters from 
 
 The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) doesn't show a good agreement between predicted and true values. Some parameters, particularly those with smaller dynamic ranges, exhibited greater prediction variance, possibly due to reduced signal-to-noise ratios in the training data. The general performance of these models are quite low as is implied in the table~\ref{tab:model_performance}. The reconstructed creep curves (Figure~\ref{fig:curve_recon_model_params}) also does not seem to be well reconstructed.
 
-Overall, ensemble models provided better generalization than individual learners, though performance gains were modest. Machine learning approaches for inverse creep modeling have been explored in previous studies, but typically rely on limited parameterization or domain-specific curve descriptors. For example, studies using artificial neural networks often restrict prediction to time-to-rupture or steady-state creep rate. Our approach generalizes this by mapping full material model parameters using ensemble regressors, enabling complete curve reconstruction.
+Overall, ensemble models provided better generalization than individual learners, though performance gains were modest.
 
 \section{Active Learning Efficiency}
 
