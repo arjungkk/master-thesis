@@ -441,7 +441,24 @@
 			\captionof{figure}{Creep curves sampled from AL.}
 			\label{fig:creep_curves_AL_lagamine}
 		\end{center}
-		\end{minipage}
+	\end{minipage}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Summary of Active Learning Results}
+		\label{tab:al_summary}
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Description} & \textbf{Value} \\
+			\midrule
+			Total queries attempted & 2000 \\
+			Converged simulations & 980 \\
+			Initial training samples & 100 \\
+			Model used in loop & MLP (for $\theta$ projection) \\
+			Sampling strategy & Differential Evolution + Feasibility Filter \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 	
 	\clearpage
 	
