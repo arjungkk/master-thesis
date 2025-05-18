@@ -14,18 +14,18 @@
 
 \section{Summary of Contributions}
 
-This thesis presented a hybrid computational framework to efficiently model creep behaviour in metallic materials. The approach integrated high-fidelity finite element simulations, empirical curve modeling, dimensionality reduction, supervised learning, and active learning.
+This thesis presented a hybrid computational framework to efficiently model creep behaviour in metallic materials. The approach integrated high-fidelity finite element simulations, empirical curve modelling, dimensionality reduction, supervised learning, and active learning.
 
 Key contributions include:
 
 \begin{itemize}
 	\item \textbf{Synthetic Data Generation:} 3376 simulations were performed with the Lagamine solver across a wide parameter space, capturing creep responses under varied conditions.
 	
-	\item \textbf{Empirical Modeling:} Creep curves were fitted using the $\theta$-projection and three-parameter exponential models. The $\theta$-model consistently showed better accuracy in reconstructing simulation outputs.
+	\item \textbf{Empirical modelling:} Creep curves were fitted using the $\theta$-projection and three-parameter exponential models. The $\theta$-model consistently showed better accuracy in reconstructing simulation outputs.
 	
 	\item \textbf{Dimensionality Reduction:} PCA and Kernel PCA were applied with different padding strategies. Normalization by rupture time enabled effective compression into low-dimensional spaces, particularly benefiting PCA.
 	
-	\item \textbf{Regression Modeling:} Ensemble regressors predicted material parameters from creep curve features. Among these, the Voting Regressor achieved the best trade-off between accuracy and generalization.
+	\item \textbf{Regression modelling:} Ensemble regressors predicted material parameters from creep curve features. Among these, the Voting Regressor achieved the best trade-off between accuracy and generalization.
 	
 	\item \textbf{Active Learning:} A feasibility-guided loop using differential evolution added 980 new convergent samples from 2000 queries, enhancing model diversity and coverage.
 \end{itemize}
@@ -48,7 +48,7 @@ Despite promising results, several limitations and opportunities for further wor
 
 \section{Concluding Remarks}
 
-This work demonstrates that coupling physics-based simulation with data-driven learning enables efficient, scalable, and interpretable creep modeling. The hybrid framework reduces computational overhead and opens pathways for more informed materials design. With further validation and extension, it offers strong potential for real-world integration in engineering practice.
+This work demonstrates that coupling physics-based simulation with data-driven learning enables efficient, scalable, and interpretable creep modelling. The hybrid framework reduces computational overhead and opens pathways for more informed materials design. With further validation and extension, it offers strong potential for real-world integration in engineering practice.
 
 
 
