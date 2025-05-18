@@ -12,83 +12,43 @@
 \chapter{Summary and Outlook}
 \label{Chapter::Summary_Outlook}
 
-\section{Summary}
+\section{Summary of Contributions}
 
-This thesis presented a hybrid computational framework for modelling the creep behaviour of metallic materials. The approach combined physics-based finite element simulations, empirical curve fitting, dimensionality reduction, machine learning regressors, and an active learning loop to efficiently model and predict long-term creep deformation.
+This thesis presented a hybrid computational framework to efficiently model creep behaviour in metallic materials. The approach integrated high-fidelity finite element simulations, empirical curve modeling, dimensionality reduction, supervised learning, and active learning.
 
-The major contributions are summarized below:
+Key contributions include:
 
 \begin{itemize}
-	\item \textbf{Synthetic Data Generation:} A large-scale simulation campaign (3376 simulations) was conducted using the Lagamine solver with a Latin Hypercube Sampling strategy. This provided diverse creep response data over a wide parameter space.
+	\item \textbf{Synthetic Data Generation:} 3376 simulations were performed with the Lagamine solver across a wide parameter space, capturing creep responses under varied conditions.
 	
-	\item \textbf{Empirical Curve Representation:} Two commonly used empirical models, the $\theta$-projection model and a three-parameter exponential creep model, were fitted to simulation data. The $\theta$-projection model showed superior reconstruction accuracy.
+	\item \textbf{Empirical Modeling:} Creep curves were fitted using the $\theta$-projection and three-parameter exponential models. The $\theta$-model consistently showed better accuracy in reconstructing simulation outputs.
 	
-	\item \textbf{Dimensionality Reduction:} Both linear (PCA) and nonlinear (Kernel PCA) techniques were applied with various preprocessing schemes. PCA with normalization by rupture time proved particularly efficient for low-dimensional representation of creep curves.
+	\item \textbf{Dimensionality Reduction:} PCA and Kernel PCA were applied with different padding strategies. Normalization by rupture time enabled effective compression into low-dimensional spaces, particularly benefiting PCA.
 	
-	\item \textbf{Surrogate modelling:} Ensemble regression models were trained to predict material model parameters from curve features. The Voting Regressor achieved the best performance among all models in predicting the inverse mapping from creep response to input parameters.
+	\item \textbf{Regression Modeling:} Ensemble regressors predicted material parameters from creep curve features. Among these, the Voting Regressor achieved the best trade-off between accuracy and generalization.
 	
-	\item \textbf{Active Learning Loop:} A feasibility-constrained active learning strategy using differential evolution was implemented to enhance data efficiency. 2000 new candidate samples were queried, of which 980 yielded convergent results and improved the model's generalization.
+	\item \textbf{Active Learning:} A feasibility-guided loop using differential evolution added 980 new convergent samples from 2000 queries, enhancing model diversity and coverage.
 \end{itemize}
 
-\section{Outlook and Future Work}
+\section{Future Work and Outlook}
 
-While this thesis has made substantial progress in developing a robust, data-efficient framework for creep modelling, several directions remain for further investigation and improvement.
-
-\subsection*{1. Broader Material and Environmental Scope}
-
-The current study focuses on a single alloy and loading type (uniaxial tension). Extending the framework to cover:
+Despite promising results, several limitations and opportunities for further work remain:
 
 \begin{itemize}
-	\item Different material systems (e.g., Ni-based superalloys, stainless steels),
-	\item Multiaxial or thermomechanical loading conditions,
-	\item Variable temperature profiles and environmental factors (oxidation, irradiation),
+	\item \textbf{Material and Load Diversity:} Extending the framework to other alloys and complex loading conditions (e.g., multiaxial, thermal cycling) would enhance applicability.
+	
+	\item \textbf{Experimental Validation:} Incorporating real creep test data would help benchmark and calibrate the models, improving reliability.
+	
+	\item \textbf{Uncertainty Quantification:} Future models should include confidence bounds on predictions, e.g., via Gaussian processes or Bayesian ensembles.
+	
+	\item \textbf{Convergence Prediction:} Improving the Isolation Forest or replacing it with more robust classifiers could reduce failed simulations in active learning.
+	
+	\item \textbf{Integration Potential:} The trained models can be embedded in digital twin workflows or used for rapid design iteration in high-temperature applications.
 \end{itemize}
-
-would significantly increase applicability to real-world engineering problems.
-
-\subsection*{2. Incorporating Experimental Data}
-
-While synthetic data enables control and scalability, integration of experimental creep data would:
-
-\begin{itemize}
-	\item Validate the surrogate models,
-	\item Bridge the gap between simulated and real-world behaviour,
-	\item Help correct model bias or simulation errors.
-\end{itemize}
-
-Such a mixed data regime would also help benchmark the effectiveness of active learning in experimental design.
-
-\subsection*{3. Model Uncertainty Quantification}
-
-The current framework offers point estimates for predicted outputs. Future work can incorporate:
-
-\begin{itemize}
-	\item Bayesian regression models (e.g., Gaussian Processes),
-	\item Monte Carlo dropout or quantile regression,
-	\item Confidence bounds for creep curve predictions.
-\end{itemize}
-
-This will enable risk-informed decision making and model interpretability in engineering design.
-
-\subsection*{4. Improved Convergence Classification}
-
-Only 980 out of 2000 active learning queries converged. A better-trained feasibility classifier (e.g., using deep ensembles or hybrid physics-based indicators) could improve this acceptance rate, reducing computational waste and enhancing learning efficiency.
-
-\subsection*{5. Integration with Design Optimization}
-
-The surrogate models could be embedded into:
-
-\begin{itemize}
-	\item Component lifetime prediction workflows,
-	\item Multiphysics optimization pipelines,
-	\item Structural integrity codes for high-temperature design.
-\end{itemize}
-
-This would allow engineers to run fast forward or inverse predictions as part of a larger digital twin ecosystem.
 
 \section{Concluding Remarks}
 
-This thesis demonstrates the feasibility and effectiveness of combining finite element simulations, machine learning, and active sampling to model complex time-dependent material behaviour. The proposed methods significantly reduce computational burden while maintaining predictive accuracy. As computational materials engineering continues to evolve, such hybrid modelling frameworks will be instrumental in developing data-efficient, physically informed, and application-ready material models for industry and research.
+This work demonstrates that coupling physics-based simulation with data-driven learning enables efficient, scalable, and interpretable creep modeling. The hybrid framework reduces computational overhead and opens pathways for more informed materials design. With further validation and extension, it offers strong potential for real-world integration in engineering practice.
 
 
 
