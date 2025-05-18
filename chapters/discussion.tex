@@ -30,11 +30,6 @@ The use of empirical models for creep prediction has been explored in earlier st
 
 In contrast, recent work by Dacol and Caetano~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modeling. While computationally simple, our results indicate that this model slightly underperformed compared to the $\theta$-model in capturing creep curve shape, especially in the tertiary regimes.
 
-
-
-Moreover, while previous studies have used static datasets, our integration of active learning represents a novel hybrid strategy that combines physics-based solvers with intelligent sampling. Although not without convergence challenges, this approach demonstrates potential for data-efficient exploration of high-dimensional material parameter spaces, going beyond the trial-and-error methods often cited in literature.
-
-
 \section{Dimensionality Reduction of Creep Curves}
 
 Principal Component Analysis (PCA) was applied using three different strategies for handling non-uniform input lengths. Zero padding and normalization by rupture time led to high variance capture in fewer components, with the first 2–5 components explaining over 95\% of the total variance (Figures~\ref{fig:pca_variance_zero}, \ref{fig:pca_variance_max}, \ref{fig:pca_variance_norm}). These results suggest that the time-dependent creep behavior can be effectively compressed into low-dimensional representations, especially under standardized input transformations.
