@@ -70,7 +70,7 @@ While the presented framework demonstrates promising results in creep modeling a
 \begin{itemize}
 	\item \textbf{Empirical model dependence:} Both the $\theta$-projection and three-parameter models rely on empirical curve fitting. Although effective for curve compression, they lack physical interpretability with respect to underlying microstructural mechanisms, limiting their value for mechanistic insight.
 	
-	\item \textbf{Sensitivity to input scaling:} The supervised regression models, especially MLP and stacking regressors, are sensitive to input scaling and feature ranges. This may affect generalization to unseen loading regimes or materials with different baseline properties.
+	\item \textbf{Sensitivity to input scaling:} The supervised regression models are sensitive to input scaling and feature ranges. This may affect generalization to unseen loading regimes or materials with different baseline properties.
 	
 	\item \textbf{Poor inverse model accuracy:} The parity plots and performance metrics (e.g., $R^2 < 0.30$) show that inverse modeling of the full set of Morch material parameters remains inaccurate. This is likely due to parameter non-identifiability, high dimensionality, and limited signal-to-noise ratio in the input data.
 	
