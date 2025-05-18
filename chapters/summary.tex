@@ -14,7 +14,7 @@
 
 \section{Summary}
 
-This thesis presented a hybrid computational framework for modeling the creep behavior of metallic materials, specifically using the alloy 30CrMoNiV5-11 as a case study. The approach combined physics-based finite element simulations, empirical curve fitting, dimensionality reduction, machine learning regressors, and an active learning loop to efficiently model and predict long-term creep deformation.
+This thesis presented a hybrid computational framework for modelling the creep behavior of metallic materials, specifically using the alloy 30CrMoNiV5-11 as a case study. The approach combined physics-based finite element simulations, empirical curve fitting, dimensionality reduction, machine learning regressors, and an active learning loop to efficiently model and predict long-term creep deformation.
 
 The major contributions are summarized below:
 
@@ -25,14 +25,14 @@ The major contributions are summarized below:
 	
 	\item \textbf{Dimensionality Reduction:} Both linear (PCA) and nonlinear (Kernel PCA) techniques were applied with various preprocessing schemes. PCA with normalization by rupture time proved particularly efficient for low-dimensional representation of creep curves.
 	
-	\item \textbf{Surrogate Modeling:} Ensemble regression models were trained to predict material model parameters from curve features. The Voting Regressor achieved the best performance among all models in predicting the inverse mapping from creep response to input parameters.
+	\item \textbf{Surrogate modelling:} Ensemble regression models were trained to predict material model parameters from curve features. The Voting Regressor achieved the best performance among all models in predicting the inverse mapping from creep response to input parameters.
 	
 	\item \textbf{Active Learning Loop:} A feasibility-constrained active learning strategy using differential evolution was implemented to enhance data efficiency. 2000 new candidate samples were queried, of which 980 yielded convergent results and improved the model's generalization.
 \end{itemize}
 
 \section{Outlook and Future Work}
 
-While this thesis has made substantial progress in developing a robust, data-efficient framework for creep modeling, several directions remain for further investigation and improvement.
+While this thesis has made substantial progress in developing a robust, data-efficient framework for creep modelling, several directions remain for further investigation and improvement.
 
 \subsection*{1. Broader Material and Environmental Scope}
 
@@ -88,7 +88,7 @@ This would allow engineers to run fast forward or inverse predictions as part of
 
 \section{Concluding Remarks}
 
-This thesis demonstrates the feasibility and effectiveness of combining finite element simulations, machine learning, and active sampling to model complex time-dependent material behavior. The proposed methods significantly reduce computational burden while maintaining predictive accuracy. As computational materials engineering continues to evolve, such hybrid modeling frameworks will be instrumental in developing data-efficient, physically informed, and application-ready material models for industry and research.
+This thesis demonstrates the feasibility and effectiveness of combining finite element simulations, machine learning, and active sampling to model complex time-dependent material behavior. The proposed methods significantly reduce computational burden while maintaining predictive accuracy. As computational materials engineering continues to evolve, such hybrid modelling frameworks will be instrumental in developing data-efficient, physically informed, and application-ready material models for industry and research.
 
 
 
