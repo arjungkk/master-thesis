@@ -246,6 +246,20 @@
 	
 	\subsubsubsection{Normalization by Rupture time:}
 	
+	\begin{table}[ht]
+		\centering
+		\caption{Best parameters for RBF and Polynomial kernels}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Kernel} & \textbf{Best Parameters} \\
+			\hline
+			RBF & $\{n\_components = 50,\ \gamma = 0.01\}$ \\
+			Poly & $\{n\_components = 50,\ \text{degree} = 3,\ \gamma = 0.001,\ \text{coef}_0 = 1\}$  \\
+			\hline
+		\end{tabular}
+		\label{tab:best_params_max_fill}
+	\end{table}
+	
 	The original vs. the reconstructed creep curves with the normalization by rupture time approach is shown in figure~\ref{fig:kpca_norm_rupture_time}.
 	
 	\begin{figure}[H]
