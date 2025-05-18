@@ -349,6 +349,16 @@
 	\subsection{Model Comparison}
 	\label{Subsection::Results_ModelComparison}
 	
+	The models discussed in section~\ref{Section::Results_CreepCurveRepresentations} are compared based on metrics like RMSE, minimum creep rate error and time to rupture prediction error.
+	
+	Figure~\ref{label} shows the histogram of RMSE for the different models.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figures/creep_comparison_from_model_params.png}
+		\caption{Comparison of predicted and actual creep curves using Voting Regressor on test data.}
+		\label{fig:curve_recon_model_params}
+	\end{figure}
+	 
 	Table~\ref{tab:model_errors} shows the comparison between the different models discussed in the section~\ref{Section::Results_CreepCurveRepresentations}.
 	
 	\begin{table}[ht]
