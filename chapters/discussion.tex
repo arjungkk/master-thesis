@@ -82,6 +82,29 @@ While the presented framework demonstrates promising results in creep modeling a
 	
 \end{itemize}
 
+\section{Sensitivity Analysis}
+\label{Section::Discussion_Sensitivity}
+
+To better understand the influence of individual input parameters on model outputs, a post hoc sensitivity analysis was performed using the trained surrogate models. This analysis was based on feature importance metrics obtained from tree-based models (e.g., Random Forest and Gradient Boosting), as well as partial dependence plots.
+
+\subsection*{Key Findings}
+\begin{itemize}
+	\item \textbf{Stress (\(\sigma\)) was the most influential parameter}, consistently showing the highest feature importance across all regressors. This aligns with classical creep theory, where stress is known to exponentially affect creep rate and rupture time.
+	
+	\item \textbf{Hardening coefficient (\(b\)) showed high non-linear effects}, especially in early creep stages. Its sampling on a logarithmic scale helped capture sharp variations, particularly in primary creep evolution.
+	
+	\item \textbf{Stress exponent (\(n\)) and creep stiffness (\(K\)) were moderately influential}, primarily affecting the secondary creep rate. However, their individual contributions were often confounded by interaction effects with other parameters.
+	
+	\item \textbf{Softening parameters (\(S_c, s_c\)) had lower importance}, indicating that tertiary creep behavior was less reliably captured or less variable across the sampled design space.
+	
+	\item \textbf{Activation energy (\(Q\)) and creep coefficient (\(k_c\)) showed mixed relevance}, depending on the model target. These parameters may require reparameterization or alternative representations for better interpretability.
+\end{itemize}
+
+\subsection*{Interpretation}
+The analysis reveals that the surrogate models are particularly sensitive to stress and hardening behavior, suggesting that future modeling efforts should focus on these areas for better precision. Additionally, the lower sensitivity to some softening parameters may indicate redundancy or non-identifiability under current data constraints. Incorporating global sensitivity methods such as Sobol or Morris analysis could provide further quantitative insight.
+
+
+
 
 \ifstandalone
 	\printglossary
