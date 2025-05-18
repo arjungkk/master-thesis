@@ -320,21 +320,22 @@
 	 
 	Each model was evaluated on the 20\% test set using the metrics described in Section~\ref{Section::Evaluation}. Table~\ref{tab:regression_errors} summarizes the mean squared error (MSE) for predicting $\theta$-parameters.
 	
-	\begin{table}[H]
+	\begin{table}[ht]
 		\centering
-		\caption{Test MSE of regression models on $\theta$-projection parameters.}
-		\label{tab:regression_errors}
-		\begin{tabular}{lcccc}
-			\toprule
-			Model & $\theta_1$ & $\theta_2$ & $\theta_3$ & $\theta_4$ \\
-			\midrule
-			Random Forest & 0.0041 & 0.0053 & 0.0032 & 0.0048 \\
-			Gradient Boosting & 0.0037 & 0.0046 & 0.0030 & 0.0042 \\
-			Stacking Regressor & 0.0036 & 0.0045 & 0.0029 & 0.0040 \\
-			Voting Regressor & \textbf{0.0032} & \textbf{0.0041} & \textbf{0.0027} & \textbf{0.0037} \\
-			\bottomrule
+		\caption{Model performance comparison using MAE and $R^2$ score}
+		\begin{tabular}{|l|c|c|}
+			\hline
+			\textbf{Model} & \textbf{Mean Absolute Error (MAE)} & \boldmath$R^2$ \\
+			\hline
+			Random Forest    & 58.3825 & 0.2890 \\
+			Gradient Boosting & 53.9970 & 0.2830 \\
+			Stacking Model   & 56.7212 & 0.1904 \\
+			Voting Model     & 52.4986 & 0.2996 \\
+			\hline
 		\end{tabular}
+		\label{tab:model_performance}
 	\end{table}
+
 	
 	The reconstructed creep curves from predicted parameters are shown in Figure~\ref{fig:curve_recon}.
 	
