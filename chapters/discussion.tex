@@ -9,16 +9,52 @@
 % ----------------------------------------------------------------------------
 \begin{document}
   
-\chapter{Discussion} % Overview text
+\chapter{Discussion}
 \label{Chapter::Discussion}
-    In this chapter, the results of the thesis are presented and evaluated as well as, the approach of this thesis.
 
-% Show your results and analyze them
-% Explain why the results are the way they are and not different
-% Go into possible measurement errors and why they occurred
-% Look for anomalies and explain why they occur
-\section{Analysis or Evaluation of Something}
-\label{Section::Analysis or Evaluation of Something}    
-    Text
+This chapter presents a critical evaluation of the findings reported in Chapter~\ref{Chapter::Results}. The discussion covers key aspects such as simulation quality, empirical and data-driven creep curve representations, regression model performance, and the effectiveness of active learning. Interpretations are grounded in the context of the modeling goals and limitations inherent to the workflow.
+
+\section{Simulation Quality and Synthetic Data}
+
+The input parameter ranges defined for dataset generation (Table~\ref{tab:param_ranges}) were designed to broadly capture material behavior under varying stress conditions. While 3376 simulations were generated successfully during initial sampling, only 980 of 2000 additional samples converged during the active learning loop. This suggests that certain regions in the parameter space, although mathematically plausible, may lead to numerical instabilities or physically infeasible behaviors when processed by the Lagamine solver.
+
+The discrepancy in convergence rate emphasizes the importance of convergence-aware sampling strategies, particularly in iterative learning frameworks. The use of a feasibility filter in later stages was a step in this direction but may require further refinement to enhance sampling efficiency.
+
+\section{Empirical Model Fits}
+
+Both empirical models—the $\theta$-projection model and the three-parameter exponential model—were evaluated for their ability to represent the simulated creep curves. The $\theta$-projection model achieved superior performance in terms of RMSE and deviation (Figures~\ref{fig:theta_fit_whole_set} and \ref{fig:theta_fit_max_deviation}), consistently producing better fits across the dataset.
+
+The three-parameter model, while offering a simplified representation of the creep behavior, showed higher deviation in both the average and worst-case scenarios (Figure~\ref{fig:three_stage_fit_whole_dataset}). This suggests that although both models are capable of capturing the general creep phases, the $\theta$-projection model is more flexible in representing nuanced variations in creep behavior.
+
+\section{Dimensionality Reduction of Creep Curves}
+
+Principal Component Analysis (PCA) was applied using three different strategies for handling non-uniform input lengths. Zero padding and normalization by rupture time led to high variance capture in fewer components, with the first 2–5 components explaining over 95\% of the total variance (Figures~\ref{fig:pca_variance_zero}, \ref{fig:pca_variance_max}, \ref{fig:pca_variance_norm}). These results suggest that the time-dependent creep behavior can be effectively compressed into low-dimensional representations, especially under standardized input transformations.
+
+Kernel PCA (KPCA), using both RBF and polynomial kernels, showed varying reconstruction quality depending on the kernel parameters and data preprocessing. The polynomial kernel generally performed better under zero padding and max strain padding (Figure~\ref{fig:kpca_zero_fill}, \ref{fig:kpca_max_fill}), but required a higher number of components. The reconstruction with normalization by rupture time captured global curve shape well, though suffered from some overfitting in high-strain regions.
+
+These findings imply that while PCA captures linear variance effectively, KPCA better handles nonlinearity at the cost of interpretability and model complexity.
+
+\section{Supervised Regression of Material Model Parameters}
+
+The inverse modeling task involved predicting seven Morch model parameters from simulated creep curves using four ensemble regression models. Among these, the Voting Regressor achieved the best balance of mean absolute error and $R^2$ score (Table~\ref{tab:model_performance}), indicating robustness across multiple parameter dimensions.
+
+The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) showed good agreement between predicted and true values, with notable consistency across stress levels. However, some parameters—particularly those with smaller dynamic ranges—exhibited greater prediction variance, possibly due to reduced signal-to-noise ratios in the training data.
+
+Overall, ensemble models provided better generalization than individual learners, though performance gains were modest.
+
+\section{Active Learning Efficiency}
+
+The active learning loop aimed to iteratively explore the parameter space for physically meaningful and convergent simulations. The results (Figure~\ref{fig:pairwise_projections}) showed a progressive tightening of the feasible domain, suggesting effective exploitation of the surrogate model. However, only 980 of the 2000 queries resulted in successful simulations, indicating the model's limitations in accurately predicting convergence.
+
+The selection strategy, based on differential evolution combined with a feasibility filter, showed promise but could benefit from integration with uncertainty quantification or probabilistic feasibility modeling to reduce the rate of failed samples.
+
+\section{Model Performance Comparison}
+
+The final evaluation compared all the creep curve representation methods using RMSE, minimum creep rate error, and time to rupture prediction (Table~\ref{tab:model_errors}). Both empirical models outperformed data-driven methods in terms of RMSE and creep rate error, especially the $\theta$-projection model.
+
+However, time to rupture predictions were not possible using the empirical models, highlighting a tradeoff: empirical models provide accuracy and interpretability, while data-driven models offer generalizability and completeness.
+
+These comparisons underline the importance of choosing representations based on the intended application—whether for interpretability, simulation compatibility, or downstream surrogate modeling.
+
 
 \end{document}
