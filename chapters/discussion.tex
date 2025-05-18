@@ -104,6 +104,19 @@ The active learning framework offered improvements in data efficiency by focusin
 
 Overall, while the methodology performs well in a controlled synthetic setting, its robustness and generalization to broader conditions, such as temperature variation, multiaxial loading, or experimental data, remain open challenges that require further validation.
 
+\section{Integration Potential}
+\label{Section::Discussion_Integration}
+
+The hybrid modeling framework developed in this study exhibits strong potential for integration into broader material modeling and engineering design workflows. By combining finite element simulation, dimensionality reduction, supervised regression, and active learning, the methodology enables efficient approximation of time-dependent creep behavior without repeated high-fidelity simulations.
+
+In particular, the surrogate models trained on $\theta$-projection parameters or PCA representations can serve as fast evaluators within finite element-based design optimization loops. Instead of solving the full constitutive creep equations during each simulation step, pre-trained regressors can be queried to provide creep predictions at significantly reduced computational cost.
+
+Moreover, the active learning loop presents a scalable approach for generating focused datasets that are tailored to the regions of design interest. This makes the method suitable for use in inverse modeling pipelines, where rapid identification of material parameters from experimental creep data is required.
+
+The interpretability of the empirical model parameters also facilitates integration into digital twin frameworks, where real-time predictions and decision-making require both accuracy and transparency. Furthermore, the ability to reconstruct creep curves from a compact set of parameters allows for compression and storage efficiency in material databases and automated testing systems.
+
+Future extensions could incorporate probabilistic modeling, uncertainty quantification, or integration with Bayesian optimization frameworks to further enhance adaptability and decision support.
+
 
 
 
