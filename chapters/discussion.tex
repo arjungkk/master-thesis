@@ -118,6 +118,24 @@ The active learning framework offered improvements in data efficiency by focusin
 
 Overall, while the methodology performs well in a controlled synthetic setting, its robustness and generalization to broader conditions, such as temperature variation, multiaxial loading, or experimental data, remain open challenges that require further validation.
 
+\section{Real-World Relevance}
+\label{Section::Discussion_RealWorldRelevance}
+
+Creep behavior plays a critical role in the design and durability of structural components operating under prolonged high-temperature and load conditions—such as in power plants, aerospace engines, and nuclear reactors. Traditional modeling approaches require extensive experimental campaigns or computationally expensive simulations, both of which limit their scalability and responsiveness in fast-paced engineering environments.
+
+The hybrid simulation-learning framework presented in this work addresses this limitation by enabling rapid, data-driven estimation of creep behavior while preserving physical interpretability through empirical model fitting. This capability is particularly valuable in:
+
+\begin{itemize}
+	\item \textbf{Alloy design and qualification:} Quickly screening large design spaces for viable candidate materials by predicting long-term creep behavior from a small set of simulations.
+	
+	\item \textbf{Digital twin applications:} Embedding fast surrogate models into digital replicas of operational systems for real-time monitoring, performance forecasting, and maintenance scheduling.
+	
+	\item \textbf{Accelerated certification:} Providing reliable creep curve predictions for new material compositions or geometries, reducing the need for exhaustive creep testing.
+	
+	\item \textbf{Predictive maintenance:} Estimating component lifetimes based on predicted creep rates and rupture times, especially in sectors where downtime is costly.
+\end{itemize}
+
+By demonstrating that creep curves can be represented compactly, approximated accurately, and generated selectively through active learning, this work lays a strong foundation for integrating AI-assisted material modeling into real-world decision-making workflows.
 
 
 
