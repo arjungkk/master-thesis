@@ -207,7 +207,7 @@
 			Poly & $\{n\_components = 50,\ \text{degree} = 2,\ \gamma = 0.01,\ \text{coef}_0 = 1\}$  \\
 			\hline
 		\end{tabular}
-		\label{tab:best_params}
+		\label{tab:best_params_zero_fill}
 	\end{table}
 	
 	The original vs. the reconstructed creep curves with zero padding is shown in figure~\ref{fig:kpca_zero_fill}.
@@ -220,6 +220,20 @@
 	\end{figure}
 	
 	\subsubsubsection{Max Creep Strain Padding:}
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Best parameters for RBF and Polynomial kernels}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Kernel} & \textbf{Best Parameters} \\
+			\hline
+			RBF & $\{n\_components = 50,\ \gamma = 0.01\}$ \\
+			Poly & $\{n\_components = 50,\ \text{degree} = 2,\ \gamma = 0.01,\ \text{coef}_0 = 1\}$  \\
+			\hline
+		\end{tabular}
+		\label{tab:best_params_max_fill}
+	\end{table}
 	
 	The original vs. the reconstructed creep curves with the maximum creep strain padding is shown in figure~\ref{fig:kpca_max_fill}.
 	
