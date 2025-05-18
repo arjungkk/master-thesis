@@ -28,7 +28,7 @@ The three-parameter model, while offering a simplified representation of the cre
 
 The use of empirical and machine learning models for creep prediction has been explored in earlier studies, though typically in narrower or less integrated settings. For instance, Brown and Korringa~\cite{brown2002extrapolation} established the effectiveness of the $\theta$-projection model in long-term creep extrapolation for power plant steels, showing strong agreement with experimental data. Our findings confirm this flexibility, as the $\theta$-projection model achieved the lowest RMSE across the dataset (see Table~\ref{tab:model_errors}).
 
-In contrast, recent work by Dacol and Caetano~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modeling. While computationally simple, our results indicate that this model slightly underperformed compared to the $\theta$-model in capturing creep curve shape, especially in the primary and tertiary regimes.
+In contrast, recent work by Dacol and Caetano~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modeling. While computationally simple, our results indicate that this model slightly underperformed compared to the $\theta$-model in capturing creep curve shape, especially in the tertiary regimes.
 
 Machine learning approaches for inverse creep modeling have also been proposed, but typically rely on limited parameterization or domain-specific curve descriptors. For example, studies using artificial neural networks often restrict prediction to time-to-rupture or steady-state creep rate. Our approach generalizes this by mapping full material model parameters using ensemble regressors, enabling complete curve reconstruction.
 
