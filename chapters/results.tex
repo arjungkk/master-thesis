@@ -426,10 +426,56 @@
 	\def\minRupture{545}
 	\def\maxRupture{999}
 	
-
+	% Normalize macro
+	\newcommand{\normalize}[3]{%
+		\pgfmathparse{(#1 - #2)/(#3 - #2)}%
+		\pgfmathresult%
+	}
 	
-
+	% Cell coloring based on normalized value
+	\newcommand{\colcell}[1]{%
+		\pgfmathparse{round(#1*100)}%
+		\edef\percent{\pgfmathresult}%
+		\cellcolor{red!\percent!green!40}\percent\%
+	}
 	
+	\begin{table}[h]
+		\centering
+		\caption{Normalized performance of models (0\%=best, 100\%=worst) with color scale.}
+		\begin{tabular}{lccc}
+			\toprule
+			\textbf{Model} & \textbf{RMSE (Strain)} & \textbf{Min. Creep Rate Error} & \textbf{Rupture Time Error} \\
+			\midrule
+			
+			\textbf{PCA} &
+			\colcell{\normalize{\rmsePCA}{\minRMSE}{\maxRMSE}} &
+			\colcell{\normalize{\creepPCA}{\minCreep}{\maxCreep}} &
+			\colcell{\normalize{\rupturePCA}{\minRupture}{\maxRupture}} \\
+			
+			\textbf{KPCA RBF} &
+			\colcell{\normalize{\rmseRBF}{\minRMSE}{\maxRMSE}} &
+			\colcell{\normalize{\creepRBF}{\minCreep}{\maxCreep}} &
+			\colcell{\normalize{\ruptureRBF}{\minRupture}{\maxRupture}} \\
+			
+			\textbf{KPCA Poly} &
+			\colcell{\normalize{\rmsePoly}{\minRMSE}{\maxRMSE}} &
+			\colcell{\normalize{\creepPoly}{\minCreep}{\maxCreep}} &
+			\colcell{\normalize{\rupturePoly}{\minRupture}{\maxRupture}} \\
+			
+			\textbf{Theta Projection} &
+			\colcell{\normalize{\rmseTheta}{\minRMSE}{\maxRMSE}} &
+			\colcell{\normalize{\creepTheta}{\minCreep}{\maxCreep}} &
+			\colcell{\normalize{\ruptureTheta}{\minRupture}{\maxRupture}} \\
+			
+			\textbf{Three-Param Model} &
+			\colcell{\normalize{\rmseThree}{\minRMSE}{\maxRMSE}} &
+			\colcell{\normalize{\creepThree}{\minCreep}{\maxCreep}} &
+			\colcell{\normalize{\ruptureThree}{\minRupture}{\maxRupture}} \\
+			
+			\bottomrule
+		\end{tabular}
+		\label{tab:model_heatmap_normalized}
+	\end{table}
 	
 	
 	\section{Active Learning Results}
