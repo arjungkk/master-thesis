@@ -38,7 +38,7 @@ These findings imply that while PCA captures linear variance effectively, KPCA b
 
 The inverse modeling task involved predicting seven Morch model parameters from simulated creep curves using four ensemble regression models. Among these, the Voting Regressor achieved the best balance of mean absolute error and $R^2$ score (Table~\ref{tab:model_performance}), indicating robustness across multiple parameter dimensions.
 
-The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) doesn't show a good agreement between predicted and true values. Some parameters, particularly those with smaller dynamic ranges, exhibited greater prediction variance, possibly due to reduced signal-to-noise ratios in the training data. The general performance of these models are quite low as is implied in the table~\ref{tab:model_performance}.
+The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) doesn't show a good agreement between predicted and true values. Some parameters, particularly those with smaller dynamic ranges, exhibited greater prediction variance, possibly due to reduced signal-to-noise ratios in the training data. The general performance of these models are quite low as is implied in the table~\ref{tab:model_performance}. The reconstructed creep curves (Figure~\ref{fig:curve_recon_model_params}) also does not seem to be well reconstructed.
 
 Overall, ensemble models provided better generalization than individual learners, though performance gains were modest.
 
