@@ -345,7 +345,7 @@
 		\label{tab:model_performance}
 	\end{table}
 	
-	Since the Voting model shows better results among the four, it is used to generate creep curves from the finite element solver using the predicted material parameters. The figure~\ref{fig:curve_recon_model_params} shows the comparison of the original vs. the reconstructed creep curves.	
+	Among the evaluated models, the Voting Regressor demonstrated the best overall performance in terms of both MAE and $R^2$ score. To assess the quality of inverse predictions, the predicted parameters were used to reconstruct creep curves using the Lagamine solver (Figure~\ref{fig:curve_recon_model_params}).	
 		
 	\begin{figure}[H]
 		\centering
