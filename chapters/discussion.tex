@@ -75,28 +75,6 @@ The interpretability of the empirical model parameters also facilitates integrat
 
 Future extensions could incorporate probabilistic modelling, uncertainty quantification, or integration with Bayesian optimization frameworks to further enhance adaptability and decision support.
 
-
-\section{Limitations of the Approach}
-\label{Section::Discussion_Limitations}
-
-While the presented framework demonstrates promising results in creep modelling and surrogate development, several limitations remain that constrain generalizability and reliability:
-
-\begin{itemize}
-	\item \textbf{No experimental validation:} The framework is evaluated solely on synthetic FEM-generated data. Without validation against experimental creep data, the true physical accuracy and real-world robustness of the models remain unverified.
-	
-	\item \textbf{Empirical model dependence:} Both the $\theta$-projection and three-parameter models rely on empirical curve fitting. Although effective for curve compression, they lack physical interpretability with respect to underlying microstructural mechanisms, limiting their value for mechanistic insight.
-	
-	\item \textbf{Sensitivity to input scaling:} The supervised regression models are sensitive to input scaling and feature ranges. This may affect generalization to unseen loading regimes or materials with different baseline properties.
-	
-	\item \textbf{Poor inverse model accuracy:} The parity plots and performance metrics (e.g., $R^2 < 0.30$) show that inverse modelling of the full set of Morch material parameters remains inaccurate. This is likely due to parameter non-identifiability, high dimensionality, and limited signal-to-noise ratio in the input data.
-	
-	\item \textbf{Rupture prediction limitations:} Empirical models, while offering excellent fit, do not natively support time to rupture prediction, which limits their applicability for long-term life assessments.
-	
-	\item \textbf{Active learning convergence challenges:} Although the active learning loop improved sampling efficiency, only 980 out of 2000 queries converged. This indicates that the feasibility filter may not fully capture the solver’s stability domain, leading to wasted queries and computational cost.
-	
-\end{itemize}
-Despite these limitations, the framework remains a flexible and extensible foundation for future hybrid modelling strategies.
-
 \section{Model Interpretability}
 \label{Section::Discussion_Interpretability}
 
@@ -118,6 +96,27 @@ The regression models demonstrated stable performance within the validation spli
 The active learning framework offered improvements in data efficiency by focusing on under-represented areas of the parameter space. Nonetheless, the fact that nearly 50\% of the actively queried points failed to converge highlights sensitivity to small changes in parameter values. This suggests a lack of robustness in the current convergence filter and highlights the need for incorporating probabilistic uncertainty estimation in future iterations.
 
 Overall, while the methodology performs well in a controlled synthetic setting, its robustness and generalization to broader conditions, such as temperature variation, multiaxial loading, or experimental data, remain open challenges that require further validation.
+
+\section{Limitations of the Approach}
+\label{Section::Discussion_Limitations}
+
+While the presented framework demonstrates promising results in creep modelling and surrogate development, several limitations remain that constrain generalizability and reliability:
+
+\begin{itemize}
+	\item \textbf{No experimental validation:} The framework is evaluated solely on synthetic FEM-generated data. Without validation against experimental creep data, the true physical accuracy and real-world robustness of the models remain unverified.
+	
+	\item \textbf{Empirical model dependence:} Both the $\theta$-projection and three-parameter models rely on empirical curve fitting. Although effective for curve compression, they lack physical interpretability with respect to underlying microstructural mechanisms, limiting their value for mechanistic insight.
+	
+	\item \textbf{Sensitivity to input scaling:} The supervised regression models are sensitive to input scaling and feature ranges. This may affect generalization to unseen loading regimes or materials with different baseline properties.
+	
+	\item \textbf{Poor inverse model accuracy:} The parity plots and performance metrics (e.g., $R^2 < 0.30$) show that inverse modelling of the full set of Morch material parameters remains inaccurate. This is likely due to parameter non-identifiability, high dimensionality, and limited signal-to-noise ratio in the input data.
+	
+	\item \textbf{Rupture prediction limitations:} Empirical models, while offering excellent fit, do not natively support time to rupture prediction, which limits their applicability for long-term life assessments.
+	
+	\item \textbf{Active learning convergence challenges:} Although the active learning loop improved sampling efficiency, only 980 out of 2000 queries converged. This indicates that the feasibility filter may not fully capture the solver’s stability domain, leading to wasted queries and computational cost.
+	
+\end{itemize}
+Despite these limitations, the framework remains a flexible and extensible foundation for future hybrid modelling strategies.
 
 \section{Real-World Relevance}
 \label{Section::Discussion_RealWorldRelevance}
