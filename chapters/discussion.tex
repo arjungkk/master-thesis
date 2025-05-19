@@ -82,6 +82,8 @@ Future extensions could incorporate probabilistic modelling, uncertainty quantif
 While the presented framework demonstrates promising results in creep modelling and surrogate development, several limitations remain that constrain generalizability and reliability:
 
 \begin{itemize}
+	\item \textbf{No experimental validation:} The framework is evaluated solely on synthetic FEM-generated data. Without validation against experimental creep data, the true physical accuracy and real-world robustness of the models remain unverified.
+	
 	\item \textbf{Empirical model dependence:} Both the $\theta$-projection and three-parameter models rely on empirical curve fitting. Although effective for curve compression, they lack physical interpretability with respect to underlying microstructural mechanisms, limiting their value for mechanistic insight.
 	
 	\item \textbf{Sensitivity to input scaling:} The supervised regression models are sensitive to input scaling and feature ranges. This may affect generalization to unseen loading regimes or materials with different baseline properties.
@@ -92,7 +94,7 @@ While the presented framework demonstrates promising results in creep modelling 
 	
 	\item \textbf{Active learning convergence challenges:} Although the active learning loop improved sampling efficiency, only 980 out of 2000 queries converged. This indicates that the feasibility filter may not fully capture the solver’s stability domain, leading to wasted queries and computational cost.
 	
-	\item \textbf{No experimental validation:} The framework is evaluated solely on synthetic FEM-generated data. Without validation against experimental creep data, the true physical accuracy and real-world robustness of the models remain unverified.
+	
 	
 \end{itemize}
 
