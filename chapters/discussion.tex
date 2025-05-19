@@ -106,7 +106,7 @@ By contrast, data-driven dimensionality reduction methods such as PCA and Kernel
 
 The supervised regression models trained to predict material model parameters also vary in interpretability. Random Forest and Gradient Boosting offer partial interpretability through feature importance rankings, though this was not explicitly explored in the present work. On the other hand, stacking and voting regressors act as meta-learners aggregating multiple models, further complicating attribution of predictions to specific features or mechanisms.
 
-In summary, a trade-off exists between interpretability and modelling flexibility. While empirical models provide physical insights, they may underperform on highly non-linear or noisy data. Machine learning models achieve higher predictive capacity but lack transparent connection to underlying physics. For future work, incorporating explainable AI techniques (e.g., SHAP values or LIME) could improve trust and transparency in the surrogate predictions.
+In summary, a trade-off exists between interpretability and modelling flexibility. While empirical models provide physical insights, they may underperform on highly non-linear or noisy data. Machine learning models achieve higher predictive capacity but lack transparent connection to underlying physics. For future work, incorporating explainable AI techniques (e.g., SHAP values \cite{lundberg2017unified} or LIME  \cite{ribeiro2016lime}) could improve trust and transparency in the surrogate predictions.
 
 \section{Robustness and Generalization}
 \label{Section::Discussion_Robustness}
