@@ -195,23 +195,25 @@
 	
 	Kernel PCA was applied to the preprocessed creep strain–time data using both polynomial and RBF kernels. As with PCA, different preprocessing strategies yielded varying reconstruction performance.
 	
-	\subsubsubsection{Zero Padding:}
-	
-	The best-performing kernel parameters for zero-padded data are listed in Table~\ref{tab:best_params_zero_fill}.
-	
-	\begin{table}[ht]
-		\centering
-		\caption{Best parameters for RBF and Polynomial kernels - Zero padding}
-		\begin{tabular}{|l|l|l|}
-			\hline
-			\textbf{Kernel} & \textbf{Best Parameters} \\
-			\hline
-			RBF & $\{n\_components = 20,\ \gamma = 0.1\}$ \\
-			Poly & $\{n\_components = 50,\ \text{degree} = 2,\ \gamma = 0.01,\ \text{coef}_0 = 1\}$  \\
-			\hline
-		\end{tabular}
-		\label{tab:best_params_zero_fill}
-	\end{table}
+	\begin{minipage}{\textwidth}
+		\subsubsubsection{Zero Padding:}
+		
+		The best-performing kernel parameters for zero-padded data are listed in Table~\ref{tab:best_params_zero_fill}.
+		
+		\begin{table}[ht]
+			\centering
+			\caption{Best parameters for RBF and Polynomial kernels - Zero padding}
+			\begin{tabular}{|l|l|l|}
+				\hline
+				\textbf{Kernel} & \textbf{Best Parameters} \\
+				\hline
+				RBF & $\{n\_components = 20,\ \gamma = 0.1\}$ \\
+				Poly & $\{n\_components = 50,\ \text{degree} = 2,\ \gamma = 0.01,\ \text{coef}_0 = 1\}$  \\
+				\hline
+			\end{tabular}
+			\label{tab:best_params_zero_fill}
+		\end{table}
+	\end{minipage}
 	
 	The reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}.
 	
