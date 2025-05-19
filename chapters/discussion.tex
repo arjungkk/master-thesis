@@ -52,7 +52,7 @@ Nonetheless, ensemble models provided better generalization than individual lear
 
 The active learning loop aimed to iteratively explore the parameter space for physically meaningful and convergent simulations. The results (Figure~\ref{fig:pairwise_projections}) showed a progressive tightening of the feasible domain, suggesting effective exploitation of the model. However, only 980 of the 2000 queries resulted in successful simulations, indicating the model's limitations in accurately predicting convergence.
 
-The selection strategy, based on differential evolution combined with a feasibility filter, showed promise but could benefit from integration with uncertainty quantification or probabilistic feasibility modelling to reduce the rate of failed samples. Moreover, while previous studies have used static datasets, our integration of active learning represents a novel hybrid strategy that combines physics-based solvers with intelligent sampling. Although not without convergence challenges, this approach demonstrates potential for data-efficient exploration of high-dimensional material parameter spaces.
+The selection strategy, based on differential evolution combined with a feasibility filter, showed promise but could benefit from integration with uncertainty quantification or probabilistic feasibility modelling to reduce the rate of failed samples. While previous studies have often relied on static datasets, our integration of active learning represents a novel hybrid strategy combining physics-based solvers with intelligent sampling. Although convergence challenges remain, this approach demonstrates potential for data-efficient exploration of high-dimensional material parameter spaces.
 
 \section{Model Performance Comparison}
 
