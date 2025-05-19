@@ -111,7 +111,36 @@ The commonly used models are:
 	
 	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$~\cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
 	
-	\item \textbf{Wilshire Models:} These models extend the classical power-law formulation by incorporating yield stress into the stress exponent, enabling a more physically motivated description of creep behavior. They are often used for high-strength materials where the classical Norton–Bailey model fails to capture nonlinearities~\cite{wilshire2007creep}.
+	\item \textbf{Wilshire Model:} The Wilshire equations extend classical power-law creep models (like Norton’s Law) by incorporating the **yield stress** as a normalizing factor in the stress term. This enables a more physically grounded representation of creep, especially in **high-strength alloys** where traditional models struggle to describe behavior near the material’s strength limits.
+	
+	The general form of the Wilshire equation for steady-state creep rate is:
+	
+	\begin{equation}
+		\dot{\varepsilon} = \dot{\varepsilon}_0 \left( \frac{\sigma}{\sigma_y} \right)^n \exp\left(-\frac{Q}{RT}\right)
+		\label{eq:wilshire}
+	\end{equation}
+	
+	Where:
+	- \( \dot{\varepsilon} \) is the creep strain rate,
+	- \( \dot{\varepsilon}_0 \) is a reference strain rate,
+	- \( \sigma \) is the applied stress,
+	- \( \sigma_y \) is the yield stress at the test temperature,
+	- \( n \) is the stress exponent,
+	- \( Q \) is the activation energy for creep,
+	- \( R \) is the gas constant,
+	- \( T \) is the absolute temperature.
+	
+	An extended form of the Wilshire model also accounts for **time to rupture**:
+	
+	\begin{equation}
+		\ln t_r = A - B \left( \frac{\sigma}{\sigma_y} \right)
+		\label{eq:wilshire_rupture}
+	\end{equation}
+	
+	Where \( t_r \) is the time to rupture, and \( A \), \( B \) are temperature-dependent fitting constants.
+	
+	These models are particularly effective for **martensitic steels**, **nickel-based superalloys**, and other **creep-resistant materials**, where the creep behavior deviates from classical power-law scaling~\cite{wilshire2007creep}.
+	
 \end{itemize}
 
 \vspace{1em}
