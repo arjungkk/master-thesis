@@ -156,7 +156,8 @@ The creep strain rate and damage evolution are given by:
 \dot{\varepsilon} = A \sigma^n (1 - \omega)^m, \quad \dot{\omega} = B \sigma^n (1 - \omega)^k
 \]
 
-where $A$, $B$, $n$, $m$, and $k$ are material constants. The variable $\omega$ increases from 0 to 1, with failure predicted when $\omega = 1$. This model enables simulation of all three creep stages, including the accelerating tertiary regime.
+where $A$, $B$, $n$, $m$, and $k$ are material constants. The variable $\omega$ increases from 0 to 1, with failure predicted when $\omega = 1$. Although originally formulated to model the tertiary stage, the Kachanov–Rabotnov model can simulate all three creep stages. By selecting appropriate values of the damage evolution parameters, the model predicts an initial deceleration in creep rate (primary stage), a plateau region (secondary stage), and a final acceleration leading to rupture (tertiary stage). Thus, it offers a unified framework for creep and damage evolution.
+
 
 Recent work by Sattar et al.~\cite{sattar2021damage} applied this formulation to SS-316 stainless steel, comparing it with the classical Norton–Bailey law. Using regression-based curve fitting, they successfully calibrated the Kachanov–Rabotnov model and demonstrated its improved performance in capturing the full creep lifecycle. Their results support the use of such damage-informed models for more accurate extrapolation of creep life, particularly in components operating under complex loading conditions.
 
