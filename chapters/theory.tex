@@ -162,25 +162,25 @@ The commonly used models/approaches are:
 	
 	Recent work by \textit{Sattar et al.}~\cite{sattar2021damage} applied the Kachanov-Rabotnov formulation to SS-316 stainless steel, comparing it against the classical Norton–Bailey law.  Using regression-based curve fitting, \textit{Sattar et al.} successfully calibrated the Kachanov-Rabotnov model and demonstrated its superior performance in capturing the entire creep lifecycle, including primary, secondary, and tertiary stages. Their results support the use of damage-informed models for more accurate extrapolation of creep life, especially in components operating under complex or long-duration loading conditions.
 	
-	\item \textbf{Dislocation-based formulation:} 
-	Dislocation-based and damage-informed models provide more accuracy for long-term predictions:
+	\item \textbf{Dislocation-Based Formulation:}  
+	Dislocation-based and damage-informed constitutive models offer improved physical accuracy for long-term creep predictions, especially under complex loading and microstructural evolution.
 	
 	\begin{equation}
 		\dot{\varepsilon} = \frac{\rho_m b v_g}{M}
 	\end{equation}
 	
-	where $\rho_m$ is mobile dislocation density, $b$ the Burgers vector, and $v_g$ the dislocation velocity. Work from Ghoniem and the ULiege research group extends this by evolving internal variables like:
+	where \( \rho_m \) is the mobile dislocation density, \( b \) is the Burgers vector\footnote{The Burgers vector represents the magnitude and direction of lattice distortion caused by a dislocation; it is a fundamental parameter in dislocation theory.}, \( v_g \) is the dislocation glide velocity, and \( M \) is the Taylor factor accounting for polycrystalline effects.
 	
+	Advanced formulations extend this model by evolving internal state variables, such as:
 	\begin{itemize}
 		\item Static and mobile dislocation densities
-		\item Subgrain radius and boundary effects
-		\item Cavitation and damage
+		\item Subgrain size and boundary migration
+		\item Cavitation and microvoid-induced damage
 	\end{itemize}
 	
-	Such models are implemented in Finite element method (\textbf{FEM}) tools like \texttt{Lagamine} to simulate thermal fatigue and multi-axial creep~\cite{morch2022creep}.
+	These models have been developed and applied in finite element simulations by researchers such as Ghoniem et al.~\cite{ghoniem2003dislocation} and recent European research initiatives focused on crystal plasticity and creep-fatigue interaction~\cite{morch2022creep, haruman2020continuum}. Implementations are available in finite element solvers like \texttt{Lagamine}, enabling the simulation of multiaxial thermomechanical creep and fatigue behavior at the component scale.
+		
 	
-	
-	These models are limited in their ability to generalize across materials and loading conditions, prompting the need for simulation- and ML-based approaches.
 \end{itemize}
 
 \subsection{Finite Element Analysis}
