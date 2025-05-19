@@ -109,40 +109,41 @@ The commonly used models are:
 	Equation~$~\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical creep model for engineering design under high temperatures~\cite{frost1982deformation}.
 	
 	\item \textbf{Larson–Miller Parameter (LMP):} 
-	A time–temperature parameter defined as $P = T(C + \log t_r)$, where $T$ is the absolute temperature, $t_r$ the rupture time, and $C$ a material constant. This approach allows short-term test data at higher temperatures to be extrapolated to predict long-term creep life at service conditions~\cite{larson1954time}.
+	A time–temperature parameter used to predict long-term creep life from short-term test data. It is defined as:
+	\[
+	P = T(C + \log t_r)
+	\]
+	where \( P \) is the Larson–Miller parameter, \( T \) is the absolute temperature, \( t_r \) is the time to rupture, and \( C \) is a material-dependent constant. The LMP enables extrapolation of accelerated high-temperature test results to real-world service conditions~\cite{larson1954time}.
 	
-	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$~\cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
+	\item \textbf{Monkman–Grant Relationship:}  
+	An empirical correlation linking the minimum creep rate to rupture life, expressed as:
+	\[
+	\dot{\varepsilon}_{\text{min}} \cdot t_r = \text{constant}
+	\]
+	where \( \dot{\varepsilon}_{\text{min}} \) is the minimum (steady-state) creep rate and \( t_r \) is the time to rupture. This relationship is useful for early-stage alloy qualification where long-term data are not yet available~\cite{monkman1956relationship}.
 	
-	\item \textbf{Wilshire Model:} The Wilshire equations extend classical power-law creep models (like Norton’s Law) by incorporating the yield stress as a normalizing factor in the stress term. This enables a more physically grounded representation of creep, especially in high-strength alloys where traditional models struggle to describe behaviour near the material’s strength limits.
+	\item \textbf{Wilshire Model:}  
+	An extension of the classical power-law creep model that incorporates the yield stress into the stress term for a more physically motivated representation. The steady-state creep rate is given by:
+	\[
+	\dot{\varepsilon} = \dot{\varepsilon}_0 \left( \frac{\sigma}{\sigma_y} \right)^n \exp\left(-\frac{Q}{RT}\right)
+	\]
+	where:
+	\begin{itemize}
+		\item \( \dot{\varepsilon} \) — creep strain rate,
+		\item \( \dot{\varepsilon}_0 \) — reference strain rate,
+		\item \( \sigma \) — applied stress,
+		\item \( \sigma_y \) — yield stress at test temperature,
+		\item \( n \) — stress exponent,
+		\item \( Q \) — activation energy,
+		\item \( R \) — gas constant,
+		\item \( T \) — absolute temperature.
+	\end{itemize}
 	
-	The general form of the Wilshire equation for steady-state creep rate is:
-	
-	\begin{equation}
-		\dot{\varepsilon} = \dot{\varepsilon}_0 \left( \frac{\sigma}{\sigma_y} \right)^n \exp\left(-\frac{Q}{RT}\right)
-		\label{eq:wilshire}
-	\end{equation}
-	
-	Where:
-	- \( \dot{\varepsilon} \) is the creep strain rate,
-	- \( \dot{\varepsilon}_0 \) is a reference strain rate,
-	- \( \sigma \) is the applied stress,
-	- \( \sigma_y \) is the yield stress at the test temperature,
-	- \( n \) is the stress exponent,
-	- \( Q \) is the activation energy for creep,
-	- \( R \) is the gas constant,
-	- \( T \) is the absolute temperature.
-	
-	An extended form of the Wilshire model also accounts for **time to rupture**:
-	
-	\begin{equation}
-		\ln t_r = A - B \left( \frac{\sigma}{\sigma_y} \right)
-		\label{eq:wilshire_rupture}
-	\end{equation}
-	
-	Where \( t_r \) is the time to rupture, and \( A \), \( B \) are temperature-dependent fitting constants.
-	
-	These models are particularly effective for **martensitic steels**, **nickel-based superalloys**, and other **creep-resistant materials**, where the creep behavior deviates from classical power-law scaling~\cite{wilshire2007creep}.
-	
+	An alternative form also estimates time to rupture:
+	\[
+	\ln t_r = A - B \left( \frac{\sigma}{\sigma_y} \right)
+	\]
+	where \( t_r \) is rupture time and \( A \), \( B \) are temperature-dependent material constants. The Wilshire model is particularly useful for high-strength materials such as martensitic steels and nickel-based superalloys, where classical Norton–Bailey models fail to capture observed nonlinear creep behaviour~\cite{wilshire2007creep}.
 \end{itemize}
 
 \vspace{1em}
