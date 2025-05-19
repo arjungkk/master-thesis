@@ -20,7 +20,7 @@
 
 Creep is a time-dependent, permanent deformation that occurs in materials subjected to constant stress below the yield point and elevated temperatures, typically above 30\% of their melting temperature~\cite{frost1982deformation}. In metals, creep can significantly influence the mechanical integrity of components operating in high-temperature environments such as gas turbines, nuclear reactors, and jet engines.
 
-The creep strain, $\epsilon(t, T)$, in a material, is a function of both time$(t)$ and temperature$(T)$ and can be expressed empirically through various models like Norton–Bailey Law, Monkman–Grant Relationship, etc. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates \cite{frost1982deformation, dieter1986mechanical}. 
+The creep strain, $\epsilon(t, T)$, in a material, is a function of both time$(t)$ and temperature$(T)$ and can be expressed empirically through various models like Norton–Bailey Law, Monkman–Grant Relationship, etc. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates~\cite{frost1982deformation, dieter1986mechanical}. 
 
 \subsection{Mechanisms of Creep Deformation}
 
@@ -29,7 +29,7 @@ Creep deformation in metals is governed by several atomic and dislocation-level 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/creep_mechanisms.png}
-	\caption{Overview of different creep mechanisms based on applied stress and temperature \cite{habraken2024lect}.}
+	\caption{Overview of different creep mechanisms based on applied stress and temperature~\cite{habraken2024lect}.}
 	\label{fig:creep_mechanisms}
 \end{figure}
 
@@ -102,13 +102,13 @@ aaaaaaa(creep curve needs to be modified to include the creep rate)A typical cre
 Creep behavior has traditionally been modeled using a variety of empirical and semi-physical formulations. These models aim to describe the relationship between stress, temperature, and time-dependent strain, providing analytical tools for design and life prediction.
 
 \begin{itemize}
-	\item \textbf{Norton’s Law:} Equation~$\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical model for engineering design under high temperatures.
+	\item \textbf{Norton’s Law:} Equation~$~\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical model for engineering design under high temperatures.
 	
-	\item \textbf{Larson–Miller Parameter (LMP):} A time–temperature parameter defined as $P = T(C + \log t_r)$, where $T$ is the absolute temperature, $t_r$ the rupture time, and $C$ a material constant. This model allows short-term test data at higher temperatures to be extrapolated to predict long-term creep life at service conditions \cite{larson1954time}.
+	\item \textbf{Larson–Miller Parameter (LMP):} A time–temperature parameter defined as $P = T(C + \log t_r)$, where $T$ is the absolute temperature, $t_r$ the rupture time, and $C$ a material constant. This model allows short-term test data at higher temperatures to be extrapolated to predict long-term creep life at service conditions~\cite{larson1954time}.
 	
-	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$ \cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
+	\item \textbf{Monkman–Grant Relationship:} An empirical linear correlation between the minimum creep rate and the rupture life, expressed as $\dot{\varepsilon}_{\text{min}} t_r = \text{constant}$~\cite{monkman1956relationship}. This is particularly useful in early-stage alloy qualification where limited data are available.
 	
-	\item \textbf{Wilshire Models:} These models extend the classical power-law formulation by incorporating yield stress into the stress exponent, enabling a more physically motivated description of creep behavior. They are often used for high-strength materials where the classical Norton–Bailey model fails to capture nonlinearities \cite{wilshire2007creep}.
+	\item \textbf{Wilshire Models:} These models extend the classical power-law formulation by incorporating yield stress into the stress exponent, enabling a more physically motivated description of creep behavior. They are often used for high-strength materials where the classical Norton–Bailey model fails to capture nonlinearities~\cite{wilshire2007creep}.
 \end{itemize}
 
 \vspace{1em}
@@ -125,7 +125,7 @@ The creep strain rate and damage evolution are given by:
 
 where $A$, $B$, $n$, $m$, and $k$ are material constants. The variable $\omega$ increases from 0 to 1, with failure predicted when $\omega = 1$. This model enables simulation of all three creep stages, including the accelerating tertiary regime.
 
-Recent work by Sattar et al. \cite{sattar2021damage} applied this formulation to SS-316 stainless steel, comparing it with the classical Norton–Bailey law. Using regression-based curve fitting, they successfully calibrated the Kachanov–Rabotnov model and demonstrated its improved performance in capturing the full creep lifecycle. Their results support the use of such damage-informed models for more accurate extrapolation of creep life, particularly in components operating under complex loading conditions.
+Recent work by Sattar et al.~\cite{sattar2021damage} applied this formulation to SS-316 stainless steel, comparing it with the classical Norton–Bailey law. Using regression-based curve fitting, they successfully calibrated the Kachanov–Rabotnov model and demonstrated its improved performance in capturing the full creep lifecycle. Their results support the use of such damage-informed models for more accurate extrapolation of creep life, particularly in components operating under complex loading conditions.
 
 
 \subsection{Microstructural and Physical Models}
@@ -144,7 +144,7 @@ where $\rho_m$ is mobile dislocation density, $b$ the Burgers vector, and $v_g$ 
 	\item Cavitation and damage
 \end{itemize}
 
-Such models are implemented in Finite element method (\textbf{FEM}) tools like \texttt{Lagamine} to simulate thermal fatigue and multi-axial creep \cite{morch2022creep}.
+Such models are implemented in Finite element method (\textbf{FEM}) tools like \texttt{Lagamine} to simulate thermal fatigue and multi-axial creep~\cite{morch2022creep}.
 
 
 These models are limited in their ability to generalize across materials and loading conditions, prompting the need for simulation- and ML-based approaches.
@@ -168,17 +168,17 @@ Despite their accuracy, classical numerical models face several limitations:
 	\item \textbf{Limited extrapolation:} Classical models may fail outside calibrated regimes or when microstructural effects are dominant.
 \end{itemize}
 
-As described in \cite{wessel2004modelling}, these challenges motivate the development of surrogate models that approximate the numerical outputs with significantly reduced computational effort.
+As described in~\cite{wessel2004modelling}, these challenges motivate the development of surrogate models that approximate the numerical outputs with significantly reduced computational effort.
 
 
 \section{Machine Learning in Materials Science}
 
-In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery, property prediction, and design of new materials. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through predictive modeling and data-driven insights, particularly in areas such as creep behavior analysis, microstructure-property correlation, and optimization of processing parameters. Liang et al. successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data \cite{liang2020ann}. Similarly, abductive networks were applied by Wang et al. to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction \cite{wang2013abductive}.
+In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery, property prediction, and design of new materials. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through predictive modeling and data-driven insights, particularly in areas such as creep behavior analysis, microstructure-property correlation, and optimization of processing parameters. Liang et al. successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data~\cite{liang2020ann}. Similarly, abductive networks were applied by Wang et al. to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction~\cite{wang2013abductive}.
 
 
 \subsection{Dimensionality Reduction and Principal Component Analysis (PCA)}
 
-Materials datasets often include numerous features derived from composition, microstructure, or simulation parameters. To handle this complexity, dimensionality reduction techniques such as Principal Component Analysis (PCA) are frequently used. PCA identifies the principal axes of variation in the dataset and projects high-dimensional data onto a lower-dimensional subspace while retaining maximum variance \cite{bishop2006pattern}.
+Materials datasets often include numerous features derived from composition, microstructure, or simulation parameters. To handle this complexity, dimensionality reduction techniques such as Principal Component Analysis (PCA) are frequently used. PCA identifies the principal axes of variation in the dataset and projects high-dimensional data onto a lower-dimensional subspace while retaining maximum variance~\cite{bishop2006pattern}.
 
 In the context of creep behavior prediction, PCA can reduce the dimensionality of microstructural or stress-strain time-series data, allowing machine learning models to focus on the most informative features. This not only improves computational efficiency but can also reveal underlying physical trends.
 
@@ -194,17 +194,17 @@ Common surrogate modeling techniques include:
 	\item \textbf{Artificial Neural Networks (ANNs)}: Capture nonlinear relationships between material features and properties, effective in high-dimensional datasets.
 \end{itemize}
 
-These models are crucial in active learning frameworks, where new data points are selected iteratively to improve model performance with minimal simulation or experimental effort \cite{settles2010active}.
+These models are crucial in active learning frameworks, where new data points are selected iteratively to improve model performance with minimal simulation or experimental effort~\cite{settles2010active}.
 
 \subsection{Integration with Simulation}
 
-Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modeling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation \cite{wessel2004modelling, kruzic2003limitations}.
+Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modeling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation~\cite{wessel2004modelling, kruzic2003limitations}.
 
 Additionally, ML can aid inverse modeling: inferring material parameters or damage laws from experimental creep curves, where traditional optimization is infeasible or underdetermined.
 
 \section{Active Learning and Data-Driven Design}
 
-The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data — whether through experiments or simulations — remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training. Further, physics-constrained learning models have emerged as an attractive approach to enhance surrogate accuracy while embedding domain-specific constraints \cite{zhu2019physics, karniadakis2021pinns}. Such methods can be integrated with active learning loops for improved generalization in high-dimensional simulation settings.
+The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data — whether through experiments or simulations — remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training. Further, physics-constrained learning models have emerged as an attractive approach to enhance surrogate accuracy while embedding domain-specific constraints~\cite{zhu2019physics, karniadakis2021pinns}. Such methods can be integrated with active learning loops for improved generalization in high-dimensional simulation settings.
 
 
 \subsection{Motivation for Active Learning in Creep Prediction}
@@ -224,15 +224,15 @@ Several strategies have been explored in the literature:
 
 \begin{itemize}
 	\item \textbf{Uncertainty Sampling:} Points where the current model is most uncertain are prioritized for evaluation.
-	\item \textbf{Query-by-Committee (QBC):} An ensemble of models is trained, and points with the highest disagreement among them are selected \cite{morand2022efficient}.
-	\item \textbf{Feasibility-Based Selection:} Particularly useful in simulations where many parameter sets lead to non-physical or non-convergent outputs. A classifier can first be trained to identify valid regions \cite{heese2019optimized}.
+	\item \textbf{Query-by-Committee (QBC):} An ensemble of models is trained, and points with the highest disagreement among them are selected~\cite{morand2022efficient}.
+	\item \textbf{Feasibility-Based Selection:} Particularly useful in simulations where many parameter sets lead to non-physical or non-convergent outputs. A classifier can first be trained to identify valid regions~\cite{heese2019optimized}.
 \end{itemize}
 
 These techniques help in focusing computational effort where it is most impactful — a major advantage in creep modeling, where simulations are often expensive and time-consuming.
 
 \subsection{Applications in Microstructure–Property Exploration}
 
-In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al. \cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
+In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al.~\cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
 
 Such frameworks are ideal for use in surrogate modeling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
 
