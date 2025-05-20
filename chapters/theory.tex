@@ -222,27 +222,6 @@ Common surrogate modelling techniques include:
 	\item \textbf{Artificial Neural Networks (ANNs)}: Capture nonlinear relationships between material features and properties, effective in high-dimensional datasets~\cite{liang2020ann}.
 \end{itemize}
 
-These models are crucial in active learning frameworks, where new data points are selected iteratively to improve model performance with minimal simulation or experimental effort~\cite{settles2010active}.
-
-\subsection{Supervised Learning}
-
-Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs. In materials science, it is widely employed to predict mechanical properties, model microstructure–property relationships, and approximate the outcomes of physics-based simulations~\cite{butler2018machine}.
-
-One key application is the construction of \textbf{surrogate models}—also known as meta-models or response surface models. These models act as computationally efficient approximations of high-fidelity simulations, such as finite element models of creep or damage evolution. By learning the input–output behavior from a representative dataset, surrogate models enable rapid design space exploration, sensitivity analysis, and uncertainty quantification with significantly reduced computational cost~\cite{bessa2017framework}.
-
-Common surrogate modeling techniques include:
-
-\begin{itemize}
-	\item \textbf{Polynomial Regression and Kriging:} Classical methods for interpolating response surfaces across low- to moderate-dimensional parameter spaces~\cite{kleijnen2009kriging}.
-	
-	\item \textbf{Gaussian Process Regression (GPR):} A probabilistic modeling technique that provides not only point predictions but also uncertainty estimates, making it well-suited for active learning and Bayesian optimization~\cite{rasmussen2006gaussian}.
-	
-	\item \textbf{Artificial Neural Networks (ANNs):} Flexible, nonlinear models that perform well in high-dimensional and noisy datasets, particularly effective in capturing complex structure–property relationships~\cite{liang2020ann}.
-\end{itemize}
-
-
-
-
 \subsection{Integration with Simulation}
 
 Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modelling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation~\cite{wessel2004modelling, kruzic2003limitations}.
