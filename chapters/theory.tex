@@ -242,8 +242,6 @@ Some of the traditional sampling strategies are:
 	\item \textbf{Active Learning:} An iterative strategy where the ML model itself identifies which regions of the design space require more data. Methods include uncertainty sampling and query-by-committee (QBC).
 \end{itemize}
 
-Logarithmic sampling is particularly beneficial when exploring creep laws with exponential or power-law behavior, as it avoids oversampling in regions with diminishing returns. By combining LHS with logarithmic scaling and active learning, this thesis aims to balance space-filling coverage with model-aware refinement of the dataset.
-
 Ultimately, these strategies enable a tight feedback loop between simulation and surrogate model improvement, making them ideal for high-dimensional, computationally expensive systems like creep prediction.
 
 
