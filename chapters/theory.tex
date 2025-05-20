@@ -186,6 +186,137 @@ Finite element analysis (FEA) provides a powerful framework for simulating creep
 
 Numerical models offer the advantage of extrapolating creep behaviour under untested conditions. However, these models require extensive calibration and may become computationally expensive for high-dimensional parametric studies.
 
+\section{Machine Learning in general and specifically for Creep}
+\label{Section::Machine_learning}
+
+Machine learning (ML) is a subset of artificial intelligence that enables systems to learn patterns and make predictions or decisions based on data without being explicitly programmed. By leveraging statistical algorithms and computational models, ML can uncover complex, non-linear relationships in large datasets, making it particularly powerful for problems where traditional modelling is either infeasible or inefficient~\cite{bishop2006pattern}.
+
+\subsection{Machine Learning Fundamentals}
+
+\subsubsection{Supervised Learning}
+
+Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs. The goal is to learn a mapping from inputs to outputs that generalizes well to unseen data. This approach underpins a wide range of applications including image classification, speech recognition, medical diagnosis, and financial forecasting.
+
+An important application of supervised learning is the development of \textbf{surrogate models}—also known as meta-models or response surface models. These models approximate complex or computationally expensive systems by learning from a set of input–output examples, making them highly effective for rapid prediction, optimization, and uncertainty quantification~\cite{bessa2017framework}.
+
+Common surrogate modelling techniques include:
+
+\begin{itemize}
+	\item \textbf{Polynomial Regression and Kriging}: Useful for interpolating outputs across low-dimensional parameter spaces~\cite{kleijnen2009kriging}.
+	\item \textbf{Gaussian Process Regression (GPR)}: A probabilistic model that provides both predictions and uncertainty estimates, ideal for scenarios where model confidence is critical~\cite{rasmussen2006gaussian}.
+	\item \textbf{Artificial Neural Networks (ANNs)}: Flexible, non-linear models that perform well in high-dimensional data spaces and are widely applied across domains such as computer vision and natural language processing~\cite{bishop2006pattern}.
+\end{itemize}
+
+\subsubsection{Unsupervised Learning}
+
+Unsupervised learning encompasses machine learning techniques that infer patterns or structures from data without requiring labelled outputs. These methods are particularly useful for tasks such as clustering, anomaly detection, and dimensionality reduction~\cite{bishop2006pattern}.
+
+As modern datasets often include a large number of features, dimensionality reduction becomes an essential preprocessing step to reduce noise, improve interpretability, and enhance model performance. The goal is to project high-dimensional data into a lower-dimensional space while retaining as much of the original structure and variance as possible.
+
+Popular dimensionality reduction techniques include:
+
+\begin{itemize}
+	\item \textbf{Principal Component Analysis (PCA)}: A linear technique that identifies the directions of maximum variance in the data~\cite{jolliffe2002principal}.
+	\item \textbf{Kernel PCA}: An extension of PCA that uses kernel functions to capture non-linear relationships~\cite{scholkopf1998nonlinear}.
+	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE)}: A method tailored for visualizing high-dimensional datasets by preserving local similarities~\cite{maaten2008visualizing}.
+	\item \textbf{Autoencoders}: Neural network architectures trained to compress and reconstruct data, learning compact and informative latent representations~\cite{hinton2006reducing}.
+\end{itemize}
+
+\subsubsection{Reinforcement Learning}
+
+Reinforcement learning (RL) is a type of machine learning in which an agent learns to make sequential decisions by interacting with an environment and receiving feedback in the form of rewards or penalties. Over time, the agent optimizes its policy to maximize cumulative reward, making RL particularly suited for optimization problems, adaptive control, and decision-making under uncertainty~\cite{sutton2018reinforcement}.
+
+\subsection{Sampling Strategies, Surrogate Modelling and Data-driven Materials Design}
+
+\subsubsection{Sampling Strategies}
+
+Some of the traditional sampling strategies are:
+
+\begin{itemize}
+	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space. 
+	
+	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension~\cite{mckay2000sampling}. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behaviour.
+	
+	\item \textbf{Logarithmic Sampling:} Used to better capture sensitivity in highly non-linear regions of the parameter space. It ensures sufficient resolution in low-value regions that may otherwise be under-represented.
+	
+	\item \textbf{Active Learning:} An iterative strategy where the ML model itself identifies which regions of the design space require more data. Methods include uncertainty sampling and query-by-committee (see~\ref{text:QBC}).
+\end{itemize}
+
+Ultimately, these strategies enable a tight feedback loop between simulation and surrogate model improvement, making them ideal for high-dimensional, computationally expensive systems.
+
+
+\subsubsection{Active Learning}
+
+The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data, whether through experiments or simulations, remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training. Further, physics-informed learning models have emerged as an attractive approach to enhance surrogate accuracy while embedding domain-specific constraints~\cite{zhu2019physics, karniadakis2021pinns}. Physical constraints can be integrated with active learning loops for improved generalization in high-dimensional settings.
+
+
+These surrogate models play a central role in data-efficient workflows such as active learning, where informative new samples are selected iteratively to improve model accuracy while minimizing the number of required experiments or simulations~\cite{settles2010active}.
+
+\subsubsection{Motivation for Active Learning in Creep Prediction}
+
+Creep behavior simulations involve evaluating material responses under varying stress, temperature, and microstructural parameters. The parameter space is typically large and high-dimensional, making uniform sampling (e.g., full-factorial or random) computationally inefficient. Additionally, regions of the parameter space may lead to invalid or non-convergent results in numerical models.
+
+Active learning addresses this by enabling:
+\begin{itemize}
+	\item \textbf{Efficient exploration} of the design space.
+	\item \textbf{Reduction in simulation cost} by focusing only on informative or uncertain regions.
+	\item \textbf{Improved generalization} of ML models using fewer training points.
+\end{itemize}
+
+\subsubsection{Active Learning Strategies}
+
+Several strategies have been explored in the literature:
+
+\begin{itemize}
+	\item \textbf{Uncertainty Sampling:} Points where the current model is most uncertain are prioritized for evaluation.
+	\item \textbf{Query-by-Committee (QBC):} An ensemble of models is trained, and points with the highest disagreement among them are selected~\cite{morand2022efficient}.
+	\item \textbf{Feasibility-Based Selection:} Particularly useful in simulations where many parameter sets lead to non-physical or non-convergent outputs. A classifier can first be trained to identify valid regions~\cite{heese2019optimized}.
+\end{itemize}
+
+These techniques help in focusing computational effort where it is most impactful — a major advantage in creep modelling, where simulations are often expensive and time-consuming.
+
+\subsubsection{Applications in Microstructure–Property Exploration}
+
+In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al.~\cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
+
+Such frameworks are ideal for use in surrogate modelling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
+
+
+
+
+\subsection{Machine Learning for Creep Life Prediction}
+
+In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery and design of new materials~\cite{agrawal2016perspective}. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through fast prediction models and data-driven correlation analysis, particularly in areas such as creep behaviour analysis, process-structure-property correlation, and optimization of processing parameters.
+
+\textbf{He et al.}~\cite{he2023scmla} proposed soft-constrained machine learning algorithms (SCMLAs) for extrapolating creep rupture life of Sanicro 25 steel. Their model maintained physical consistency by incorporating derivative constraints, achieving over 97.5\% prediction accuracy even beyond the longest test durations.
+
+\textbf{Sakurai et al.}~\cite{sakurai2023svr} explored the use of Support Vector Regression (SVR), Random Forest (RF), and Gradient Tree Boosting (GTB) models for ferritic heat-resistant steels. Among these, SVR delivered the best performance (RMSE = 0.14). Inclusion of 0.2\% proof stress improved accuracy by capturing underlying microstructural effects.
+
+\textbf{Tan et al.}~\cite{tan2022xgb} applied ensemble learning methods, including Extreme Gradient Boosting (XGB) and Artificial Neural Networks (ANNs), for creep life prediction in 9\%Cr martensitic steel. Their ensemble strategy achieved a high coefficient of determination ($R² \approx 0.91$), showcasing its generalization ability.
+
+\textbf{Chai et al.}~\cite{chai2023gpr} developed a Gaussian Process Regression (GPR) framework to model rupture life in modified 9Cr-1Mo steel. By implementing feature screening, they identified key variables such as stress, temperature, tempering time, and elemental content (e.g., S, Cr), resulting in accurate predictions with minimal inputs.
+
+\textbf{Nakamura et al.}~\cite{nakamura2023lidg} introduced a Linear Integrated Derivative Gaussian (LIDG) regression method to predict rupture life. The model produced closed-form predictive expressions, outperforming traditional machine learning models like RF and LASSO in both accuracy and interpretability.
+
+\textbf{Wei et al.}~\cite{wei2023fusion} used data fusion techniques and Principal Component Analysis (PCA) to reduce dimensionality and decorrelate features for creep prediction in austenitic steels. Their Gaussian model achieved higher predictive accuracy compared to traditional fitting techniques.
+
+\textbf{Wang et al.}~\cite{wang2021msp} combined time–temperature parameters (e.g., Larson–Miller Parameter and Monkman–Grant) with machine learning models to predict rupture life in Cr–Mo steels. The best performance was achieved by Random Forest using the Manson–Succop parameter as a derived feature.
+
+\textbf{Powar et al.}~\cite{powar2015ann} trained an ANN on experimental data for heat-treated steels, incorporating variables such as alloy composition and hardness. Their model achieved a correlation coefficient over 90\%, demonstrating the capability of ANNs in microstructure–property linkage.
+
+\textbf{Liang et al.}~\cite{liang2020ann} successfully applied artificial neural networks to predict long-term creep life in 9Cr-1Mo-V-Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data. 
+
+\textbf{Wang et al.}~\cite{wang2013abductive}, applied abductive networks\footnote{Abductive networks are a type of artificial intelligence modelling approach that utilizes functional elements and abductive reasoning to explain relationships between variables~\cite{montgomery1991abductive}.} to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction.
+
+
+Collectively, these studies underscore the increasing maturity of machine learning in creep modelling, particularly for:
+\begin{itemize}
+	\item Feature selection and reduction,
+	\item Modelling non-linear time-dependent behaviour,
+	\item Enabling inverse prediction of material parameters,
+	\item Improving generalization via ensemble learning.
+\end{itemize}
+
 
 
 % You can use this to add content for standalone documents if you like
