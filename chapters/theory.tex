@@ -209,16 +209,33 @@ Common surrogate modeling techniques include:
 
 \subsubsection{Unsupervised Learning}
 
-Unsupervised learning refers to a class of machine learning techniques that identify patterns or structures in data without the use of labelled outputs. It explores the inherent structure of the dataset, making it particularly useful for exploratory data analysis, clustering, and dimensionality reduction~\cite{bishop2006pattern}.
+Unsupervised learning encompasses machine learning techniques that infer patterns or structures from data without requiring labelled outputs. These methods are particularly useful for tasks such as clustering, anomaly detection, and dimensionality reduction~\cite{bishop2006pattern}.
 
-Materials datasets often include numerous features derived from chemical composition, microstructure, processing parameters or material properties. As these datasets grow in complexity and size, dimensionality reduction becomes essential for extracting physically meaningful insights. Dimensionality reduction techniques help compress such data into a lower-dimensional space while preserving essential information, thus improving both interpretability and computational efficiency.
+As modern datasets often include a large number of features, dimensionality reduction becomes an essential preprocessing step to reduce noise, improve interpretability, and enhance model performance. The goal is to project high-dimensional data into a lower-dimensional space while retaining as much of the original structure and variance as possible.
 
-Several dimensionality reduction techniques are commonly used, including:
+Popular dimensionality reduction techniques include:
+
 \begin{itemize}
-	\item \textbf{Principal Component Analysis (PCA):} Projects high-dimensional data onto a lower-dimensional subspace by identifying directions (principal components) that capture the maximum variance in the data~\cite{jolliffe2002principal}.
-	\item \textbf{Kernel PCA:} Extends PCA using kernel methods to capture nonlinear relationships in the data~\cite{scholkopf1998nonlinear}.
-	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE):} Optimized for visualizing high-dimensional data by preserving local structure in 2D or 3D embeddings~\cite{maaten2008visualizing}.
-	\item \textbf{Autoencoders:} Neural network-based architectures that learn compressed, latent representations of input data through reconstruction objectives~\cite{hinton2006reducing}.
+	\item \textbf{Principal Component Analysis (PCA)}: A linear technique that identifies the directions of maximum variance in the data~\cite{jolliffe2002principal}.
+	\item \textbf{Kernel PCA}: An extension of PCA that uses kernel functions to capture nonlinear relationships~\cite{scholkopf1998nonlinear}.
+	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE)}: A method tailored for visualizing high-dimensional datasets by preserving local similarities~\cite{maaten2008visualizing}.
+	\item \textbf{Autoencoders}: Neural network architectures trained to compress and reconstruct data, learning compact and informative latent representations~\cite{hinton2006reducing}.
+\end{itemize}
+
+
+\subsubsection{Unsupervised Learning}
+
+Unsupervised learning encompasses machine learning techniques that infer patterns or structures from data without requiring labelled outputs. These methods are particularly useful for tasks such as clustering, anomaly detection, and dimensionality reduction~\cite{bishop2006pattern}.
+
+As modern datasets often include a large number of features, dimensionality reduction becomes an essential preprocessing step to reduce noise, improve interpretability, and enhance model performance. The goal is to project high-dimensional data into a lower-dimensional space while retaining as much of the original structure and variance as possible.
+
+Popular dimensionality reduction techniques include:
+
+\begin{itemize}
+	\item \textbf{Principal Component Analysis (PCA)}: A linear technique that identifies the directions of maximum variance in the data~\cite{jolliffe2002principal}.
+	\item \textbf{Kernel PCA}: An extension of PCA that uses kernel functions to capture nonlinear relationships~\cite{scholkopf1998nonlinear}.
+	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE)}: A method tailored for visualizing high-dimensional datasets by preserving local similarities~\cite{maaten2008visualizing}.
+	\item \textbf{Autoencoders}: Neural network architectures trained to compress and reconstruct data, learning compact and informative latent representations~\cite{hinton2006reducing}.
 \end{itemize}
 
 \subsubsection{Reinforcement Learning}
