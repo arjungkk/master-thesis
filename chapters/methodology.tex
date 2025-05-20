@@ -120,7 +120,8 @@
 		
 		\item \textbf{Max strain padding:} After rupture, the input vector is filled with the maximum value of creep strain (typically the creep strain at rupture), ensuring continuity and preventing abrupt changes.
 		
-		\item \textbf{Normalization by rupture time:} Each creep curve is normalized based on its rupture time, converting absolute time scales to a relative scale (from 0 to 1). This approach aligns the deformation trajectories across samples, effectively mitigating variations caused by early ruptures.
+		\item \textbf{Normalization by rupture time:} Each creep curve is normalized based on its rupture time, converting absolute time scales to a relative scale (from 0 to 1). This approach aligns the deformation trajectories across samples, effectively mitigating variations caused by early ruptures. For back-transformation, the time at rupture needs to be appended to the input vector.
+		
 	\end{enumerate}
 	
 	These preprocessing methods will significantly improve data consistency, eliminating NaNs and infinite values, thereby enhancing the robustness of dimensionality reduction processes. 
