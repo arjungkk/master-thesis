@@ -182,7 +182,7 @@ The commonly used models/approaches are:
 
 \subsection{Finite Element Analysis}
 
-Finite element analysis (FEA) provides a powerful framework for simulating creep deformation in complex geometries and loading conditions. Constitutive models describing creep behaviour are embedded into material subroutines and solved within FEA codes. LAGAMINE\footnote{LAGAMINE is a finite element code, born at the University of Liege, initially developed for the digital modelling of large deformations, mechanical problems and contact problems. LAGAMINE, allow to predict the damages and rupture along the process of formation, as well as the static and specific fatigue load. Simulations can be extended to the modelling of processes such as deep-drawing, straightening, cold rolling, continuous casting, incremental forming, vertical lancer combined, superplastic forming or former microforming. In these simulations, the shaping of metal, of new elements such as solid-shell elements or adapted darning strategies have also been developed within LAGAMINE~\cite{lagamine_uliege}.}, the FEA tool used in this thesis, includes time-integration schemes suitable for large strain, time-dependent plasticity problems, enabling robust modeling of the full creep lifecycle.
+Finite element analysis (FEA) provides a powerful framework for simulating creep deformation in complex geometries and loading conditions. Constitutive models describing creep behaviour are embedded into material subroutines and solved within FEA codes. LAGAMINE\footnote{LAGAMINE is a finite element code, born at the University of Liege, initially developed for the digital modelling of large deformations, mechanical problems and contact problems. It allows to predict the damages and rupture along the process of formation, as well as the static and specific fatigue load. Simulations can be extended to the modelling of processes such as deep-drawing, straightening, cold rolling, continuous casting, incremental forming, vertical lancer combined, superplastic forming or former microforming. In these simulations, the shaping of metal, of new elements such as solid-shell elements or adapted darning strategies have also been developed within LAGAMINE~\cite{lagamine_uliege}.}, the FEA tool used in this thesis, includes time-integration schemes suitable for large strain, time-dependent plasticity problems, enabling robust modelling of the full creep lifecycle.
 
 Numerical models offer the advantage of extrapolating creep behavior under untested conditions. However, these models require extensive calibration and may become computationally expensive for high-dimensional parametric studies.
 
@@ -201,7 +201,7 @@ As described in~\cite{wessel2004modelling}, these challenges motivate the develo
 
 \section{Machine Learning in Materials Science}
 
-In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery, property prediction, and design of new materials. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through predictive modeling and data-driven insights, particularly in areas such as creep behavior analysis, microstructure-property correlation, and optimization of processing parameters. Liang et al. successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data~\cite{liang2020ann}. Similarly, abductive networks were applied by Wang et al. to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction~\cite{wang2013abductive}.
+In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery, property prediction, and design of new materials. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through predictive modelling and data-driven insights, particularly in areas such as creep behavior analysis, microstructure-property correlation, and optimization of processing parameters. Liang et al. successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data~\cite{liang2020ann}. Similarly, abductive networks were applied by Wang et al. to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction~\cite{wang2013abductive}.
 
 
 \subsection{Dimensionality Reduction and Principal Component Analysis (PCA)}
@@ -210,11 +210,11 @@ Materials datasets often include numerous features derived from composition, mic
 
 In the context of creep behavior prediction, PCA can reduce the dimensionality of microstructural or stress-strain time-series data, allowing machine learning models to focus on the most informative features. This not only improves computational efficiency but can also reveal underlying physical trends.
 
-\subsection{Surrogate Modeling}
+\subsection{Surrogate modelling}
 
 Surrogate models, also known as metamodels or response surface models, are simplified predictive models that approximate the behavior of complex physical systems or simulations. In materials science, surrogate models can be applied to approximate finite element simulations of creep and deformation, allowing for faster optimization and uncertainty quantification.
 
-Common surrogate modeling techniques include:
+Common surrogate modelling techniques include:
 
 \begin{itemize}
 	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces.
@@ -226,9 +226,9 @@ These models are crucial in active learning frameworks, where new data points ar
 
 \subsection{Integration with Simulation}
 
-Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modeling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation~\cite{wessel2004modelling, kruzic2003limitations}.
+Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modelling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation~\cite{wessel2004modelling, kruzic2003limitations}.
 
-Additionally, ML can aid inverse modeling: inferring material parameters or damage laws from experimental creep curves, where traditional optimization is infeasible or underdetermined.
+Additionally, ML can aid inverse modelling: inferring material parameters or damage laws from experimental creep curves, where traditional optimization is infeasible or underdetermined.
 
 \section{Active Learning and Data-Driven Design}
 
@@ -256,17 +256,17 @@ Several strategies have been explored in the literature:
 	\item \textbf{Feasibility-Based Selection:} Particularly useful in simulations where many parameter sets lead to non-physical or non-convergent outputs. A classifier can first be trained to identify valid regions~\cite{heese2019optimized}.
 \end{itemize}
 
-These techniques help in focusing computational effort where it is most impactful — a major advantage in creep modeling, where simulations are often expensive and time-consuming.
+These techniques help in focusing computational effort where it is most impactful — a major advantage in creep modelling, where simulations are often expensive and time-consuming.
 
 \subsection{Applications in Microstructure–Property Exploration}
 
 In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al.~\cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
 
-Such frameworks are ideal for use in surrogate modeling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
+Such frameworks are ideal for use in surrogate modelling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
 
 \subsection{Sampling Strategies in Practice}
 
-In this thesis, several sampling strategies are explored to efficiently generate data for surrogate modeling of creep behavior:
+In this thesis, several sampling strategies are explored to efficiently generate data for surrogate modelling of creep behavior:
 
 \begin{itemize}
 	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space.
