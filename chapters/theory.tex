@@ -210,6 +210,7 @@ In the context of creep behaviour prediction, dimensionality reduction technique
 
 \subsection{Supervised Learning}
 
+Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs.
 Surrogate models, also known as meta-models or response surface models, are simplified predictive models that approximate the behavior of complex physical systems or simulations. In materials science, surrogate models can be applied to approximate finite element simulations of creep and deformation, allowing for faster optimization and uncertainty quantification.
 
 Common surrogate modelling techniques include:
@@ -224,19 +225,21 @@ These models are crucial in active learning frameworks, where new data points ar
 
 \subsection{Supervised Learning}
 
-Supervised learning is a fundamental machine learning approach in which a model is trained on labelled input-output pairs to learn a mapping from inputs (features) to outputs (targets). In materials science, supervised learning is widely used to predict mechanical properties, model microstructure–property relationships, and approximate the behavior of complex simulations.
+Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs. In materials science, it is widely employed to predict mechanical properties, model microstructure–property relationships, and approximate the outcomes of physics-based simulations~\cite{butler2018machine}.
 
-A prominent application of supervised learning is in the development of \textbf{surrogate models}—also known as meta-models or response surface models. Surrogate models are simplified, data-driven approximations of high-fidelity simulations or physical systems. In the context of creep and deformation modeling, they are used to emulate the results of computationally expensive finite element simulations, enabling rapid optimization, sensitivity analysis, and uncertainty quantification~\cite{bessa2017framework}.
+One key application is the construction of \textbf{surrogate models}—also known as meta-models or response surface models. These models act as computationally efficient approximations of high-fidelity simulations, such as finite element models of creep or damage evolution. By learning the input–output behavior from a representative dataset, surrogate models enable rapid design space exploration, sensitivity analysis, and uncertainty quantification with significantly reduced computational cost~\cite{bessa2017framework}.
 
 Common surrogate modeling techniques include:
 
 \begin{itemize}
-	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces.
-	\item \textbf{Gaussian Process Regression (GPR)}: Provides both predictions and associated uncertainty estimates, making it especially suitable for active learning and Bayesian optimization.
-	\item \textbf{Artificial Neural Networks (ANNs)}: Capture complex, nonlinear relationships between inputs and outputs, and scale well with high-dimensional datasets.
+	\item \textbf{Polynomial Regression and Kriging:} Classical methods for interpolating response surfaces across low- to moderate-dimensional parameter spaces~\cite{kleijnen2009kriging}.
+	
+	\item \textbf{Gaussian Process Regression (GPR):} A probabilistic modeling technique that provides not only point predictions but also uncertainty estimates, making it well-suited for active learning and Bayesian optimization~\cite{rasmussen2006gaussian}.
+	
+	\item \textbf{Artificial Neural Networks (ANNs):} Flexible, nonlinear models that perform well in high-dimensional and noisy datasets, particularly effective in capturing complex structure–property relationships~\cite{liang2020ann}.
 \end{itemize}
 
-These models are integral to active learning frameworks, where new data points are iteratively selected to improve model accuracy while minimizing the number of required simulations or experiments~\cite{settles2010active}.
+These surrogate models play a central role in data-efficient workflows such as active learning, where informative new samples are selected iteratively to improve model accuracy while minimizing the number of required experiments or simulations~\cite{settles2010active}.
 
 
 \subsection{Integration with Simulation}
