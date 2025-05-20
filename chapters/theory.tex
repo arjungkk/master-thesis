@@ -227,40 +227,27 @@ Popular dimensionality reduction techniques include:
 Reinforcement learning (RL) is a type of machine learning in which an agent learns to make sequential decisions by interacting with an environment and receiving feedback in the form of rewards or penalties. Over time, the agent optimizes its policy to maximize cumulative reward, making RL particularly suited for optimization problems, adaptive control, and decision-making under uncertainty~\cite{sutton2018reinforcement}.
 
 
-\subsection{Machine Learning for Creep Life Prediction}
 
-In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery and design of new materials~\cite{agrawal2016perspective}. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through fast prediction models and data-driven correlation analysis, particularly in areas such as creep behaviour analysis, process-structure-property correlation, and optimization of processing parameters.
-
-\textbf{He et al.}~\cite{he2023scmla} proposed soft-constrained machine learning algorithms (SCMLAs) for extrapolating creep rupture life of Sanicro 25 steel. Their model maintained physical consistency by incorporating derivative constraints, achieving over 97.5\% prediction accuracy even beyond the longest test durations.
-
-\textbf{Sakurai et al.}~\cite{sakurai2023svr} explored the use of Support Vector Regression (SVR), Random Forest (RF), and Gradient Tree Boosting (GTB) models for ferritic heat-resistant steels. Among these, SVR delivered the best performance (RMSE = 0.14). Inclusion of 0.2\% proof stress improved accuracy by capturing underlying microstructural effects.
-
-\textbf{Tan et al.}~\cite{tan2022xgb} applied ensemble learning methods, including Extreme Gradient Boosting (XGB) and Artificial Neural Networks (ANNs), for creep life prediction in 9\%Cr martensitic steel. Their ensemble strategy achieved a high coefficient of determination (R² ≈ 0.91), showcasing its generalization ability.
-
-\textbf{Chai et al.}~\cite{chai2023gpr} developed a Gaussian Process Regression (GPR) framework to model rupture life in modified 9Cr-1Mo steel. By implementing feature screening, they identified key variables such as stress, temperature, tempering time, and elemental content (e.g., S, Cr), resulting in accurate predictions with minimal inputs.
-
-\textbf{Nakamura et al.}~\cite{nakamura2023lidg} introduced a Linear Integrated Derivative Gaussian (LIDG) regression method to predict rupture life. The model produced closed-form predictive expressions, outperforming traditional machine learning models like RF and LASSO in both accuracy and interpretability.
-
-\textbf{Wei et al.}~\cite{wei2023fusion} used data fusion techniques and Principal Component Analysis (PCA) to reduce dimensionality and decorrelate features for creep prediction in austenitic steels. Their Gaussian model achieved higher predictive accuracy compared to traditional fitting techniques.
-
-\textbf{Wang et al.}~\cite{wang2021msp} combined time–temperature parameters (e.g., Larson–Miller Parameter and Monkman–Grant) with machine learning models to predict rupture life in Cr–Mo steels. The best performance was achieved by Random Forest using the Manson–Succop parameter as a derived feature.
-
-\textbf{Powar et al.}~\cite{powar2015ann} trained an ANN on experimental data for heat-treated steels, incorporating variables such as alloy composition and hardness. Their model achieved a correlation coefficient over 90\%, demonstrating the capability of ANNs in microstructure–property linkage.
-
-\textbf{Liang et al.}~\cite{liang2020ann} successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data. 
-
-\textbf{Wang et al.}~\cite{wang2013abductive}, applied abductive networks\footnote{Abductive networks are a type of artificial intelligence modelling approach that utilizes functional elements and abductive reasoning to explain relationships between variables~\cite{montgomery1991abductive}.} to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction.
-
-
-Collectively, these studies underscore the increasing maturity of machine learning in creep modelling, particularly for:
-\begin{itemize}
-	\item Feature selection and reduction,
-	\item Modelling non-linear time-dependent behaviour,
-	\item Enabling inverse prediction of material parameters,
-	\item Improving generalization via ensemble learning.
-\end{itemize}
 
 \subsection{Sampling Strategies, Surrogate Modelling and Data-driven Materials Design}
+
+\subsubsection{Sampling Strategies in Practice}
+
+In this thesis, several sampling strategies are explored to efficiently generate data for surrogate modelling of creep behavior:
+
+\begin{itemize}
+	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space.
+	
+	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behavior.
+	
+	\item \textbf{Logarithmic Sampling:} Used to better capture sensitivity in highly nonlinear regions of the parameter space. For example, when material parameters like the hardening coefficient $b$ span several orders of magnitude, logarithmic sampling ensures sufficient resolution in low-value regions that may otherwise be underrepresented.
+	
+	\item \textbf{Active Learning:} An iterative strategy where the ML model itself identifies which regions of the design space require more data. Methods include uncertainty sampling and query-by-committee (QBC).
+\end{itemize}
+
+Logarithmic sampling is particularly beneficial when exploring creep laws with exponential or power-law behavior, as it avoids oversampling in regions with diminishing returns. By combining LHS with logarithmic scaling and active learning, this thesis aims to balance space-filling coverage with model-aware refinement of the dataset.
+
+Ultimately, these strategies enable a tight feedback loop between simulation and surrogate model improvement, making them ideal for high-dimensional, computationally expensive systems like creep prediction.
 \section{Active Learning and Data-Driven Design}
 
 The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data — whether through experiments or simulations — remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training. Further, physics-constrained learning models have emerged as an attractive approach to enhance surrogate accuracy while embedding domain-specific constraints~\cite{zhu2019physics, karniadakis2021pinns}. Such methods can be integrated with active learning loops for improved generalization in high-dimensional simulation settings.
@@ -297,23 +284,41 @@ In material design tasks, active learning has been used to explore microstructur
 
 Such frameworks are ideal for use in surrogate modelling of creep, where expensive FEM-based simulations can be replaced by efficient regression models trained using active learning loops. The surrogate model can then be used for inverse design — identifying material parameters that produce desired creep curves.
 
-\subsection{Sampling Strategies in Practice}
 
-In this thesis, several sampling strategies are explored to efficiently generate data for surrogate modelling of creep behavior:
 
+
+\subsection{Machine Learning for Creep Life Prediction}
+
+In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery and design of new materials~\cite{agrawal2016perspective}. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through fast prediction models and data-driven correlation analysis, particularly in areas such as creep behaviour analysis, process-structure-property correlation, and optimization of processing parameters.
+
+\textbf{He et al.}~\cite{he2023scmla} proposed soft-constrained machine learning algorithms (SCMLAs) for extrapolating creep rupture life of Sanicro 25 steel. Their model maintained physical consistency by incorporating derivative constraints, achieving over 97.5\% prediction accuracy even beyond the longest test durations.
+
+\textbf{Sakurai et al.}~\cite{sakurai2023svr} explored the use of Support Vector Regression (SVR), Random Forest (RF), and Gradient Tree Boosting (GTB) models for ferritic heat-resistant steels. Among these, SVR delivered the best performance (RMSE = 0.14). Inclusion of 0.2\% proof stress improved accuracy by capturing underlying microstructural effects.
+
+\textbf{Tan et al.}~\cite{tan2022xgb} applied ensemble learning methods, including Extreme Gradient Boosting (XGB) and Artificial Neural Networks (ANNs), for creep life prediction in 9\%Cr martensitic steel. Their ensemble strategy achieved a high coefficient of determination (R² ≈ 0.91), showcasing its generalization ability.
+
+\textbf{Chai et al.}~\cite{chai2023gpr} developed a Gaussian Process Regression (GPR) framework to model rupture life in modified 9Cr-1Mo steel. By implementing feature screening, they identified key variables such as stress, temperature, tempering time, and elemental content (e.g., S, Cr), resulting in accurate predictions with minimal inputs.
+
+\textbf{Nakamura et al.}~\cite{nakamura2023lidg} introduced a Linear Integrated Derivative Gaussian (LIDG) regression method to predict rupture life. The model produced closed-form predictive expressions, outperforming traditional machine learning models like RF and LASSO in both accuracy and interpretability.
+
+\textbf{Wei et al.}~\cite{wei2023fusion} used data fusion techniques and Principal Component Analysis (PCA) to reduce dimensionality and decorrelate features for creep prediction in austenitic steels. Their Gaussian model achieved higher predictive accuracy compared to traditional fitting techniques.
+
+\textbf{Wang et al.}~\cite{wang2021msp} combined time–temperature parameters (e.g., Larson–Miller Parameter and Monkman–Grant) with machine learning models to predict rupture life in Cr–Mo steels. The best performance was achieved by Random Forest using the Manson–Succop parameter as a derived feature.
+
+\textbf{Powar et al.}~\cite{powar2015ann} trained an ANN on experimental data for heat-treated steels, incorporating variables such as alloy composition and hardness. Their model achieved a correlation coefficient over 90\%, demonstrating the capability of ANNs in microstructure–property linkage.
+
+\textbf{Liang et al.}~\cite{liang2020ann} successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data. 
+
+\textbf{Wang et al.}~\cite{wang2013abductive}, applied abductive networks\footnote{Abductive networks are a type of artificial intelligence modelling approach that utilizes functional elements and abductive reasoning to explain relationships between variables~\cite{montgomery1991abductive}.} to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction.
+
+
+Collectively, these studies underscore the increasing maturity of machine learning in creep modelling, particularly for:
 \begin{itemize}
-	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space.
-	
-	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behavior.
-	
-	\item \textbf{Logarithmic Sampling:} Used to better capture sensitivity in highly nonlinear regions of the parameter space. For example, when material parameters like the hardening coefficient $b$ span several orders of magnitude, logarithmic sampling ensures sufficient resolution in low-value regions that may otherwise be underrepresented.
-	
-	\item \textbf{Active Learning:} An iterative strategy where the ML model itself identifies which regions of the design space require more data. Methods include uncertainty sampling and query-by-committee (QBC).
+	\item Feature selection and reduction,
+	\item Modelling non-linear time-dependent behaviour,
+	\item Enabling inverse prediction of material parameters,
+	\item Improving generalization via ensemble learning.
 \end{itemize}
-
-Logarithmic sampling is particularly beneficial when exploring creep laws with exponential or power-law behavior, as it avoids oversampling in regions with diminishing returns. By combining LHS with logarithmic scaling and active learning, this thesis aims to balance space-filling coverage with model-aware refinement of the dataset.
-
-Ultimately, these strategies enable a tight feedback loop between simulation and surrogate model improvement, making them ideal for high-dimensional, computationally expensive systems like creep prediction.
 
 
 % You can use this to add content for standalone documents if you like
