@@ -192,7 +192,7 @@
 		\item Training set of creep curves obtained from the synthetic data are transformed to theta space with $\theta$-projection mapping.
 		\item Transformed data is trained on a Regression model.
 		\item Predicts material model parameters for the test set.
-		\item Generates creep curves with the obtained parameters using \texttt{Lagamine} solver.		
+		\item Generates creep curves with the obtained parameters using \texttt{LAGAMINE} solver.		
 	\end{enumerate}
 	
 	\begin{figure}[H]
@@ -235,7 +235,7 @@
 	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and a finite element oracle:
 	
 	\begin{itemize}
-		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using \texttt{Lagamine} finite element solver. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
+		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using \texttt{LAGAMINE} finite element solver. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
 		
 		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset is used as the training pool for active learning. This subset serves as the seed data for model training and query generation.
 		
@@ -245,7 +245,7 @@
 		
 		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searches the input space for new query points $X^*$ that are both feasible and diverse in the learned $\theta$-space. Diversity is promoted to explore under-represented regions of the output space.
 		
-		\item \textbf{Oracle (Lagamine):} Each query $X^*$ is submitted to the \texttt{Lagamine} solver, which either returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
+		\item \textbf{Oracle (LAGAMINE):} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which either returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
 		\item \textbf{Update:} If the simulation converges, the new pair $(X^*, Y^*)$ is added to the dataset. If it fails, $X^*$ is discarded.
 		
@@ -263,7 +263,7 @@
 	\subsection{Implementation Summary}
 	
 	\begin{itemize}
-		\item Total initial dataset: 3376 synthetic samples from \texttt{Lagamine} solver.
+		\item Total initial dataset: 3376 synthetic samples from \texttt{LAGAMINE} solver.
 		\item Seed data for active learning: 100 random samples.
 		\item Total active queries performed: 100 (1 query per iteration).
 		\item Creep curves are mapped to $\theta$-space before training and querying.
