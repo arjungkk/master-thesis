@@ -2,6 +2,7 @@
 \usepackage[subpreambles=true]{standalone}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{needspace}
 \setcounter{secnumdepth}{3}
 \ifstandalone
 	\input{../settings+/settings}
@@ -128,7 +129,10 @@
 	
 	\subsubsection{Principal Component Analysis (PCA)}
 	
-	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA is applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. An analysis is made on how many principal components are able to capture over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
+	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. It transforms high dimensional data in a lower dimensional feature space that is defined by the principal components of the data. 
+	
+	
+	The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA is applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. An analysis is made on how many principal components are able to capture over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
 	
 	Figure~\ref{fig:pca} illustrates the workflow of how PCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with PCA and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
 		
