@@ -164,6 +164,8 @@
 		\hat{\mathbf{X}} = \mathbf{Z} \mathbf{V}_k^\top.
 	\end{equation}	
 	
+	To find a good number of principal components, an analysis can be made by plotting the cumulative explained variance vs. components to see how many principal components are able to capture over 95\% of the variance.
+	
 	Figure~\ref{fig:pca} illustrates the PCA workflow. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation.
 		
 	\begin{figure}[H]
