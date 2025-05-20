@@ -281,9 +281,6 @@ Surrogate models, also referred to as meta-models, response surface models, or e
 
 An important enabler of surrogate modelling is \textbf{supervised learning}, where models are trained on labelled data to approximate the underlying system behaviour. Rather than solving complex governing equations or running full-scale numerical simulations, surrogate models learn the underlying input-output relationship from a limited set of high-fidelity training data~\cite{bessa2017framework}. Once trained, surrogate models allow for rapid evaluation across the design space, making them ideal for integration into optimization loops, and real-time control systems.
 
-In addition to forward prediction, surrogate models are also instrumental in inverse modeling tasks, where the goal is to infer unknown material or system parameters from experimental or simulation data. Their ability to generalize from limited samples makes them particularly well-suited for use in active learning and Bayesian optimization frameworks, where exploration of the parameter space must be both efficient and informed by model uncertainty.
-
-
 \subsubsection{Applications in Microstructure–Property Exploration}
 
 In material design tasks, active learning has been used to explore microstructure-property maps, where each microstructure corresponds to a specific mechanical response. For example, in the work by Morand et al.~\cite{morand2022efficient}, active learning was used to efficiently explore a 2D microstructure space while avoiding regions leading to physically irrelevant predictions.
