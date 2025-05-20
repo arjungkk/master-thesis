@@ -208,37 +208,11 @@ Several dimensionality reduction techniques are commonly used, including:
 	\item Locally Linear Embedding (LLE)
 \end{itemize}
 
-In the context of creep behavior prediction, dimensionality reduction techniques such as PCA or kPCA can be applied to microstructural descriptors or time-series data (e.g., creep strain vs. time) to identify dominant deformation modes or reduce input complexity for supervised learning models. This not only improves computational efficiency but also helps uncover underlying physical trends, such as dominant loading responses or material degradation patterns.
-
-A widely used unsupervised method is \textbf{Principal Component Analysis (PCA)}, which projects high-dimensional data onto a lower-dimensional subspace by identifying directions (principal components) that capture the maximum variance in the data. PCA is linear and efficient, making it suitable for initial data compression or feature extraction.
-
-Beyond PCA, several nonlinear dimensionality reduction techniques have been developed:
-
-\begin{itemize}
-	\item \textbf{Kernel PCA (kPCA):} Extends PCA using kernel methods to capture nonlinear relationships in the data.
-	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE):} Optimized for visualizing high-dimensional data by preserving local structure in 2D or 3D embeddings.
-	\item \textbf{Autoencoders:} Neural network-based architectures that learn compressed, latent representations of input data through reconstruction objectives.
-	\item \textbf{Isomap and LLE (Locally Linear Embedding):} Manifold learning techniques that preserve global or local geometry of the data in lower dimensions.
-\end{itemize}
-
-v\subsection{Unsupervised Learning}
-
-Unsupervised learning is a category of machine learning that identifies patterns or structures in data without relying on labeled outputs. It is particularly useful for exploring complex materials datasets, where relationships between features are not explicitly defined.
-
-One important application of unsupervised learning in materials science is dimensionality reduction. This is especially relevant when working with high-dimensional data derived from chemical composition, microstructure, processing history, or mechanical responses. Dimensionality reduction techniques help compress such data into a lower-dimensional space while preserving essential information, thus improving both interpretability and computational efficiency.
-
-Common techniques include Principal Component Analysis (PCA), Kernel PCA (kPCA), t-SNE, and autoencoders, among others. These methods are employed to extract informative features, reduce redundancy, and enable more effective downstream modeling. Their implementation and role in this work are discussed in detail in the methodology chapter.
-
-
-In the context of creep behavior prediction, dimensionality reduction techniques such as PCA or kPCA can be applied to microstructural descriptors or time-series data (e.g., creep strain vs. time) to identify dominant deformation modes or reduce input complexity for supervised learning models. This not only improves computational efficiency but also helps uncover underlying physical trends, such as dominant loading responses or material degradation patterns.
-
-Materials datasets often include numerous features derived from chemical composition, microstructure, processing parameters or material properties. To handle this complexity, dimensionality reduction techniques such as Principal Component Analysis (PCA) are frequently used. PCA identifies the principal axes of variation in the dataset and projects high-dimensional data onto a lower-dimensional subspace while retaining maximum variance~\cite{bishop2006pattern}.
-
-In the context of creep behavior prediction, PCA can reduce the dimensionality of microstructural or stress-strain time-series data, allowing machine learning models to focus on the most informative features. This not only improves computational efficiency but can also reveal underlying physical trends.
+In the context of creep behaviour prediction, dimensionality reduction techniques such as PCA or kPCA can be applied to microstructural descriptors or time-series data (e.g., creep strain vs. time) to identify dominant deformation modes or reduce input complexity for supervised learning models. This not only improves computational efficiency but also helps uncover underlying physical trends, such as dominant loading responses or material degradation patterns.
 
 \subsection{Surrogate modelling}
 
-Surrogate models, also known as metamodels or response surface models, are simplified predictive models that approximate the behavior of complex physical systems or simulations. In materials science, surrogate models can be applied to approximate finite element simulations of creep and deformation, allowing for faster optimization and uncertainty quantification.
+Surrogate models, also known as meta-models or response surface models, are simplified predictive models that approximate the behavior of complex physical systems or simulations. In materials science, surrogate models can be applied to approximate finite element simulations of creep and deformation, allowing for faster optimization and uncertainty quantification.
 
 Common surrogate modelling techniques include:
 
