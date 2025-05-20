@@ -193,6 +193,22 @@ Machine learning (ML) is a subset of artificial intelligence that enables system
 
 \subsection{Machine Learning Fundamentals}
 
+
+
+\subsubsection{Supervised Learning}
+
+Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs. In materials science, it is widely employed to predict mechanical properties, model microstructure–property relationships, and approximate the outcomes of physics-based simulations~\cite{butler2018machine}.
+
+One key application is the construction of \textbf{surrogate models}, also known as meta-models or response surface models. These models act as computationally efficient approximations of high-fidelity simulations, such as finite element models of creep or damage evolution. By learning the input-output behaviour from a representative dataset, surrogate models enable rapid design space exploration, sensitivity analysis, and uncertainty quantification~\cite{bessa2017framework}.
+
+Common surrogate modelling techniques include:
+
+\begin{itemize}
+	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces~\cite{kleijnen2009kriging}.
+	\item \textbf{Gaussian Process Regression (GPR)}: Offers uncertainty estimation along with predictions, making it suitable for active learning applications~\cite{rasmussen2006gaussian}.
+	\item \textbf{Artificial Neural Networks (ANNs)}: Capture nonlinear relationships between material features and properties, effective in high-dimensional datasets~\cite{liang2020ann}.
+\end{itemize}
+
 \subsubsection{Unsupervised Learning}
 
 Unsupervised learning refers to a class of machine learning techniques that identify patterns or structures in data without the use of labelled outputs. It explores the inherent structure of the dataset, making it particularly useful for exploratory data analysis, clustering, and dimensionality reduction~\cite{bishop2006pattern}.
@@ -208,20 +224,6 @@ Several dimensionality reduction techniques are commonly used, including:
 \end{itemize}
 
 In the context of creep behaviour prediction, dimensionality reduction techniques such as PCA or kPCA can be applied to microstructural descriptors or time-series data (e.g., creep strain vs. time) to identify dominant deformation modes or reduce input complexity for supervised learning models. This not only improves computational efficiency but also helps uncover underlying physical trends, such as dominant loading responses or material degradation patterns.
-
-\subsubsection{Supervised Learning}
-
-Supervised learning is a core machine learning paradigm where a model is trained on labelled datasets to learn the mapping from input features to target outputs. In materials science, it is widely employed to predict mechanical properties, model microstructure–property relationships, and approximate the outcomes of physics-based simulations~\cite{butler2018machine}.
-
-One key application is the construction of \textbf{surrogate models}, also known as meta-models or response surface models. These models act as computationally efficient approximations of high-fidelity simulations, such as finite element models of creep or damage evolution. By learning the input-output behaviour from a representative dataset, surrogate models enable rapid design space exploration, sensitivity analysis, and uncertainty quantification~\cite{bessa2017framework}.
-
-Common surrogate modelling techniques include:
-
-\begin{itemize}
-	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces~\cite{kleijnen2009kriging}.
-	\item \textbf{Gaussian Process Regression (GPR)}: Offers uncertainty estimation along with predictions, making it suitable for active learning applications~\cite{rasmussen2006gaussian}.
-	\item \textbf{Artificial Neural Networks (ANNs)}: Capture nonlinear relationships between material features and properties, effective in high-dimensional datasets~\cite{liang2020ann}.
-\end{itemize}
 
 In recent years, machine learning (ML) has emerged as a transformative tool in materials science, enabling data-driven discovery and design of new materials~\cite{agrawal2016perspective}. Traditional methods like experimental testing and finite element simulations are often expensive and time-consuming. ML techniques, on the other hand, offer efficient alternatives through fast prediction models and data-driven correlation analysis, particularly in areas such as creep behaviour analysis, process-structure-property correlation, and optimization of processing parameters. Liang et al. successfully applied artificial neural networks to predict long-term creep life in 9Cr–1Mo–V–Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data~\cite{liang2020ann}. Similarly, abductive networks\footnote{Abductive networks are a type of artificial intelligence modelling approach that utilizes functional elements and abductive reasoning to explain relationships between variables~\cite{montgomery1991abductive}.} were applied by Wang et al. to forecast rupture life in ferritic steels, showing potential in non-linear pattern extraction~\cite{wang2013abductive}.
 
