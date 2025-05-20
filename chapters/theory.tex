@@ -253,18 +253,20 @@ The growing use of machine learning in materials science has enabled researchers
 
 Creep behaviour simulations involve evaluating material responses under varying stress, temperature, and material-dependent parameters. The parameter space is typically large and high-dimensional, making uniform sampling computationally inefficient. Additionally, regions of the parameter space may lead to invalid or non-convergent results in numerical models and regions with high non-linearities maybe under-represented.
 
-\begin{figure}[H]
+\begin{table}[H]
 	\centering
-	\begin{minipage}{0.85\textwidth}
-		\small
+	\begin{minipage}{0.9\textwidth}
 		Active learning addresses this by enabling:
-		\textbf{Efficient exploration} of the design space;
-		\textbf{Reduction in simulation cost} by focusing only on informative or uncertain regions; and
-		\textbf{(Improved generalization} of ML models using fewer training points.
+		\begin{itemize}
+			\item \textbf{Efficient exploration} of the design space.
+			\item \textbf{Reduction in simulation cost} by focusing only on informative or uncertain regions.
+			\item \textbf{Improved generalization} of ML models using fewer training points.
+		\end{itemize}
 	\end{minipage}
-	\caption{Textual summary of active learning benefits.}
-	\label{fig:active_learning_motivation}
-\end{figure}
+	\caption{Key benefits of active learning.}
+	\label{tab:active_learning}
+\end{table}
+
 
 \subsubsubsection{Active Learning Strategies}
 
