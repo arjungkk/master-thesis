@@ -224,6 +224,23 @@ Common surrogate modelling techniques include:
 
 These models are crucial in active learning frameworks, where new data points are selected iteratively to improve model performance with minimal simulation or experimental effort~\cite{settles2010active}.
 
+\subsection{Supervised Learning}
+
+Supervised learning is a fundamental machine learning approach in which a model is trained on labelled input-output pairs to learn a mapping from inputs (features) to outputs (targets). In materials science, supervised learning is widely used to predict mechanical properties, model microstructure–property relationships, and approximate the behavior of complex simulations.
+
+A prominent application of supervised learning is in the development of \textbf{surrogate models}—also known as meta-models or response surface models. Surrogate models are simplified, data-driven approximations of high-fidelity simulations or physical systems. In the context of creep and deformation modeling, they are used to emulate the results of computationally expensive finite element simulations, enabling rapid optimization, sensitivity analysis, and uncertainty quantification~\cite{bessa2017framework}.
+
+Common surrogate modeling techniques include:
+
+\begin{itemize}
+	\item \textbf{Polynomial Regression and Kriging}: Used to interpolate simulation data across parameter spaces.
+	\item \textbf{Gaussian Process Regression (GPR)}: Provides both predictions and associated uncertainty estimates, making it especially suitable for active learning and Bayesian optimization.
+	\item \textbf{Artificial Neural Networks (ANNs)}: Capture complex, nonlinear relationships between inputs and outputs, and scale well with high-dimensional datasets.
+\end{itemize}
+
+These models are integral to active learning frameworks, where new data points are iteratively selected to improve model accuracy while minimizing the number of required simulations or experiments~\cite{settles2010active}.
+
+
 \subsection{Integration with Simulation}
 
 Numerical simulations — particularly finite element methods (FEM) — remain central to creep behavior modelling. However, they are computationally intensive. Recent literature shows increasing integration of ML models as surrogate solvers within FEM pipelines. These hybrid approaches accelerate exploration of large design spaces, and have been successfully used to model multi-stage creep curves and time-dependent deformation~\cite{wessel2004modelling, kruzic2003limitations}.
