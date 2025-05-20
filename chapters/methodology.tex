@@ -130,12 +130,45 @@
 	
 	\subsubsection{Principal Component Analysis (PCA)}
 	
-	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. It transforms high dimensional data in a lower dimensional feature space that is defined by the principal components of the data. 
+	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. It transforms high dimensional data in a lower dimensional feature space that is defined by the principal components of the data. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves.
 	
+	\subsubsection{Principal Component Analysis (PCA)}
+	\label{Subsubsection::PCA}
 	
-	The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves. In this work, PCA is applied individually to datasets prepared with each of the three preprocessing strategies mentioned above. An analysis is made on how many principal components are able to capture over 95\% of the variance, enabling substantial dimensionality reduction without significant loss of information.
+	Principal Component Analysis (PCA) is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a lower-dimensional space defined by a set of orthogonal components called \textit{principal components}~\cite{bishop2006pattern}. These components capture directions of maximum variance in the data, enabling compact and informative representations of the original input.
 	
-	Figure~\ref{fig:pca} illustrates the workflow of how PCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with PCA and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
+	Given a centered data matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$ with $n$ samples and $p$ features (in this case, discretized creep strain values), the PCA transformation is obtained by solving the eigenvalue decomposition of the covariance matrix:
+	
+	\begin{equation}
+		\mathbf{C} = \frac{1}{n} \mathbf{X}^\top \mathbf{X},
+	\end{equation}
+	
+	\begin{equation}
+		\mathbf{C} \mathbf{V} = \mathbf{V} \boldsymbol{\Lambda},
+	\end{equation}
+	
+	where:
+	\begin{itemize}
+		\item $\mathbf{C}$ is the $p \times p$ covariance matrix of the data,
+		\item $\mathbf{V}$ is the matrix of eigenvectors (principal directions),
+		\item $\boldsymbol{\Lambda}$ is the diagonal matrix of eigenvalues, representing the variance captured by each principal component.
+	\end{itemize}
+	
+	The transformed (reduced) data matrix $\mathbf{Z} \in \mathbb{R}^{n \times k}$, where $k < p$, is obtained by projecting the original data onto the top $k$ eigenvectors:
+	
+	\begin{equation}
+		\mathbf{Z} = \mathbf{X} \mathbf{V}_k,
+	\end{equation}
+	
+	where $\mathbf{V}_k$ contains the first $k$ columns of $\mathbf{V}$, corresponding to the $k$ largest eigenvalues.
+	
+	To reconstruct the original data from the reduced representation:
+	
+	\begin{equation}
+		\hat{\mathbf{X}} = \mathbf{Z} \mathbf{V}_k^\top.
+	\end{equation}	
+	
+	Figure~\ref{fig:pca} illustrates the PCA workflow. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation.
 		
 	\begin{figure}[H]
 		\centering
