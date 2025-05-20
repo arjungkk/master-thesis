@@ -62,7 +62,9 @@
 	\subsubsection{$\theta$-Projection Model}
 	\label{Subsubsection::Theta_projection_model}
 	
-	The $\theta$-projection model \cite{brown2002extrapolation} is a semi-empirical equation used to represent creep strain evolution with four scalar parameters:
+	The $\theta$-projection model~\cite{brown2002extrapolation} is a semi-empirical formulation developed to represent the full creep strain evolution using a minimal set of parameters with physical interpretability. It is particularly suited for long-term creep life prediction and curve fitting in engineering applications.
+	
+	The creep strain $\varepsilon(t)$ as a function of time $t$ is modeled as:
 	
 	\begin{equation}
 	\varepsilon(t) = \theta_1 \left(1 - e^{-\theta_2 t}\right) + \theta_3 \left(e^{\theta_4 t} - 1\right),
@@ -76,6 +78,32 @@
 	\end{itemize}
 	
 	This model is widely used for engineering creep prediction and provides a compact description of the strain evolution using physically interpretable terms.
+	
+	The $\theta$-projection model~\cite{brown2002extrapolation} is a semi-empirical formulation developed to represent the full creep strain evolution using a minimal set of parameters with physical interpretability. It is particularly suited for long-term creep life prediction and curve fitting in engineering applications.
+	
+	The creep strain $\varepsilon(t)$ as a function of time $t$ is modeled as:
+	
+	\begin{equation}
+		\varepsilon(t) = \theta_1 \left(1 - e^{-\theta_2 t}\right) + \theta_3 \left(e^{\theta_4 t} - 1\right),
+		\label{eq:theta_projection}
+	\end{equation}
+	
+	Here:
+	\begin{itemize}
+		\item $\theta_1$ [–] is the saturation strain in the primary creep stage,
+		\item $\theta_2$ [1/time] governs the rate of strain accumulation during primary creep,
+		\item $\theta_3$ [–] represents the amplitude of the tertiary creep contribution,
+		\item $\theta_4$ [1/time] controls the acceleration of strain in the tertiary stage.
+	\end{itemize}
+	
+	The first term in Equation~\ref{eq:theta_projection}, $\theta_1 (1 - e^{-\theta_2 t})$, represents the **primary creep phase**, where the strain increases at a decreasing rate due to work hardening and microstructural recovery mechanisms. This term asymptotically approaches a plateau, consistent with the slowing creep rate typical of primary behavior.
+	
+	The second term, $\theta_3 (e^{\theta_4 t} - 1)$, captures the **tertiary creep phase**, characterized by accelerated strain due to damage accumulation, such as grain boundary voids, micro-cracks, or necking. The exponential form models the rapid increase in creep rate leading up to failure.
+	
+	The $\theta$-projection model does not explicitly model the **secondary (steady-state) creep phase**, but the combination of the two exponential terms often allows it to approximate the full creep curve shape, including the near-linear region corresponding to secondary behavior.
+	
+	Because of its compactness and ability to capture complex creep behavior with only four parameters, the model is widely adopted in engineering contexts for extrapolating creep strain and rupture life. It is especially effective for high-temperature alloys in power generation and aerospace applications, where reliable long-term predictions are critical.
+	
 	
 	\subsubsection{Three Parameter Model}
 	\label{Subsubsection::Three_parameter_model}
