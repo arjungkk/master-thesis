@@ -200,12 +200,10 @@ Materials datasets often include numerous features derived from chemical composi
 
 Several dimensionality reduction techniques are commonly used, including:
 \begin{itemize}
-	\item Principal Component Analysis (PCA)
-	\item Kernel Principal Component Analysis (kPCA)
-	\item t-Distributed Stochastic Neighbor Embedding (t-SNE)
-	\item Autoencoders
-	\item Isomap
-	\item Locally Linear Embedding (LLE)
+	\item \textbf{Kernel PCA (kPCA):} Extends PCA using kernel methods to capture nonlinear relationships in the data.
+	\item \textbf{t-Distributed Stochastic Neighbor Embedding (t-SNE):} Optimized for visualizing high-dimensional data by preserving local structure in 2D or 3D embeddings.
+	\item \textbf{Autoencoders:} Neural network-based architectures that learn compressed, latent representations of input data through reconstruction objectives.
+	\item \textbf{Isomap and LLE (Locally Linear Embedding):} Manifold learning techniques that preserve global or local geometry of the data in lower dimensions.
 \end{itemize}
 
 In the context of creep behaviour prediction, dimensionality reduction techniques such as PCA or kPCA can be applied to microstructural descriptors or time-series data (e.g., creep strain vs. time) to identify dominant deformation modes or reduce input complexity for supervised learning models. This not only improves computational efficiency but also helps uncover underlying physical trends, such as dominant loading responses or material degradation patterns.
