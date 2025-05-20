@@ -250,7 +250,6 @@ Ultimately, these strategies enable a tight feedback loop between simulation and
 The growing use of machine learning in materials science has enabled researchers to move from traditional trial-and-error approaches toward data-driven material design and discovery. However, generating high-quality data, whether through experiments or simulations, remains resource-intensive. \textit{Active learning} is an efficient framework designed to mitigate this challenge by intelligently selecting the most informative data points for model training. Further, physics-informed learning models have emerged as an attractive approach to enhance surrogate accuracy while embedding domain-specific constraints~\cite{zhu2019physics, karniadakis2021pinns}. Physical constraints can be integrated with active learning loops for improved generalization in high-dimensional settings.
 
 
-These surrogate models play a central role in data-efficient workflows such as active learning, where informative new samples are selected iteratively to improve model accuracy while minimizing the number of required experiments or simulations~\cite{settles2010active}.
 
 \subsubsubsection{Motivation for Active Learning in Creep Prediction}
 
@@ -280,6 +279,8 @@ These techniques help in focusing computational effort where it is most impactfu
 Surrogate models, also referred to as meta-models, response surface models, or emulators, are simplified approximations of complex, high-fidelity systems. Instead of resolving the underlying physical equations or running computationally expensive simulations, surrogate models provide fast predictions by learning the input-output relationships from a representative dataset. They are particularly useful in scenarios such as design optimization, uncertainty quantification, sensitivity analysis, and inverse modelling, where repeated evaluations of the full model would be computationally prohibitive~\cite{forrester2009engineering, queipo2005surrogate}.
 
 An important enabler of surrogate modelling is \textbf{supervised learning}, where models are trained on labelled data to approximate the underlying system behaviour. Rather than solving complex governing equations or running full-scale numerical simulations, surrogate models learn the underlying input-output relationship from a limited set of high-fidelity training data~\cite{bessa2017framework}. Once trained, surrogate models allow for rapid evaluation across the design space, making them ideal for integration into optimization loops, and real-time control systems.
+
+The surrogate models play a central role in data-efficient workflows such as active learning, where informative new samples are selected iteratively to improve model accuracy while minimizing the number of required experiments or simulations~\cite{settles2010active}.
 
 \subsubsection{Applications in Microstructure–Property Exploration}
 
