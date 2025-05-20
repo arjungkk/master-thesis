@@ -235,7 +235,7 @@ Some of the traditional sampling strategies are:
 \begin{itemize}
 	\item \textbf{Random Sampling:} A basic but often suboptimal strategy, leading to non-uniform coverage of the parameter space. 
 	
-	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behavior.
+	\item \textbf{Latin Hypercube Sampling (LHS):} Ensures stratified sampling across each parameter dimension~\cite{mckay2000sampling}. However, LHS may still produce uneven distributions in response space, particularly when certain parameters dominate the behavior.
 	
 	\item \textbf{Logarithmic Sampling:} Used to better capture sensitivity in highly nonlinear regions of the parameter space. For example, when material parameters like the hardening coefficient $b$ span several orders of magnitude, logarithmic sampling ensures sufficient resolution in low-value regions that may otherwise be underrepresented.
 	
