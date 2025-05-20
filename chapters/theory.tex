@@ -21,7 +21,7 @@
 
 Creep is a time-dependent, permanent deformation that occurs in materials subjected to constant stress below the yield point and elevated temperatures, typically above 30\% of their melting temperature~\cite{frost1982deformation}. In metals, creep can significantly influence the mechanical integrity of components operating in high-temperature environments such as gas turbines, nuclear reactors, and jet engines.
 
-The creep strain, $\epsilon(t, T)$, in a material, is a function of both time$(t)$ and temperature$(T)$ and can be expressed empirically through various models like Norton–Bailey Law, Monkman–Grant Relationship, etc. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates~\cite{frost1982deformation, dieter1986mechanical}. 
+The creep strain, $\epsilon(t, T)$, in a material, is a function of both time$(t)$ and temperature$(T)$ and can be expressed empirically through various models like Norton-Bailey Law, Monkman-Grant Relationship, etc. The rate at which creep deformation occurs is influenced by several factors, including applied stress, grain size, temperature, and the presence of second-phase particles or precipitates~\cite{frost1982deformation, dieter1986mechanical}. 
 
 \subsection{Mechanisms of Creep Deformation}
 
@@ -44,12 +44,12 @@ The different mechanisms of creep deformation are:
 		\label{eq:powerlaw}
 	\end{equation}
 	
-	where $n$ is the stress exponent (typically 3–8 for metallic materials), $Q$ is activation energy, $R$ is the gas constant, and $T$ is absolute temperature~\cite{frost1982deformation}.
+	where $n$ is the stress exponent (typically 3-8 for metallic materials), $Q$ is activation energy, $R$ is the gas constant, and $T$ is absolute temperature~\cite{frost1982deformation}.
 	
 	\item \textbf{Diffusion Creep:}
 	Includes two mechanisms:
 	\begin{itemize}
-		\item \textit{Nabarro–Herring creep:} Occurs at high temperatures and low stresses in materials with large grain sizes. Atoms diffuse through the lattice, causing elongation in the direction of the applied stress and contraction perpendicular to it~\cite{nabarro1948deformation,herring1950diffusional}.
+		\item \textit{Nabarro-Herring creep:} Occurs at high temperatures and low stresses in materials with large grain sizes. Atoms diffuse through the lattice, causing elongation in the direction of the applied stress and contraction perpendicular to it~\cite{nabarro1948deformation,herring1950diffusional}.
 		\item \textit{Coble creep:} Similar to Nabarro-Herring creep but involves diffusion along grain boundaries instead of through the bulk. It is significant in fine-grained materials and becomes prominent at lower temperatures than Nabarro-Herring creep~\cite{coble1963model}.
 	\end{itemize}
 	
@@ -110,14 +110,14 @@ The commonly used models/approaches are:
 	\item \textbf{Norton’s Law:} 
 	Equation~$~\ref{eq:powerlaw}$ models steady-state creep with a power-law dependency on applied stress. It is the most widely used empirical creep model for engineering design under high temperatures~\cite{frost1982deformation}.
 	
-	\item \textbf{Larson–Miller Parameter (LMP):} 
-	A time–temperature parameter used to predict long-term creep life from short-term test data. It is defined as:
+	\item \textbf{Larson-Miller Parameter (LMP):} 
+	A time-temperature parameter used to predict long-term creep life from short-term test data. It is defined as:
 	\[
 	P = T(C + \log t_r)
 	\]
-	where \( P \) is the Larson–Miller parameter, \( T \) is the absolute temperature, \( t_r \) is the time to rupture, and \( C \) is a material-dependent constant. The LMP enables extrapolation of accelerated high-temperature test results to real-world service conditions~\cite{larson1954time}.
+	where \( P \) is the Larson-Miller parameter, \( T \) is the absolute temperature, \( t_r \) is the time to rupture, and \( C \) is a material-dependent constant. The LMP enables extrapolation of accelerated high-temperature test results to real-world service conditions~\cite{larson1954time}.
 	
-	\item \textbf{Monkman–Grant Relationship:}  
+	\item \textbf{Monkman-Grant Relationship:}  
 	An empirical correlation linking the minimum creep rate to rupture life, expressed as:
 	\[
 	\dot{\varepsilon}_{\text{min}} \cdot t_r = \text{constant}
@@ -305,9 +305,9 @@ In recent years, machine learning (ML) has emerged as a transformative tool in m
 
 \textbf{Wei et al.}~\cite{wei2023fusion} used data fusion techniques and Principal Component Analysis (PCA) to reduce dimensionality and decorrelate features for creep prediction in austenitic steels. Their Gaussian model achieved higher predictive accuracy compared to traditional fitting techniques.
 
-\textbf{Wang et al.}~\cite{wang2021msp} combined time–temperature parameters (e.g., Larson–Miller Parameter and Monkman–Grant) with machine learning models to predict rupture life in Cr–Mo steels. The best performance was achieved by Random Forest using the Manson–Succop parameter as a derived feature.
+\textbf{Wang et al.}~\cite{wang2021msp} combined time-temperature parameters (e.g., Larson-Miller Parameter and Monkman–Grant) with machine learning models to predict rupture life in Cr-Mo steels. The best performance was achieved by Random Forest using the Manson-Succop parameter as a derived feature.
 
-\textbf{Powar et al.}~\cite{powar2015ann} trained an ANN on experimental data for heat-treated steels, incorporating variables such as alloy composition and hardness. Their model achieved a correlation coefficient over 90\%, demonstrating the capability of ANNs in microstructure–property linkage.
+\textbf{Powar et al.}~\cite{powar2015ann} trained an ANN on experimental data for heat-treated steels, incorporating variables such as alloy composition and hardness. Their model achieved a correlation coefficient over 90\%, demonstrating the capability of ANNs in microstructure-property linkage.
 
 \textbf{Liang et al.}~\cite{liang2020ann} successfully applied artificial neural networks to predict long-term creep life in 9Cr-1Mo-V-Nb steel, demonstrating that ML models can achieve high accuracy even with limited input data. 
 
