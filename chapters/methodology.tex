@@ -299,7 +299,7 @@
 	
 	All regression models are trained using an 80/20 train-test split of the synthetic dataset. The 80\% training subset is further used for hyperparameter tuning.
 
-	To optimize hyperparameters such as the number of estimators, learning rate, or tree depth, we employ \textbf{Grid Search}~\cite{bergstra2012random}. In grid search, a predefined set of hyperparameter combinations is exhaustively evaluated using cross-validation. The hyperparameter set that minimizes the average validation loss is selected for final model training:
+	To optimize hyperparameters such as the number of estimators, learning rate, or tree depth, \textbf{Grid Search}~\cite{bergstra2012random} is used. In grid search, a predefined set of hyperparameter combinations is exhaustively evaluated using cross-validation. The hyperparameter set that minimizes the average validation loss is selected for final model training:
 	
 	\begin{equation}
 		\theta^* = \arg\min_{\theta \in \Theta} \text{CV}_{\text{error}}(\theta),
