@@ -325,7 +325,19 @@
 		
 		\item \textbf{Region Filter ($c = g(x)$):} A classifier (here, an Isolation Forest) is trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remain within the feasible design domain.
 		
-		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searches the input space for new query points $X^*$ that are both feasible and diverse in the learned $\theta$-space. Diversity is promoted to explore under-represented regions of the output space.
+		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm~\cite{storn1997differential}, implemented via \texttt{scipy.optimize}, is used to search the input space for new candidate samples $X^*$. DE is a stochastic population-based optimizer designed to locate global optima in complex, high-dimensional spaces, making it well-suited for this task.
+		
+		The optimizer tries to locate samples where the committee of models (typically trained with different random seeds or bootstrap subsets) exhibits the highest prediction disagreement. This is based on the assumption that maximal disagreement corresponds to regions where the current model lacks knowledge, and hence where a new label would be most informative.
+		
+		The disagreement among committee members is quantified using the variance across predictions in $\theta$-space:
+		
+		\begin{equation}
+			\mathcal{L}_{\text{QBC}}(x) = \frac{1}{M} \sum_{i=1}^M \left\| f_i(x) - \bar{f}(x) \right\|^2, \quad \text{where} \quad \bar{f}(x) = \frac{1}{M} \sum_{i=1}^M f_i(x),
+		\end{equation}
+		
+		where $f_i(x)$ is the prediction from the $i$-th committee model and $M$ is the number of committee members. The DE optimizer minimizes $-\mathcal{L}_{\text{QBC}}(x)$ (i.e., maximizes disagreement) over the feasible design space, constrained by the Isolation Forest filter.
+		
+		This strategy ensures that sampling focuses on unexplored, high-uncertainty regions likely to improve the surrogate model most effectively.
 		
 		\item \textbf{Oracle (LAGAMINE):} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which either returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
