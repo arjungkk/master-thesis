@@ -57,7 +57,16 @@
 	\section{Creep Curve Representation}
 	\label{Section::Curve_Features}
 	
-	Each finite element simulation outputs a creep strain–time curve data along with the material model parameters. To enable machine learning, these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The approaches implemented in this thesis are grouped into the following categories:
+	Each finite element simulation outputs a creep strain–time curve data along with the material model parameters. To enable machine learning, these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/pca.png}
+		\caption{Principal Component Analysis(PCA) Workflow.}
+		\label{fig:pca}
+	\end{figure}
+	
+	The approaches implemented in this thesis are grouped into the following categories:
 	
 	\subsection{Empirical Models}
 	\label{Subsection::Empirical_Models}
