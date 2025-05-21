@@ -328,7 +328,7 @@
 		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm~\cite{storn1997differential}, implemented via \texttt{scipy.optimize}, is used to search the input space for new candidate samples $X^*$. DE is a stochastic population-based optimizer designed to locate global optima in complex, high-dimensional spaces, making it well-suited for this task. The optimizer tries to locate samples where the committee of models exhibits the highest prediction disagreement. The disagreement among committee members is quantified using the variance across predictions in $\theta$-space:
 		
 		\begin{equation}
-			\mathcal{L}_{\text{QBC}}(x) = \frac{1}{M} \sum_{i=1}^M \left\| f_i(x) - \bar{f}(x) \right\|^2, \quad \text{where} \quad \bar{f}(x) = \frac{1}{M} \sum_{i=1}^M f_i(x),
+			s^2(x) = \frac{1}{M} \sum_{i=1}^M \left\| f_i(x) - \bar{f}(x) \right\|^2, \quad \text{where} \quad \bar{f}(x) = \frac{1}{M} \sum_{i=1}^M f_i(x),
 		\end{equation}
 		
 		where $f_i(x)$ is the prediction from the $i$-th committee model and $M$ is the number of committee members. The DE optimizer maximizes disagreement over the feasible design space, constrained by the Isolation Forest filter.	This strategy ensures that sampling focuses on unexplored, high-uncertainty regions likely to improve the surrogate model most effectively.
