@@ -355,7 +355,15 @@
 	To assess model performance comprehensively, several metrics are evaluated:
 	
 	\begin{itemize}
-		\item \textbf{RMSE between original and reconstructed curve representation}: Measures error in predicted creep curves, reflecting the ability to reconstruct the original curve shape.
+		\item \textbf{RMSE between original and reconstructed curve representation}: Measures the average deviation between the original and reconstructed creep curves, reflecting the model's ability to replicate the full strain-time behaviour. It is computed as:
+		
+		\begin{equation}
+			\mathrm{RMSE} = \sqrt{ \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2 },
+			\label{eq:rmse}
+		\end{equation}
+		
+		where \( y_i \) is the original creep strain at time step \( i \), \( \hat{y}_i \) is the reconstructed strain, and \( n \) is the total number of time steps.
+		
 		\item \textbf{Absolute error of the minimum creep strain rate between original and reconstructed curve}: Evaluate accuracy in capturing the slope of the secondary stage, which is critical for design applications.
 		\item \textbf{Rupture time prediction error}: The difference between predicted and actual rupture times, important for lifecycle assessments.
 		\item \textbf{Visualization}: Overlay plots of predicted vs. true creep curves are generated to validate qualitative matching.
