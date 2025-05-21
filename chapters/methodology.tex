@@ -210,7 +210,7 @@
 		
 	Two kernel functions have been explored in this study. They are:
 	
-	\textbf{Radial Basis Function (RBF) kernel:}
+	\subsubsubsection{Radial Basis Function (RBF) kernel:}
 	
 	\begin{equation}
 		k(\mathbf{x}_i, \mathbf{x}_j) = \exp\left(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2\right),
@@ -219,7 +219,8 @@
 	
 	where $\gamma$ controls the spread of the kernel. RBF kernels can approximate any continuous function on a compact domain given sufficient parameters, making them suitable for capturing arbitrary non-linear deformations in creep curves~\cite{steinwart2001influence}.
 	
-	\textbf{Polynomial kernel:}
+	\needspace{5\baselineskip}
+	\subsubsubsection{Polynomial kernel:}
 	
 	\begin{equation}
 		k(\mathbf{x}_i, \mathbf{x}_j) = (\gamma \mathbf{x}_i^\top \mathbf{x}_j + r)^d,
