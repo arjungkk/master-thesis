@@ -267,7 +267,7 @@
 	
 	\subsubsection*{Gradient Boosting Regressor (GBR)}
 	
-	Gradient Boosting Regressor builds an additive model sequentially. Each new tree $h_m(x)$ is trained to predict the residuals (errors) of the previous model using gradient descent:
+	Gradient Boosting Regressor builds an additive model sequentially. Each new tree $h_m(x)$ is trained to predict the residuals (errors) of the previous model using gradient descent~\cite{friedman2001greedy}:
 	
 	\begin{equation}
 		\hat{y}_m(x) = \hat{y}_{m-1}(x) + \eta \cdot h_m(x),
