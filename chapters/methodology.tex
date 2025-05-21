@@ -295,7 +295,7 @@
 	
 	where $f_k(x)$ are the individual base regressors~\cite{zhang2012ensemble}. This ensemble approach is simple yet often improves robustness and reduces variance.
 	
-	\subsection*{Training and Validation Strategy}
+	\subsubsection*{Training and Validation Strategy}
 	
 	All regression models are trained using an 80/20 train-test split of the synthetic dataset. The 80\% training subset is further used for hyperparameter tuning.
 
@@ -314,7 +314,7 @@
 	
 	Active learning is implemented for selectively querying the most informative samples in the material parameter space. This approach iteratively expands the dataset in a data-efficient manner, guided by model uncertainty and feasibility constraints.
 	
-	\subsection{Active Learning Workflow}
+	\subsection{Active Learning using Query-by-committee}
 	
 	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and a finite element oracle:
 	
