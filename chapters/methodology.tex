@@ -277,7 +277,7 @@
 	
 	\subsubsection*{Stacking Regressor}
 	
-	Stacking, or stacked generalization, is a meta-learning technique. It combines multiple base regressors $\{f_1, f_2, \dots, f_K\}$ by feeding their predictions into a higher-level learner $g$ (often a linear model):
+	Stacking, or stacked generalization, is a meta-learning technique. It combines multiple base regressors $\{f_1, f_2, \dots, f_K\}$ by feeding their predictions into a higher-level learner $g$ (often a linear model)~\cite{wolpert1992stacked}:
 	
 	\begin{equation}
 		\hat{y}_{\text{stack}}(x) = g\left(f_1(x), f_2(x), \dots, f_K(x)\right).
