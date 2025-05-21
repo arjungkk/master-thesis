@@ -121,6 +121,8 @@
 
 	
 	\subsection{Data-Driven Representations}
+	
+	Prior to performing dimensionality reduction, the synthetic data needs some preprocessing. Each creep curve is represented as a fixed-length vector. Since individual simulations yield time series of varying lengths due to differing rupture times, all curves are preprocessed to obtain consistent dimensionality. This is done by interpolating the creep strain-time curves at a fixed number of equally spaced strain values along the horizontal axis (e.g., normalized strain or time), resulting in uniform feature vectors. This allows the dataset to be represented as a matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$, where each row corresponds to a single interpolated creep curve with $p$ features.
 		
 	The creep strain–time data poses specific challenges due to variations in rupture times. In particular, early rupture curves leads to curve representations (input vectors) of different lengths, necessitating specialized preprocessing to ensure stable application data-driven models.
 	
@@ -141,7 +143,7 @@
 	
 	PCA is a widely used linear dimensionality reduction technique that transforms high-dimensional data into a set of orthogonal components \cite{bishop2006pattern}. It transforms high dimensional data in a lower dimensional feature space that is defined by the principal components of the data. The transformation preserves directions of maximum variance, allowing for compact and informative representations of creep curves.
 		
-	Before applying PCA, each creep curve is represented as a fixed-length vector. Since individual simulations yield time series of varying lengths due to differing rupture times, all curves are preprocessed to obtain consistent dimensionality. This is done by interpolating the creep strain-time curves at a fixed number of equally spaced strain values along the horizontal axis (e.g., normalized strain or time), resulting in uniform feature vectors. This allows the dataset to be represented as a matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$, where each row corresponds to a single interpolated creep curve with $p$ features.
+	Before applying PCA, 
 	
 	Given a centred data matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$ with $n$ samples and $p$ features (in this case, discretized creep strain values), the PCA transformation is obtained by solving the eigenvalue decomposition of the covariance matrix~\cite{jolliffe2002principal}:
 	
