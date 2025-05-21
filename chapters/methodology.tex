@@ -331,9 +331,7 @@
 			\mathcal{L}_{\text{QBC}}(x) = \frac{1}{M} \sum_{i=1}^M \left\| f_i(x) - \bar{f}(x) \right\|^2, \quad \text{where} \quad \bar{f}(x) = \frac{1}{M} \sum_{i=1}^M f_i(x),
 		\end{equation}
 		
-		where $f_i(x)$ is the prediction from the $i$-th committee model and $M$ is the number of committee members. The DE optimizer maximizes disagreement over the feasible design space, constrained by the Isolation Forest filter.
-		
-		This strategy ensures that sampling focuses on unexplored, high-uncertainty regions likely to improve the surrogate model most effectively.
+		where $f_i(x)$ is the prediction from the $i$-th committee model and $M$ is the number of committee members. The DE optimizer maximizes disagreement over the feasible design space, constrained by the Isolation Forest filter.	This strategy ensures that sampling focuses on unexplored, high-uncertainty regions likely to improve the surrogate model most effectively.
 		
 		\item \textbf{Oracle (LAGAMINE):} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which either returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
