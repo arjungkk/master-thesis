@@ -321,7 +321,7 @@
 	\begin{itemize}
 		\item \textbf{Initial Dataset ($X$, $Y$):} An initial dataset is needed sampled by sampling techniques like LHS or random sampling (see~\textit{\nameref{Subsubsection::Sampling_strategies}}). Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), here, the $\theta$-projection features.	
 		
-		\item \textbf{Learner ($y = f(x)$):} A committee of regression models (here, a Multi-Layer Perceptron, MLP) is trained to predict $\theta$-projection values from material input parameters.
+		\item \textbf{Learner ($y = f(x)$):} A committee of regression models (here, a multi-layer perceptron, MLP) is trained to predict $\theta$-projection values from material input parameters.
 		
 		\item \textbf{Region Filter ($c = g(x)$):} An Isolation Forest is trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remain within the feasible design domain.
 		
