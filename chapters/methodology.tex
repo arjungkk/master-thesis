@@ -123,8 +123,6 @@
 	\subsection{Data-Driven Representations}
 	
 	Prior to performing dimensionality reduction, the synthetic data needs some preprocessing. Each creep curve is represented as a fixed-length vector. Since individual simulations yield time series of varying lengths due to differing rupture times, all curves are preprocessed to obtain consistent dimensionality. This is done by interpolating the creep strain-time curves at a fixed number of equally spaced strain values along the horizontal axis (e.g., normalized strain or time), resulting in uniform feature vectors. This allows the dataset to be represented as a matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$, where each row corresponds to a single interpolated creep curve with $p$ features.
-		
-	The creep strain–time data poses specific challenges due to variations in rupture times. In particular, early rupture curves leads to curve representations (input vectors) of different lengths, necessitating specialized preprocessing to ensure stable application data-driven models.
 	
 	Three strategies are implemented to handle different input vector lengths:
 	
