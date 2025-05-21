@@ -255,6 +255,53 @@
 		\label{fig:supervised_learning}
 	\end{figure}
 	
+	\subsubsection*{Random Forest Regressor (RFR)}
+	
+	The Random Forest Regressor is an ensemble method based on decision trees. It builds a collection of $M$ decision trees $\{h_m(x)\}_{m=1}^M$ using bootstrapped samples of the training data~\cite{breiman2001random}. Predictions are obtained by averaging the output of all trees:
+	
+	\begin{equation}
+		\hat{y}_{\text{RF}}(x) = \frac{1}{M} \sum_{m=1}^{M} h_m(x).
+	\end{equation}
+	
+	This model naturally captures non-linear relationships and feature interactions, and is robust to outliers and overfitting. In this work, RFR is used as a baseline due to its fast training time and good generalization.
+	
+	\subsubsection*{2. Gradient Boosting Regressor (GBR)}
+	
+	Gradient Boosting Regressor builds an additive model sequentially. Each new tree $h_m(x)$ is trained to predict the residuals (errors) of the previous model using gradient descent:
+	
+	\begin{equation}
+		\hat{y}_m(x) = \hat{y}_{m-1}(x) + \eta \cdot h_m(x),
+	\end{equation}
+	
+	where $\eta$ is the learning rate and $h_m(x)$ is the new weak learner fitted to the negative gradient of the loss function. This method is particularly effective for structured data with complex patterns.
+	
+	\subsubsection*{3. Stacking Regressor}
+	
+	Stacking, or stacked generalization, is a meta-learning technique. It combines multiple base regressors $\{f_1, f_2, \dots, f_K\}$ by feeding their predictions into a higher-level learner $g$ (often a linear model):
+	
+	\begin{equation}
+		\hat{y}_{\text{stack}}(x) = g\left(f_1(x), f_2(x), \dots, f_K(x)\right).
+	\end{equation}
+	
+	In this study, base models like RFR and GBR are used, and a linear regressor serves as the meta-learner. This approach leverages the strengths of multiple models to improve generalization.
+	
+	\subsubsection*{4. Voting Regressor}
+	
+	The Voting Regressor combines multiple base models by averaging their predictions. For a given input $x$, the output is:
+	
+	\begin{equation}
+		\hat{y}_{\text{vote}}(x) = \frac{1}{K} \sum_{k=1}^{K} f_k(x),
+	\end{equation}
+	
+	where $f_k(x)$ are the individual base regressors. This ensemble approach is simple yet often improves robustness and reduces variance.
+	
+	\subsection*{Training and Validation Strategy}
+	
+	All models are trained on the 80\% training split of the dataset using 5-fold cross-validation for hyperparameter tuning. Final performance is assessed on the held-out 20\% test set. Grid search is employed to find the optimal hyperparameters.
+	
+	These supervised regressors provide effective solutions for capturing the complex input–output relationships inherent in time-dependent, non-linear creep simulations.
+	
+	
 	
 	\subsubsection*{Random Forest Regressor (RFR)}
 	
