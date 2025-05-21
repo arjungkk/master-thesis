@@ -187,24 +187,6 @@
 	
 	\subsubsection{2. Kernel Principal Component Analysis (Kernel PCA)}
 	
-	Kernel PCA extends PCA by performing non-linear transformations of data into a higher-dimensional feature space using kernel functions, enabling better representation of non-linear deformation trends across creep curves. Two kernels are explored in this study:
-	
-	\begin{itemize}
-		\item \textbf{Polynomial kernel (degree 6)}, capturing polynomially non-linear features.
-		\item \textbf{Radial Basis Function (RBF) kernel} with hyper-parameter $\gamma = 0.01$, suitable for more complex, localized non-linear patterns.
-	\end{itemize}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/kpca.png}
-		\caption{Kernel Principal Component Analysis(KPCA) Workflow.}
-		\label{fig:kpca}
-	\end{figure}
-	
-	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with KPCA(using different kernels) and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
-	
-	Kernel PCA proves to be particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
-	
 	Kernel PCA extends PCA by first mapping the input data $\mathbf{x}_i \in \mathbb{R}^p$ into a higher-dimensional feature space $\mathcal{F}$ via a non-linear mapping $\phi: \mathbb{R}^p \rightarrow \mathcal{F}$. Instead of computing the covariance matrix directly in $\mathcal{F}$ (which may be infinite-dimensional), Kernel PCA uses the kernel trick.
 	
 	Given $n$ data points, the kernel matrix $\mathbf{K} \in \mathbb{R}^{n \times n}$ is defined as:
@@ -225,7 +207,7 @@
 	
 	where $\mathbf{1}_n$ is the $n \times n$ matrix with all entries equal to $\frac{1}{n}$.
 	
-	KPCA then performs eigendecomposition:
+	Kernel PCA then performs eigen-decomposition:
 	
 	\begin{equation}
 		\mathbf{K}_c \mathbf{v}_i = \lambda_i \mathbf{v}_i,
@@ -233,6 +215,12 @@
 	\end{equation}
 	
 	where $\lambda_i$ and $\mathbf{v}_i$ are the eigenvalues and eigenvectors of the centered kernel matrix.
+	
+	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with KPCA(using different kernels) and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
+	
+	Kernel PCA proves to be particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
+	
+	
 	
 	---
 	
