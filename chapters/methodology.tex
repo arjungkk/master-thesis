@@ -316,7 +316,7 @@
 	
 	\subsection{Active Learning using Query-by-Committee}
 	
-	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient} using Query by committee~\cite{burbidge2007qbc}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and an oracle:
+	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient} using Query by committee (see~\textit{\hyperlink{QBC}{QBC}})~\cite{burbidge2007qbc}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and an oracle:
 	
 	\begin{itemize}
 		\item \textbf{Initial Dataset ($X$, $Y$):} An initial dataset is needed sampled by sampling techniques like LHS or random sampling (see~\textit{\nameref{Subsubsection::Sampling_strategies}}). Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
