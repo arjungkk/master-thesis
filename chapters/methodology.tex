@@ -242,7 +242,7 @@
 	\begin{enumerate}
 		\item The training set of creep curves obtained from the synthetic data is transformed to $\theta$-space using the $\theta$-projection model.
 		\item The transformed data is used to train regression models that predicts material model parameters from the Morch model.
-		\item Predicted parameters are passed to the \texttt{LAGAMINE} solver to regenerate creep curves.
+		\item The \texttt{LAGAMINE} solver is used to regenerate creep curves from the predicted parameters.
 	\end{enumerate}
 	
 	\begin{figure}[H]
