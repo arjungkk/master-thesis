@@ -287,7 +287,7 @@
 	
 	\subsubsection*{Voting Regressor}
 	
-	The Voting Regressor combines multiple base models by averaging their predictions. For a given input $x$, the output is:
+	The Voting Regressor combines multiple base models by averaging their predictions. Here again, RFR and GBR serve as the base models. For a given input $x$, the output is:
 	
 	\begin{equation}
 		\hat{y}_{\text{vote}}(x) = \frac{1}{K} \sum_{k=1}^{K} f_k(x),
