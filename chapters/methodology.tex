@@ -185,7 +185,7 @@
 		\label{fig:pca}
 	\end{figure}
 	
-	\subsubsection{2. Kernel Principal Component Analysis (Kernel PCA)}
+	\subsubsection{Kernel Principal Component Analysis (Kernel PCA)}
 	
 	Kernel PCA extends PCA by first mapping the input data $\mathbf{x}_i \in \mathbb{R}^p$ into a higher-dimensional feature space $\mathcal{F}$ via a non-linear mapping $\phi: \mathbb{R}^p \rightarrow \mathcal{F}$. Instead of computing the covariance matrix directly in $\mathcal{F}$ (which may be infinite-dimensional), Kernel PCA uses the kernel trick.
 	
@@ -198,7 +198,7 @@
 	
 	where $k(\cdot, \cdot)$ is a positive-definite kernel function.
 	
-	The kernel matrix is centered as:
+	The kernel matrix is centred as:
 	
 	\begin{equation}
 		\mathbf{K}_c = \mathbf{K} - \mathbf{1}_n \mathbf{K} - \mathbf{K} \mathbf{1}_n + \mathbf{1}_n \mathbf{K} \mathbf{1}_n,
@@ -215,10 +215,6 @@
 	\end{equation}
 	
 	where $\lambda_i$ and $\mathbf{v}_i$ are the eigenvalues and eigenvectors of the centered kernel matrix.
-	
-	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with KPCA(using different kernels) and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
-	
-	Kernel PCA proves to be particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
 	
 	
 	
