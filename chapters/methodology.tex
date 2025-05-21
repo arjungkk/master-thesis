@@ -57,7 +57,7 @@
 	\section{Creep Curve Representation}
 	\label{Section::Curve_Features}
 	
-	Each finite element simulation outputs a creep strain–time curve data along with the material model parameters. To enable machine learning, these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The synthetic dataset are partitioned into training and test sets, following an 80\%–20\% ratio. This allows unbiased performance assessment of subsequent machine learning models. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation. 
+	Each finite element simulation outputs a creep strain–time curve data along with the material model parameters. To enable machine learning (ML), these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The synthetic dataset are partitioned into training and test sets, following an 80\%–20\% ratio. This allows unbiased performance assessment of subsequent machine learning models. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation. Figure~\ref{fig:model_flow} represents the general workflow 
 	
 	\begin{figure}[H]
 		\centering
