@@ -319,9 +319,7 @@
 	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient} using Query by committee (see~\textit{\hyperlink{QBC}{QBC}})~\cite{burbidge2007qbc}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and an oracle:
 	
 	\begin{itemize}
-		\item \textbf{Initial Dataset ($X$, $Y$):} An initial dataset is needed sampled by sampling techniques like LHS or random sampling (see~\textit{\nameref{Subsubsection::Sampling_strategies}}). Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
-		
-		\item \textbf{Active Learning Subset:} A subset of 100 randomly selected samples from the original dataset is used as the training pool for active learning. This subset serves as the seed data for model training and query generation.
+		\item \textbf{Initial Dataset ($X$, $Y$):} An initial dataset is needed sampled by sampling techniques like LHS or random sampling (see~\textit{\nameref{Subsubsection::Sampling_strategies}}). Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), here, the $\theta$-projection features.	
 		
 		\item \textbf{Learner ($y = f(x)$):} A supervised regression model (Multi-Layer Perceptron, MLP) is trained to predict $\theta$-projection values from material input parameters.
 		
@@ -335,6 +333,16 @@
 		
 		\item \textbf{Iteration:} This loop is repeated over 100 active queries. The learner is retrained after each batch to continuously improve its predictive power.
 	\end{itemize}
+	
+	 \item \textbf{Learner ($y = f(x)$):} A supervised MLP model trained to predict $\theta$-projection parameters from $X$.
+	
+	\item \textbf{Feasibility Filter ($c = g(x)$):} An Isolation Forest classifier trained to filter out infeasible or non-converging material configurations.
+	
+	\item \textbf{Query Generator:} A Differential Evolution (DE) algorithm selects new points $X^*$ that maximize uncertainty and diversity in the output space.
+	
+	\item \textbf{Oracle (LAGAMINE):} Validated $X^*$ points are simulated, and the resulting creep curves are mapped back to $\theta$-space as $Y^*$.
+	
+	\item \textbf{Update and Iteration:} Successful queries are added to the dataset, and the learner is retrained. This process is repeated for 100 iterations.
 	
 	\begin{figure}[H]
 		\centering
