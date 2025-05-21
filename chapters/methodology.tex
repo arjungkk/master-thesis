@@ -297,6 +297,30 @@
 	
 	\subsection*{Training and Validation Strategy}
 	
+	All regression models are trained using an 80/20 train-test split of the synthetic dataset. The 80\% training subset is further used for hyperparameter tuning via \textbf{five-fold cross-validation}. In five-fold cross-validation, the training data is split into five equally sized folds $\{D_1, D_2, \dots, D_5\}$. For each fold $i$, the model is trained on the other four folds and validated on $D_i$. The average validation error across all folds is computed as:
+	
+	\begin{equation}
+		\text{CV}_{\text{error}} = \frac{1}{5} \sum_{i=1}^{5} \mathcal{L}(f^{(i)}, D_i),
+	\end{equation}
+	
+	where $\mathcal{L}$ is the loss function (e.g., mean squared error) and $f^{(i)}$ is the model trained excluding fold $D_i$.
+	
+	This strategy ensures that each data point is used for both training and validation, improving robustness and mitigating overfitting~\cite{hastie2009elements}.
+	
+	\medskip
+	To optimize hyperparameters such as the number of estimators, learning rate, or tree depth, we employ \textbf{Grid Search}~\cite{bergstra2012random}. In grid search, a predefined set of hyperparameter combinations is exhaustively evaluated using cross-validation. The hyperparameter set that minimizes the average validation loss is selected for final model training:
+	
+	\begin{equation}
+		\theta^* = \arg\min_{\theta \in \Theta} \text{CV}_{\text{error}}(\theta),
+	\end{equation}
+	
+	where $\Theta$ is the grid of all hyperparameter combinations.
+	
+	Once the best model configuration is identified, it is retrained on the full training split (80\%) and its performance is assessed on the held-out 20\% test set.
+	
+	
+	\subsection*{Training and Validation Strategy}
+	
 	All models are trained on the 80\% training split of the dataset using 5-fold cross-validation for hyperparameter tuning. Final performance is assessed on the held-out 20\% test set. Grid search is employed to find the optimal hyperparameters.
 	
 	\section{Active Learning}
