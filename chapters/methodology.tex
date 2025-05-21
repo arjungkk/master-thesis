@@ -323,7 +323,7 @@
 		
 		\item \textbf{Learner ($y = f(x)$):} A committee of regression models (here, a multi-layer perceptron, MLP) is trained to predict $\theta$-projection values from material input parameters.
 		
-		\item \textbf{Region Filter ($c = g(x)$):} An Isolation Forest is trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remain within the feasible design domain.
+		\item \textbf{Region Filter ($c = g(x)$):} A classifier (here, an Isolation Forest) is trained to distinguish valid (convergent) input samples from non-physical or divergent configurations, ensuring that queries remain within the feasible design domain.
 		
 		\item \textbf{Optimizer:} A Differential Evolution (DE) algorithm searches the input space for new query points $X^*$ that are both feasible and diverse in the learned $\theta$-space. Diversity is promoted to explore under-represented regions of the output space.
 		
