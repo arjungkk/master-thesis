@@ -98,6 +98,49 @@ A typical creep curve, plotting strain versus time under constant load and tempe
 		\end{tabular}
 	\end{table}
 \end{minipage}
+
+\subsection*{Constitutive Creep Model: Morch’s Elasto-Visco-Plastic Damage Law}
+\label{Subssection::Morch_Model_Definition}
+
+The constitutive creep model used in this work is based on the Norton-type elasto-visco-plastic damage formulation developed by Morch~\cite{morch2022creep}. It is capable of representing all three classical creep stages (primary, secondary, tertiary) through internal variables capturing viscoplastic flow, isotropic hardening, and damage evolution.
+
+The total creep strain rate is governed by the Norton-Hoff law with drag stress and hardening:
+
+\begin{equation}
+	\dot{p} = \left(\frac{\sigma_v}{K}\right)^n,
+\end{equation}
+
+where:
+\begin{itemize}
+	\item $\sigma_v = \sigma - R - \sigma_y$ is the effective (drag) stress,
+	\item $K$ is the creep stiffness (MPa),
+	\item $n$ is the stress exponent for the creep law,
+	\item $R$ is the isotropic hardening stress.
+\end{itemize}
+
+The isotropic hardening component $R$ evolves according to:
+
+\begin{equation}
+	R = Q \left(1 - e^{-b p}\right),
+\end{equation}
+
+where $Q$ is the saturation value of the yield surface, $b$ controls the rate of isotropic hardening, and $p$ is the accumulated viscoplastic strain.
+
+\paragraph{Damage Law:} The tertiary stage and final rupture are modeled using the Rabotnov–Kachanov damage equation:
+
+\begin{equation}
+	\dot{D}_c = k_3 \left( \frac{Y (\sigma^d \cdot k_4)}{S_c} \right)^{s_c} \cdot \frac{1}{(1 - D)^k},
+\end{equation}
+
+where:
+\begin{itemize}
+	\item $D$ is the scalar damage variable,
+	\item $Y$ is the thermodynamic force conjugate to damage,
+	\item $S_c$, $s_c$, $k_3$, $k_4$, and $k$ are material-specific damage coefficients.
+\end{itemize}
+
+These formulations allow the model to simulate the full creep life of a material, from initial loading through rupture, and were originally calibrated for 30CrMoNiV5-11 under the AID4GREENEST project. In this study, however, a broad range of parameter values is explored to generalize behavior across different material responses.
+
  
 \section{Numerical Modelling of Creep}
 \label{Section::Modelling_Creep}
