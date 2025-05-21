@@ -18,17 +18,33 @@
 	\chapter{Methodology \& Computational Framework}
 	\label{Chapter::Methodology}
 	
-	This chapter outlines the overall methodological framework developed to address the research objectives stated in Chapter~\ref{Chapter::Introduction}. The main goal is to enable accurate and efficient modelling of creep behaviour through a combination of physics-based simulation and data-driven techniques.
+	This chapter outlines the overall methodological framework developed to address the research questions outlined in Chapter~\ref{Chapter::Introduction}. The main goal is to enable accurate and efficient modelling of creep behaviour through a combination of physics-based simulation and data-driven techniques.
 	
 	The approach is structured into distinct components that align with the key tasks introduced earlier:
 	\begin{itemize}
 		\item Generating a synthetic dataset spanning a broad material parameter space,
 		\item Representing creep curves using both empirical and data-driven models,
-		\item Building surrogate machine learning models to replace expensive simulations,
+		\item Training regression models to map simulation inputs to curve descriptors,
 		\item Employing active learning to iteratively improve model efficiency and coverage.
 	\end{itemize}
 	
 	Each of the following sections describes these components in detail, including the assumptions made, the preprocessing required, and the rationale behind each methodological choice.
+	
+	This chapter presents the overall methodology developed to address the research questions outlined in Chapter~\ref{Chapter::Introduction}. The workflow integrates numerical simulation with machine learning to model and predict creep behaviour efficiently. Each methodological component corresponds to one or more research questions and is designed to systematically explore the underlying hypotheses.
+	
+	The approach includes the following elements:
+	
+	\begin{itemize}
+		\item \textbf{Creep Simulation and Data Generation:} A synthetic dataset is created using finite element simulations based on the Morch creep model. This provides the data foundation for subsequent learning-based tasks. (\textbf{supports RQ3, RQ4})
+		
+		\item \textbf{Curve Representation Strategies:} Empirical models (e.g., $\theta$-projection) and dimensionality reduction techniques (e.g., PCA, KPCA) are applied to convert creep curves into compact feature representations suitable for regression. (\textbf{addresses RQ1, RQ2})
+		
+		\item \textbf{Surrogate Modelling with Supervised Learning:} Regression models are trained to map simulation inputs to curve descriptors. Both physically guided and purely data-driven approaches are considered. (\textbf{addresses RQ3})
+		
+		\item \textbf{Active Learning Framework:} A query-by-committee active learning loop is implemented to improve sample efficiency by targeting uncertain and informative regions of the parameter space. (\textbf{addresses RQ4})
+	\end{itemize}
+	
+	The remainder of this chapter describes each methodological component in detail, along with the rationale behind the selected techniques and their alignment with the thesis objectives.
 	
 	
 	\section{Synthetic Data Generation Setup}
