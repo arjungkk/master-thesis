@@ -53,7 +53,7 @@ The focus is thus not only on building surrogate models, but also on understandi
 
 This work is conducted within the framework of the \textbf{AID4GREENEST} project (EU Horizon Europe Grant No.~101091912), an initiative aiming to accelerate material innovation for the steel industry using artificial intelligence, advanced simulations, and smart data generation \cite{aid4greenest}.
 
-The specific focus of this thesis is on developing methodologies for efficient creep modeling using data generated from physics-based simulations. The simulation engine employed is the finite element software \texttt{Lagamine}, developed at the University of Liège, which implements several advanced thermomechanical constitutive models.
+The specific focus of this thesis is on developing methodologies for efficient creep modelling using data generated from physics-based simulations. The simulation engine employed is the finite element software \texttt{LAGAMINE}, developed at the University of Liège, which implements several advanced thermomechanical constitutive models.
 
 Of particular relevance to this study is the creep model developed by \textbf{Morch} and collaborators \cite{morch2022creep}. This model captures primary, secondary, and tertiary creep stages through internal variables representing dislocation structures and damage evolution. The synthetic dataset generated through Lagamine simulations reflects the behavior of a \textit{parametric phenomenological creep law} rather than directly simulating real microstructure evolutions. 
 
@@ -63,8 +63,8 @@ Of particular relevance to this study is the creep model developed by \textbf{Mo
 The remainder of this thesis is organized as follows:
 
 \begin{itemize}
-	\item \textbf{Chapter 2: Background and Related Works} \\
-	Provides a background on creep mechanisms, phenomenological and microstructural modeling approaches, and an overview of machine learning applications in materials science.
+	\item \textbf{Chapter~\ref{Chapter::Background_&_Related_Work}: Background and Related Work} \\
+	Provides a background on creep mechanisms, phenomenological and microstructural modelling approaches, and an overview of machine learning applications in materials science.
 		
 	\item \textbf{Chapter 3: Methodology} \\
 	Describes the finite element simulation setup, the synthetic data generation workflow, feature engineering methods, sampling strategies, machine learning models used, and the active learning framework implemented.
