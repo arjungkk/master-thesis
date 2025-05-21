@@ -233,6 +233,27 @@
 	\subsection{Representing creep curves using Morch model parameters}
 	\label{Subsection::Morch_model_represntation}
 	
+	To enable fast and interpretable prediction of creep behaviour, this section focuses on representing creep curves through the parameters of the empirical $\theta$-projection model. Once the curves are transformed into compact parameter sets, machine learning models are trained to learn the mapping from simulation input parameters to these empirical representations. This surrogate modelling approach allows for rapid estimation of material behaviour and supports tasks such as inverse parameter identification or real-time prediction within design loops.
+	
+	Supervised learning models are used to approximate the relationships between simulation input parameters and the output representations of creep behaviour. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modelling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
+	
+	Several regression-based algorithms are implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models are trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how supervised learning is used.
+	
+	\begin{enumerate}
+		\item The training set of creep curves obtained from the synthetic data is transformed to $\theta$-space using the $\theta$-projection model.
+		\item The transformed data is used to train regression models.
+		\item Predictions of material model parameters are made for the test set.
+		\item Predicted parameters are passed to the \texttt{LAGAMINE} solver to regenerate creep curves.
+	\end{enumerate}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/supervised_learning.png}
+		\caption{Supervised learning workflow for mapping input parameters to creep curve representations via the $\theta$-projection model.}
+		\label{fig:supervised_learning}
+	\end{figure}
+	
+	
 	Supervised learning models are used to approximate the relationships between simulation input parameters and the output representations of creep behaviour. These models serve as predictive substitutes for high-fidelity simulations, enabling both forward modelling (e.g., curve prediction) and inverse analysis (e.g., parameter identification). The core advantage lies in their ability to provide fast predictions once trained, significantly reducing computational cost compared to full-scale finite element simulations.
 	
 	Several regression-based algorithms are implemented using the \texttt{scikit-learn} framework \cite{pedregosa2011scikit}. These models are trained to map from the 8-dimensional input space (see Table~\ref{tab:param_ranges}) to $\theta$-parameters. Figure~\ref{fig:supervised_learning} illustrates the workflow of how Supervised Learning was used. 
