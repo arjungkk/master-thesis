@@ -204,7 +204,87 @@
 	Figure~\ref{fig:kpca} illustrates the workflow of how KPCA is used. The training set of creep curves obtained from the synthetic data are transformed to lower dimensional space with KPCA(using different kernels) and the model is saved. Then an inverse transformation of the model is applied to reconstruct the creep curves from the test set.
 	
 	Kernel PCA proves to be particularly useful in distinguishing curves with non-monotonic behaviour or abrupt transitions between creep stages, which linear PCA could not represent adequately.
-		
+	
+	Kernel PCA extends PCA by first mapping the input data $\mathbf{x}_i \in \mathbb{R}^p$ into a higher-dimensional feature space $\mathcal{F}$ via a non-linear mapping $\phi: \mathbb{R}^p \rightarrow \mathcal{F}$. Instead of computing the covariance matrix directly in $\mathcal{F}$ (which may be infinite-dimensional), Kernel PCA uses the kernel trick.
+	
+	Given $n$ data points, the kernel matrix $\mathbf{K} \in \mathbb{R}^{n \times n}$ is defined as:
+	
+	\begin{equation}
+		K_{ij} = k(\mathbf{x}_i, \mathbf{x}_j) = \langle \phi(\mathbf{x}_i), \phi(\mathbf{x}_j) \rangle,
+		\label{eq:kernel_matrix}
+	\end{equation}
+	
+	where $k(\cdot, \cdot)$ is a positive-definite kernel function.
+	
+	The kernel matrix is centered as:
+	
+	\begin{equation}
+		\mathbf{K}_c = \mathbf{K} - \mathbf{1}_n \mathbf{K} - \mathbf{K} \mathbf{1}_n + \mathbf{1}_n \mathbf{K} \mathbf{1}_n,
+		\label{eq:centered_kernel}
+	\end{equation}
+	
+	where $\mathbf{1}_n$ is the $n \times n$ matrix with all entries equal to $\frac{1}{n}$.
+	
+	KPCA then performs eigendecomposition:
+	
+	\begin{equation}
+		\mathbf{K}_c \mathbf{v}_i = \lambda_i \mathbf{v}_i,
+		\label{eq:kpca_eigendecomposition}
+	\end{equation}
+	
+	where $\lambda_i$ and $\mathbf{v}_i$ are the eigenvalues and eigenvectors of the centered kernel matrix.
+	
+	---
+	
+	### 📐 Kernel Functions
+	
+	**1. Radial Basis Function (RBF) kernel:**
+	
+	\begin{equation}
+		k(\mathbf{x}_i, \mathbf{x}_j) = \exp\left(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2\right),
+		\label{eq:rbf_kernel}
+	\end{equation}
+	
+	where $\gamma$ controls the spread of the kernel. RBF kernels can approximate any continuous function on a compact domain given sufficient parameters, making them suitable for capturing arbitrary non-linear deformations in creep curves.
+	
+	> *The RBF kernel is a universal approximator in the sense of reproducing kernel Hilbert spaces (RKHS)*~\cite{steinwart2001influence}.
+	
+	**2. Polynomial kernel:**
+	
+	\begin{equation}
+		k(\mathbf{x}_i, \mathbf{x}_j) = (\gamma \mathbf{x}_i^\top \mathbf{x}_j + r)^d,
+		\label{eq:poly_kernel}
+	\end{equation}
+	
+	where $d$ is the degree, $\gamma$ is a scaling factor, and $r$ is the free term.
+	
+	Polynomial kernels are particularly suited to modelling smooth trends like the primary and tertiary creep regions observed in typical creep curves (see Figure~\ref{fig:creep_stages}). Their global nature captures general curve shapes effectively.
+	
+	---
+	
+	### 📚 Suggested Citations (BibTeX)
+	
+	```bibtex
+	@article{scholkopf1998nonlinear,
+		title={Nonlinear component analysis as a kernel eigenvalue problem},
+		author={Sch{\"o}lkopf, Bernhard and Smola, Alexander and M{\"u}ller, Klaus-Robert},
+		journal={Neural Computation},
+		volume={10},
+		number={5},
+		pages={1299--1319},
+		year={1998},
+		publisher={MIT Press}
+	}
+	
+	@article{steinwart2001influence,
+		title={On the influence of the kernel on the consistency of support vector machines},
+		author={Bernhard, Ingo},
+		journal={Journal of Machine Learning Research},
+		volume={2},
+		pages={67--93},
+		year={2001}
+	}
+	
 	
 	\section{Supervised Learning}
 	\label{Section::Supervised_Learning}
