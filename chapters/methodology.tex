@@ -335,8 +335,7 @@
 		
 		\item \textbf{Oracle (LAGAMINE):} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which either returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) or failed to converge.
 		
-		\item \textbf{Update:} After each query, the input \( X^* \) is added to the dataset, along with a convergence flag. If the simulation converges, the resulting output \( Y^* \) (obtained via $\theta$-projection) is stored and the pair \( (X^*, Y^*) \) is used to retrain the regression model. If the simulation fails to converge, the flag is recorded accordingly. In both cases, the Isolation Forest is updated to refine its understanding of the convergence domain, enabling more accurate feasibility filtering in subsequent iterations.
-		
+		\item \textbf{Update:} After each query, the input \( X^* \) is added to the dataset, along with a convergence flag. If the simulation converges, the resulting output \( Y^* \) (obtained via $\theta$-projection) is stored and the pair \( (X^*, Y^*) \) is used to retrain the regression model. If the simulation fails to converge, the flag is recorded accordingly. In both cases, the Isolation Forest is updated to refine its understanding of the convergence domain, enabling more accurate feasibility filtering in subsequent iterations.		
 		
 		\item \textbf{Iteration:} This loop is repeated several times. The committee members and the classifier are retrained after each batch to continuously improve its predictive power.
 		
