@@ -299,33 +299,6 @@
 	
 	All models are trained on the 80\% training split of the dataset using 5-fold cross-validation for hyperparameter tuning. Final performance is assessed on the held-out 20\% test set. Grid search is employed to find the optimal hyperparameters.
 	
-	These supervised regressors provide effective solutions for capturing the complex input–output relationships inherent in time-dependent, non-linear creep simulations.
-	
-	
-	
-	\subsubsection*{Random Forest Regressor (RFR)}
-	
-	The Random Forest Regressor is an ensemble method based on decision trees, where predictions are made by averaging the output of multiple trees trained on bootstrapped samples of the dataset \cite{breiman2001random}. It naturally captures non-linear relationships and feature interactions, and is robust to outliers and over-fitting. In this work, RFR is used as a baseline model due to its interpretability and fast training time.
-	
-	\subsubsection*{Gradient Boosting Regressor (GBR)}
-	
-	Gradient Boosting Regressor builds an additive model in a forward, stage-wise fashion by minimizing a specified loss function via gradient descent \cite{friedman2001greedy}. It is particularly effective for structured data with complex patterns.
-	
-	\subsection*{3. Stacking Regressor}
-	
-	Stacking, or stacked generalization, is a meta-learning technique where multiple base regressors are combined using a higher-level learner \cite{wolpert1992stacked}. In this study, base models like RFR and GBR are combined and a linear regression model is used as the meta-learner. This approach leveraged the complementary strengths of each algorithm and helped improve generalization.
-	
-	\subsection*{4. Voting Regressor}
-	
-	The Voting Regressor combines multiple base regressors by averaging their predictions (soft voting), which often improves robustness and reduces variance \cite{zhang2012ensemble}. 
-	
-	\subsection*{Training and Validation Strategy}
-	
-	All models are trained on the 80\% training split of the data using 5-fold cross-validation for hyperparameter tuning. The final performance is assessed on the held-out 20\% test set. Grid search is employed for finding the best hyperparameters.
-	
-	These supervised regressors provide an effective solution for capturing the complex input–output relationships inherent in time-dependent, non-linear creep simulations.
-
-	
 	\section{Active Learning}
 	\label{Section::Active_Learning}
 	
