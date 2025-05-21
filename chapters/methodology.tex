@@ -337,7 +337,7 @@
 		
 		\item \textbf{Update:} If the simulation converges, the new pair $(X^*, Y^*)$ is added to the dataset. If it fails, $X^*$ is discarded.
 		
-		\item \textbf{Iteration:} This loop is repeated over 100 active queries. The learner is retrained after each batch to continuously improve its predictive power.
+		\item \textbf{Iteration:} This loop is repeated several times. The committee members and the classifier are retrained after each batch to continuously improve its predictive power.
 		
 		\item \textbf{Oracle (LAGAMINE):} Validated $X^*$ points are simulated, and the resulting creep curves are mapped back to $\theta$-space as $Y^*$.
 		
