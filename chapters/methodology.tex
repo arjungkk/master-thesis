@@ -187,7 +187,7 @@
 	
 	\subsubsection{Kernel Principal Component Analysis (Kernel PCA)}
 	
-	Kernel PCA extends PCA by first mapping the input data $\mathbf{x}_i \in \mathbb{R}^p$ into a higher-dimensional feature space $\mathcal{F}$ via a non-linear mapping $\phi: \mathbb{R}^p \rightarrow \mathcal{F}$. Instead of computing the covariance matrix directly in $\mathcal{F}$ (which may be infinite-dimensional), Kernel PCA uses the kernel trick.
+	Kernel PCA extends PCA by first mapping the input data $\mathbf{x}_i \in \mathbb{R}^p$ into a higher-dimensional feature space $\mathcal{F}$ via a non-linear mapping $\phi: \mathbb{R}^p \rightarrow \mathcal{F}$. Instead of computing the covariance matrix directly in $\mathcal{F}$ (which may be infinite-dimensional), Kernel PCA uses the kernel trick~\cite{scholkopf1998nonlinear}.
 	
 	Given $n$ data points, the kernel matrix $\mathbf{K} \in \mathbb{R}^{n \times n}$ is defined as:
 	
