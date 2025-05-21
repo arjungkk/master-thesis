@@ -316,7 +316,7 @@
 	
 	\subsection{Active Learning using Query-by-committee}
 	
-	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient} using Query by committee~\cite{burbidge2007qbc}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and a finite element oracle:
+	The workflow is based on the method proposed by \textit{Morand et al.}~\cite{morand2022efficient} using Query by committee~\cite{burbidge2007qbc}, and is illustrated in Figure~\ref{fig:active_learning}. It integrates a supervised learner, a feasibility filter, an optimizer, and an oracle:
 	
 	\begin{itemize}
 		\item \textbf{Initial Dataset ($X$, $Y$):} The starting dataset consisted of 3376 samples generated using \texttt{LAGAMINE} finite element solver. Each sample includes material model parameters ($X$) and corresponding creep response descriptors ($Y$), the $\theta$-projection features.
