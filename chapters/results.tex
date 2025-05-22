@@ -57,7 +57,7 @@
 		\end{tabular}
 	\end{table}
 	
-	It is important to distinguish between the applied stress \(\sigma\), which acts as a boundary condition in the uniaxial creep simulation and is explicitly controlled in \texttt{LAGAMINE}, and the other variables, which are internal material model parameters. While \(\sigma\) is varied across a predefined range to simulate different loading scenarios, the material parameters represent constitutive properties and are treated as inputs in the inverse modelling and learning tasks.
+	It is important to distinguish between the applied stress \(\sigma\), which acts as a boundary condition in the uniaxial creep simulation and is explicitly controlled in \texttt{LAGAMINE}, and the other variables, which are internal material model parameters. While \(\sigma\) is varied across a predefined range to simulate different loading scenarios, the material parameters represent constitutive properties.
 	
 	The temperature was not varied in this study. This decision was made to isolate the influence of material model parameters on creep behaviour and reduce the dimensionality of the design space. Since temperature would couple with several parameters (particularly activation energy \( Q \)), fixing it allows for clearer interpretation of parameter sensitivities and reduces complexity in model training and validation. This is consistent with common practice in parametric FEM-based studies of creep.
 	
@@ -67,30 +67,6 @@
 	% Please confirm if this assignment of \( K, n \) to creep mechanisms is correct. If the reverse applies, I can update the text accordingly.
 	
 	
-	\subsection{Simulation Parameters and Design Space}
-	\label{Subsection::Results_Simulation_Parameters}	
-		
-		The final sampled parameter space is summarized in Table~\ref{tab:param_ranges}.
-		
-		\begin{table}[H]
-			\centering
-			\caption{Input parameters and sampling ranges.}
-			\label{tab:param_ranges}
-			\begin{tabular}{lcc}
-				\toprule
-				\textbf{Parameter} & \textbf{Symbol} & \textbf{Range} \\
-				\midrule
-				Stress & $\sigma$ [MPa] & 150–300 \\
-				Hardening coefficient & $b$ & 1–20 (log-scale) \\
-				Activation energy & $Q$ [kJ/mol] & 50–120 \\
-				Creep stiffness & $K$ & 500–4500 \\
-				Stress exponent & $n$ & 6.5–8.0 \\
-				Softening parameter & $S_c$ & 1.5–45 \\
-				Softening rate & $s_c$ & 0.5–5 \\
-				Creep coefficient & $k_c$ & 0.75–6 \\
-				\bottomrule
-			\end{tabular}
-		\end{table}
 	
 	\subsection{Synthetic Dataset}
 	\label{Subsection::Results_Synthetic_Dataset}
