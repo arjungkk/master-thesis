@@ -200,8 +200,7 @@
 	%\needspace{3\baselineskip} 
 	\textbf{Zero Padding:} The best-performing kernel parameters for zero-padded data were determined using a grid search strategy. Grid search is a systematic hyperparameter optimization technique that evaluates a predefined set of parameter combinations through exhaustive search. For each candidate configuration, Kernel PCA was applied to the dataset, and the reconstruction error was used as the performance metric. The combination that yielded the lowest average reconstruction error on the validation set was selected as optimal.
 	
-	\needspace{3\baselineskip} 
-	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels with zero padding.
+	
 	
 	\begin{table}[ht]
 		\centering
@@ -217,7 +216,7 @@
 		\label{tab:best_params_zero_fill}
 	\end{table}
 	
-	The parameter \texttt{$n\_components$} defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels, smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{$degree$} sets the polynomial order, and \texttt{$coef\_0$} is an additive constant that influences higher-order terms. These hyperparameters jointly control the non-linearity and complexity of the feature space used to capture structure in the data.
+	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels with zero padding. The parameter \texttt{$n\_components$} defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels, smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{$degree$} sets the polynomial order, and \texttt{$coef\_0$} is an additive constant that influences higher-order terms. These hyperparameters jointly control the non-linearity and complexity of the feature space used to capture structure in the data.
 	
 	The original and reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}. The polynomial kernel provides reasonable approximations for curves with long rupture times (exceeding 30 years), although it still fails to capture the non-linear characteristics of the tertiary stage. For curves with early rupture times, however, the influence of zero padding dominates the input, overshadowing the original creep features and leading to poor reconstruction fidelity.
 	
@@ -281,10 +280,12 @@
 		\label{fig:kpca_norm_rupture_time}
 	\end{figure}
 	
-	\subsection{Morch Model Parameter Representations (Inverse Model)}
+	\subsection{Representing creep curves using Morch model parameters}
 	\label{Subsection::Results_Supervised}
 	
-	This section presents the results of predicting the seven Morch material model parameters using four supervised regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. For each model, parity plots compare predicted values against ground truth values, with points coloured by the applied stress level.
+	This section presents the results of predicting the seven Morch material model parameters using four supervised regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. The models were trained on 80\% of the dataset and evaluated on the remaining 20\% test set to assess their generalization performance.
+	
+	For each regression model, parity plots are shown comparing the predicted values to the true values of the Morch parameters from the test set. Each point in the plot represents one sample, with its colour indicating the applied stress level. Ideally, perfect predictions would lie along the 45-degree diagonal line, where predicted values exactly match the true values. Systematic deviations from this line indicate under- or over-predictions, while greater scatter reflects higher prediction error or model uncertainty.
 	
 	\needspace{3\baselineskip} 
 	\subsubsection*{Random Forest Regression}
