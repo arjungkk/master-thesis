@@ -496,25 +496,7 @@
 		\item \textbf{Architecture:} MLP with hidden layers (configurable).
 	\end{itemize}
 	
-	The model was trained on the initially available dataset and incrementally updated as new converged samples were added.
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/theta_predicted_vs_true.png}
-		\caption{Predicted vs. actual $\theta$-projection parameters using the MLP model during active learning.}
-		\label{fig:theta_predicted_vs_true}
-	\end{figure}
-	
-	As seen in Figure~\ref{fig:theta_predicted_vs_true}, the MLP captures overall trends in the data, though deviations persist for some parameters. Despite its simplicity, the model proved sufficiently accurate for guiding the active sampling process, particularly in early and mid-stage iterations.
-	
-	\subsection{Observations and Recommendations}
-	
-	\begin{itemize}
-		\item The Isolation Forest was able to reduce the number of infeasible samples in the latter stages of the AL loop, but convergence rates (~49\%) suggest further refinement is needed — e.g., probabilistic classification or uncertainty-aware filtering.
-		\item The MLP surrogate offered a computationally cheap approximation of creep behaviour, enabling efficient exploration of the high-dimensional input space.
-		\item Future improvements could include ensemble regressors with uncertainty estimates (e.g., Gaussian Processes or Monte Carlo Dropout), which are better suited for active learning selection.
-	\end{itemize}
-		
+	The model was trained on the initially available dataset and incrementally updated as new converged samples were added.		
 	
 	\clearpage
 	
