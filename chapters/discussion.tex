@@ -70,7 +70,7 @@ Overall, despite their theoretical flexibility, the kernel-based methods did not
 
 Among the input preprocessing strategies, normalization by rupture time emerged as the most robust. It avoided the artefacts introduced by padding and ensured that the input vectors aligned in a physically meaningful way. Zero and max strain padding, in contrast, introduced distortions that overshadowed the true creep characteristics, particularly for curves with early rupture times.
 
-In summary, PCA provided a compact and interpretable representation of global creep trends but struggled with local non-linearities. KPCA offered a more flexible, albeit less interpretable, alternative. However, neither approach was able to reconstruct creep curves with sufficient accuracy in the tertiary regime, highlighting the limitations of unsupervised dimensionality reduction for capturing full creep lifecycle behaviour.
+In summary, PCA provided a compact and interpretable representation of global creep trends but struggled with local non-linearities. Kernel PCA offered a more flexible, albeit less interpretable, alternative. However, neither approach was able to reconstruct creep curves with sufficient accuracy in the tertiary regime, highlighting the limitations of unsupervised dimensionality reduction for capturing full creep lifecycle behaviour.
 
 
 \section{Supervised Regression of Material Model Parameters}
