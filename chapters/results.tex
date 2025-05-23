@@ -475,15 +475,24 @@
 	\subsubsection{Isolation Forest: Feasibility Filtering}
 	\label{Subsubsection::Results_IF}
 	
-	The Isolation Forest algorithm was used as a convergence classifier to identify parameter combinations likely to lead to valid finite element simulations. By training on the initial set of feasible and infeasible samples, the model learned a decision boundary in the parameter space that distinguishes between solvable and divergent simulations.
+	To guide the sampling process during active learning, an Isolation Forest algorithm was employed as a \textbf{feasibility filter}. Rather than acting as a traditional binary classifier, the model assigned anomaly scores to candidate material parameter vectors, enabling \textit{weighted filtering} of the design space.
+	
+	Feasibility was not determined solely based on hard labels (converged vs. non-converged), but rather inferred through a combination of:
+	\begin{itemize}
+		\item \textbf{Model disagreement:} Reflecting uncertainty among committee members (i.e., ensemble regressors) regarding predicted outputs.
+		\item \textbf{Penalty-based signals:} Derived from prior simulation failures, with high penalties assigned to regions where convergence was historically poor.
+	\end{itemize}
+	
+	These two criteria informed the Isolation Forest’s unsupervised scoring, allowing the algorithm to isolate low-likelihood (infeasible) regions of the parameter space. Candidates with high anomaly scores were excluded from simulation, while more “normal” points (i.e., resembling successful prior samples) were retained for evaluation.
 	
 	\begin{itemize}
 		\item \textbf{Input:} Eight-dimensional material parameter vectors.
-		\item \textbf{Output:} Binary classification — feasible (1) or infeasible (0).
-		\item \textbf{Role:} Acts as a feasibility filter in each active learning iteration before proposing a sample for simulation.
+		\item \textbf{Output:} Anomaly score (used for weighted filtering).
+		\item \textbf{Role:} Filters out implausible or risky samples in each AL iteration, improving simulation yield.
 	\end{itemize}
 	
-	While direct performance metrics (e.g., accuracy or ROC AUC) are not available due to the lack of test labels outside simulation, the improvement in convergence rate during later AL iterations suggests that the filter effectively excluded infeasible regions over time.
+	While standard classification metrics are not applicable in this setting, the increase in convergence rate over the course of the active learning loop indicates that the filter effectively reduced wasted simulation attempts by avoiding infeasible regions.
+	
 	
 	\subsection{MLP Regressor: Surrogate for $\theta$-Projection Parameters}
 	\label{Subsection::Results_MLP}
