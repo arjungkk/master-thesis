@@ -410,69 +410,7 @@
 		\label{tab:model_errors}
 	\end{table}
 	
-%	\needspace{5\baselineskip}
-	\section{Active Learning}
-	\label{Section::Results_AL}
-	
-	The active learning loop was run for 2000 iterations, selecting one new samples per iteration. The parameter ranges were chosen as described in Table~\ref{tab:param_ranges}.
-	The Isolation Forest  classifier is used as the region filter of the active learning loop. Figure~\ref{fig:pairwise_projections} shows the pairwise projection maps illustrating convergence patterns in the parameter space.
-	
-	\begin{figure}[htbp]
-		\centering
-		\begin{tabular}{cccc}  % 4 columns
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_1.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_2.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_3.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_4.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_5.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_6.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_7.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_8.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_9.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_10.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_11.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_12.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_13.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_14.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_15.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_16.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_17.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_18.png} \\
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_19.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_20.png} &
-			\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_21.png} 
-		\end{tabular}
-		\caption{Pairwise projections of the material model parameters.}
-		\label{fig:pairwise_projections}
-	\end{figure}
-	
-	\noindent
-	\begin{minipage}{\textwidth}
-		The creep curves sampled through active learning are shown in the figure~\ref{fig:creep_curves_AL_lagamine}. Only 980 of the 2000 generated samples converged when evaluated using the Lagamine solver.
-		
-		\vspace{1em}
-		\includegraphics[width=0.9\textwidth]{figures/creep_curves_AL_lagamine.png}
-		\captionof{figure}{Creep curves sampled from AL.}
-		\label{fig:creep_curves_AL_lagamine}
-	\end{minipage}
-	
-	\begin{table}[htbp]
-		\centering
-		\caption{Summary of Active Learning Results}
-		\label{tab:al_summary}
-		\begin{tabular}{lc}
-			\toprule
-			\textbf{Description} & \textbf{Value} \\
-			\midrule
-			Total queries attempted & 2000 \\
-			Converged simulations & 980 \\
-			Initial training samples & 100 \\
-			Model used in loop & MLP (for $\theta$ projection) \\
-			Sampling strategy & Differential Evolution + Feasibility Filter \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-	
+%	\needspace{5\baselineskip}	
 	\section{Active Learning}
 	\label{Section::Results_AL}
 	
@@ -502,10 +440,30 @@
 	\subsection{Exploration of the Parameter Space}
 	
 	To visualize how the active learning algorithm explored the material model parameter space, pairwise scatter plots were generated for all combinations of the eight parameters. These plots reveal the regions where convergence was successfully achieved, illustrating the feasible subspace that the AL loop progressively uncovered.
-	
+
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=\textwidth]{figures/convergence/pairwise_projections_1.png} % Replace with montage
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_1.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_2.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_3.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_4.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_5.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_6.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_7.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_8.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_9.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_10.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_11.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_12.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_13.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_14.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_15.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_16.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_17.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_18.png} \\
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_19.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_20.png} &
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_21.png} 
 		\caption{Pairwise scatter plots of converged samples in the material parameter space. These plots highlight how active learning focuses on regions where the finite element solver achieves convergence.}
 		\label{fig:pairwise_projections}
 	\end{figure}
