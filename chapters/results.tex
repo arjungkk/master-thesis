@@ -336,7 +336,7 @@
 	 
 	\subsubsection*{Performance Summary}
 	
-	All models were evaluated on the 20\% test split using Mean Absolute Error (MAE) and $R^2$ score. Table~\ref{tab:model_performance} summarizes the performance of each model.	
+	All models were evaluated on the 20\% test split using Mean Absolute Error (MAE) between the actual and predicted parameters and $R^2$ score. Table~\ref{tab:model_performance} summarizes the performance of each model.	
 	
 	\begin{table}[ht]
 		\centering
@@ -354,7 +354,7 @@
 		\label{tab:model_performance}
 	\end{table}
 	
-	Among the evaluated models, the Voting Regressor demonstrated the best overall performance in terms of both MAE and $R^2$ score. To assess the quality of inverse predictions, the predicted parameters were used to reconstruct creep curves using the Lagamine solver (Figure~\ref{fig:curve_recon_model_params}).	
+	Among the evaluated models, the Voting Regressor demonstrated the best overall performance in terms of both MAE and $R^2$ score. To assess the quality of inverse predictions, the predicted parameters were used to reconstruct creep curves (Figure~\ref{fig:curve_recon_model_params}).	
 		
 	\begin{figure}[H]
 		\centering
