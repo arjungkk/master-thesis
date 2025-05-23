@@ -361,10 +361,9 @@
 	
 	\subsection{Comparative Evaluation of Creep Curve Representations}
 	\label{Subsection::Results_ModelComparison}
+	The creep curve representations discussed in Section~\ref{Section::Results_CreepCurveRepresentations} are evaluated using three key performance metrics: \textbf{Root Mean Square Error (RMSE)}, \textbf{absolute error in minimum creep strain rate prediction}, and \textbf{absolute error in time-to-rupture prediction}.
 	
-	The models discussed in section~\ref{Section::Results_CreepCurveRepresentations} are evaluated using three key metrics: Root Mean Square Error (RMSE), minimum creep strain rate absolute prediction error, and time to rupture absolute prediction error.
-	
-	The histograms in the Figure~\ref{fig:rmse_reconstruction_errors} shows the distribution of RMSE values for each model. Lower RMSE values indicate more accurate reconstruction of the original creep curves. The errors are lower for the empirical models ($theta$-projection and the three-parameter models). But the polynomial kernel PCA seems to be performing the worst.
+	Figure~\ref{fig:rmse_reconstruction_errors} shows the distribution of RMSE values for each model. Lower RMSE values correspond to more accurate reconstructions of the original creep curves. Among all methods, the empirical models, $\theta$-projection and the three-parameter model, demonstrate the lowest reconstruction errors. In contrast, the polynomial kernel PCA yields the highest RMSE, indicating poorer reconstruction quality.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -373,7 +372,8 @@
 		\label{fig:rmse_reconstruction_errors}
 	\end{figure}
 	
-	Figure~\ref{fig:min_creep_rate_error_hist} presents the distribution of errors in minimum creep strain rate predictions, which are crucial for assessing material degradation rates.
+	Figure~\ref{fig:min_creep_rate_error_hist} presents the distribution of the absolute errors in minimum creep strain rate prediction, which are crucial for assessing material degradation rates. 
+	
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[width=1\textwidth]{figures/min_creep_rate_error_hist.png}
