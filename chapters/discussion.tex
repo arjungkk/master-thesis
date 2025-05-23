@@ -71,7 +71,7 @@ The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}
 
 \subsection{Representation of Creep Curves Using Morch Model Parameters}
 
-The inverse modelling task focused on predicting seven Morch model parameters from simulated creep curves using four ensemble regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. Among these, the Voting Regressor achieved the best overall performance in terms of mean absolute error and $R^2$ score (see Table~\ref{tab:model_performance}). But the error and $R^2$ scores are not very good. so, as this is the best model, it shows that the complete approach is not working. 
+The inverse modelling task focused on predicting seven Morch model parameters from simulated creep curves using four ensemble regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. Among these, the Voting Regressor achieved the best overall performance in terms of mean absolute error and $R^2$ score (see Table~\ref{tab:model_performance}). But the error and $R^2$ scores are not very good. It shows that the complete approach is not working. 
 
 The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) reveal varied performance across the individual parameters. Some parameters, such as the creep damage exponent $s_c$ and the drag stress $K$, show better alignment along the space diagonal—indicating more accurate predictions. However, other parameters, particularly the viscosity exponent $n$, the hardening parameters $Q$ and $b$, and the damage exponent $k_c$, are poorly predicted and deviate significantly from the ideal diagonal.
 
