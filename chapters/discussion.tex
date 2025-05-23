@@ -74,6 +74,19 @@ These challenges are consistent with findings reported in recent literature. In 
 
 The reconstructed creep curves using the predicted parameters (Figure~\ref{fig:curve_recon_model_params}) further illustrate these limitations. While some global trends are retained, the curves frequently diverge from the original FEM simulations, especially in the tertiary regime. This highlights the compounded impact of parameter misestimation and the need for regularization or uncertainty quantification in future inverse modelling pipelines.
 
+\subsection{Representation of Creep Curves Using Morch Model Parameters}
+
+The inverse modelling task involved predicting seven Morch model parameters from simulated creep curves using four ensemble regression models. Among these, the Voting Regressor achieved the best overall performance in terms of mean absolute error and $R^2$ score (Table~\ref{tab:model_performance}). But the error and $R^2$ scores are not very good. It shows that the complete approach is not working. 
+
+However, the parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) indicate limited agreement between predicted and ground truth values for most parameters. Notably, the drag stress $K$ and the viscosity exponent $n$ were among the least accurately predicted parameters, even though they primarily influence the secondary (steady-state) creep regime. This poor predictability is likely due to low sensitivity and limited variation across the dataset, which reduces the signal-to-noise ratio during training and makes accurate learning difficult.
+
+In contrast, parameters such as $s_c$, $S_c$, and $k_c$, which govern the onset and progression of tertiary creep, were slightly better predicted in some cases. This might be attributed to the more distinct patterns associated with creep acceleration before rupture, offering stronger training signals.
+
+These challenges in parameter identifiability and regression performance align with observations made in recent work by Morand et al.~\cite{morand2024data}, where similar issues were encountered in the inverse identification of visco-plastic material models. They emphasized that certain parameters exhibit overlapping effects on the curve shape, complicating the regression task and leading to ambiguous mappings from creep behaviour to parameter values.
+
+Overall, although ensemble regression models offer a degree of robustness, the inverse modelling results highlight fundamental limitations in parameter identifiability and model sensitivity, particularly in high-dimensional and overlapping parameter spaces.
+
+
 
 
 \section{Active Learning Efficiency}
