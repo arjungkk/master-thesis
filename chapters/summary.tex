@@ -25,12 +25,12 @@ Key contributions include:
 	
 	\item \textbf{Dimensionality Reduction:} Dimensionality reduction techniques were applied with different padding strategies to solve the problem of having different input vector lengths. Normalization by rupture time enabled effective compression into low-dimensional spaces.
 	
-	\item \textbf{Regression modelling:} Ensemble regressors predicted material parameters from creep curve features. Among these, the Voting Regressor achieved the best trade-off between accuracy and generalization.
+	\item \textbf{Regression modelling:} Ensemble regressors predicted material parameters from creep curve features.  This approach did not work due to the ill-posedness of the inverse problem.
 	
 	\item \textbf{Active Learning:} A feasibility-guided loop using differential evolution added 980 new convergent samples from 2000 queries, enhancing model diversity and coverage.
 \end{itemize}
 
-\section{Future Work and Outlook}
+\section{Outlook}
 
 Despite promising results, several limitations and opportunities for further work remain:
 
