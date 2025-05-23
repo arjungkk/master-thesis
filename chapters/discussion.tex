@@ -128,21 +128,16 @@ Despite these limitations, the framework remains a flexible and extensible found
 \section{Real-World Relevance}
 \label{Section::Discussion_RealWorldRelevance}
 
-Creep behaviour plays a critical role in the design and durability of structural components operating under prolonged high-temperature and load conditions—such as in power plants, aerospace engines, and nuclear reactors. Traditional modelling approaches require extensive experimental campaigns or computationally expensive simulations, both of which limit their scalability and responsiveness in fast-paced engineering environments.
-
-The hybrid simulation-learning framework presented in this work addresses this limitation by enabling rapid, data-driven estimation of creep behaviour while preserving physical interpretability through empirical model fitting. This capability is particularly valuable in:
+While this thesis focused on synthetic data and model validation in a controlled setting, the developed methodology has potential relevance for practical applications in materials engineering. In particular, the hybrid simulation-learning workflow could contribute to:
 
 \begin{itemize}
-	\item \textbf{Alloy design and qualification:} Quickly screening large design spaces for viable candidate materials by predicting long-term creep behaviour from a small set of simulations.
-	
-	\item \textbf{Digital twin applications:} Embedding fast surrogate models into digital replicas of operational systems for real-time monitoring, performance forecasting, and maintenance scheduling.
-	
-	\item \textbf{Accelerated certification:} Providing reliable creep curve predictions for new material compositions or geometries, reducing the need for exhaustive creep testing.
-	
-	\item \textbf{Predictive maintenance:} Estimating component lifetimes based on predicted creep rates and rupture times, especially in sectors where downtime is costly.
+	\item \textbf{Data-efficient materials design:} Reducing the number of required simulations by actively targeting informative regions of the design space.
+	\item \textbf{Faster model calibration:} Using surrogate models to accelerate the inverse identification of material parameters.
+	\item \textbf{Interpretable curve compression:} Leveraging empirical representations (e.g., $\theta$-projection) to simplify creep data storage and analysis.
 \end{itemize}
 
-By bridging the gap between simulation fidelity and computational efficiency, this approach empowers engineers to make more informed, rapid decisions in critical high-temperature design contexts.
+These aspects align with broader trends in computational materials science, where combining domain knowledge with machine learning enables more scalable and interpretable modelling workflows. A detailed reflection on how the thesis addressed its goals and research questions is provided in the concluding chapter.
+
 
 \clearpage
 
