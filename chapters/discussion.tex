@@ -66,7 +66,7 @@ To address this, Kernel PCA was employed with both Radial Basis Function (RBF) a
 
 On the other hand, the RBF kernel, known for its universal approximation capability, slightly outperformed the polynomial kernel under zero padding and normalization schemes (Figures~\ref{fig:kpca_zero_fill}, \ref{fig:kpca_norm_rupture_time}). RBF kernels can, in theory, approximate any continuous function given appropriate parameter tuning. However, in practice, their performance is highly sensitive to hyperparameters and data preprocessing factors that may have limited their effectiveness in this case.
 
-Overall, despite their theoretical flexibility, the kernel-based methods did not yield dramatically better reconstructions, especially in the tertiary stage. This can be attributed to the challenge of capturing abrupt, high-curvature regions like those preceding rupture, which are often underrepresented in the training data due to their rarity or variability.
+Overall, despite their theoretical flexibility, the kernel-based methods did not yield dramatically better reconstructions, especially in the tertiary stage. This can be attributed to the challenge of capturing abrupt, high-curvature regions like those preceding rupture, which are often under-represented in the training data due to their rarity or variability.
 
 Among the input preprocessing strategies, normalization by rupture time emerged as the most robust. It avoided the artefacts introduced by padding and ensured that the input vectors aligned in a physically meaningful way. Zero and max strain padding, in contrast, introduced distortions that overshadowed the true creep characteristics, particularly for curves with early rupture times.
 
