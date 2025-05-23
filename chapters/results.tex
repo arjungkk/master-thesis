@@ -197,10 +197,8 @@
 	
 	Kernel PCA was applied to the preprocessed creep strain–time data using both polynomial and RBF kernels. As with PCA, different preprocessing strategies yielded varying reconstruction performance.
 	
-	\needspace{3\baselineskip} 
-	\subsubsubsection{Zero Padding:}
-	
-	The best-performing kernel parameters for zero-padded data were determined using a grid search strategy. Grid search is a systematic hyperparameter optimization technique that evaluates a predefined set of parameter combinations through exhaustive search. For each candidate configuration, Kernel PCA was applied to the dataset, and the reconstruction error was used as the performance metric. The combination that yielded the lowest average reconstruction error on the validation set was selected as optimal.
+	%\needspace{3\baselineskip} 
+	\textbf{Zero Padding:} The best-performing kernel parameters for zero-padded data were determined using a grid search strategy. Grid search is a systematic hyperparameter optimization technique that evaluates a predefined set of parameter combinations through exhaustive search. For each candidate configuration, Kernel PCA was applied to the dataset, and the reconstruction error was used as the performance metric. The combination that yielded the lowest average reconstruction error on the validation set was selected as optimal.
 	
 	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels:
 	
