@@ -30,11 +30,6 @@ To mitigate this, a feasibility filter based on Isolation Forest anomaly scores 
 
 Overall, these findings underscore the critical role of careful parameter range selection in data-driven materials modelling. Balancing wide coverage (to enable generalizable models and capture multiple deformation mechanisms) with numerical stability (to ensure simulation feasibility) remains a key challenge. Future work may benefit from incorporating physics-informed constraints or mechanism-specific priors to guide the sampling process more effectively.
 
-
-The input parameter ranges defined for dataset generation (Table~\ref{tab:param_ranges}) were designed to broadly capture material behaviour under varying stress conditions. While 3376 simulations were generated successfully during initial sampling, only 980 of 2000 additional samples converged during the active learning loop. This suggests that certain regions in the parameter space, although mathematically plausible, may lead to numerical instabilities or physically infeasible behaviours when processed by the Lagamine solver.
-
-The discrepancy in convergence rate emphasizes the importance of convergence-aware sampling strategies, particularly in iterative learning frameworks. The use of a feasibility filter in later stages was a step in this direction but may require further refinement to enhance sampling efficiency.
-
 \section{Empirical Model Fits}
 
 Both empirical models, the $\theta$-projection model and the three-parameter exponential model, were evaluated for their ability to represent the simulated creep curves. The $\theta$-projection model achieved superior performance in terms of RMSE and deviation (Figures~\ref{fig:theta_fit_whole_set} and \ref{fig:theta_fit_max_deviation}) from the original creep curves, consistently producing better fits across the dataset.
