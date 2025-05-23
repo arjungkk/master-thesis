@@ -370,10 +370,10 @@
 		\includegraphics[width=1\textwidth]{figures/rmse_reconstruction_errors.png}
 		\caption{Histogram of RMSE values for different creep curve representation models.}
 		\label{fig:rmse_reconstruction_errors}
-	\end{figure}
+	\end{figure}	
 	
-	Figure~\ref{fig:min_creep_rate_error_hist} presents the distribution of the absolute errors in minimum creep strain rate prediction, which are crucial for assessing material degradation rates. 
-	
+	Figure~\ref{fig:min_creep_rate_error_hist} presents the distribution of the absolute errors in minimum creep strain rate prediction. This metric is particularly important as it reflects the model’s ability to capture the material’s rate of deformation during the steady-state creep phase, which is critical for assessing long-term degradation behaviour and service life. Among all methods, the $\theta$-projection model achieves the lowest prediction errors, while the polynomial kernel PCA yields the highest, indicating weaker performance in capturing this key physical characteristic.
+		
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[width=1\textwidth]{figures/min_creep_rate_error_hist.png}
