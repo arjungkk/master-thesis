@@ -216,7 +216,7 @@
 		\label{tab:best_params_zero_fill}
 	\end{table}
 	
-	The parameter \texttt{n_components} defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels—smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{degree} sets the polynomial order, and \texttt{coef_0} is an additive constant that influences higher-order terms. These hyperparameters jointly control the nonlinearity and complexity of the feature space used to capture structure in the data.
+	The parameter $\{n\_components}$ defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels—smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{degree} sets the polynomial order, and \texttt{coef_0} is an additive constant that influences higher-order terms. These hyperparameters jointly control the nonlinearity and complexity of the feature space used to capture structure in the data.
 	
 	The reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}.
 	
