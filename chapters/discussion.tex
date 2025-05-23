@@ -40,6 +40,22 @@ The use of empirical models for creep prediction has been explored in earlier st
 
 In contrast, recent work by \textit{Dacol and Caetano}~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modelling. While computationally simple, the results indicate that this model slightly underperformed compared to the $\theta$-model in capturing creep curve shape, especially in the tertiary regimes.
 
+\section{Empirical Model Fits}
+
+Both empirical models, the $\theta$-projection model and the three-parameter exponential model, were evaluated for their ability to represent the simulated creep curves. As shown in Figures~\ref{fig:theta_fit_whole_set} and~\ref{fig:theta_fit_max_deviation}, the $\theta$-projection model consistently produced slightly lower RMSE and smaller deviations from the original creep curves, outperforming the three-parameter model across the dataset.
+
+The superior performance of the $\theta$-projection model can be attributed to its structural flexibility. It incorporates two parameters each to describe the primary and tertiary creep stages individually, and collectively they can approximate the secondary stage. In contrast, the three-parameter model—though computationally simpler—often failed to adequately capture the nonlinear behaviour in the tertiary regime (Figure~\ref{fig:three_stage_fit_whole_dataset}), likely due to its limited expressiveness.
+
+However, a major limitation of both empirical models is their inability to explicitly model or predict rupture time. Neither formulation includes a mechanism to internally determine when rupture occurs. To generate a full creep curve that ends at rupture, the rupture time must be externally provided alongside the fitted parameters. While this approach reduces the model's dimensionality and maintains interpretability, it also means that rupture time prediction is not part of the empirical model's scope. Consequently, these models cannot be used to estimate time to failure without auxiliary methods or surrogate models that provide rupture time as a separate input.
+
+On the other hand, this limitation enables one practical benefit: if rupture time is known or assumed, the full creep curve can be reconstructed with high fidelity using a small number of parameters. In this case, the rupture time prediction error becomes effectively zero, as it is directly specified rather than estimated.
+
+The use of empirical models for creep prediction has been supported by prior studies. For example, \textit{Brown et al.}~\cite{brown2002extrapolation} demonstrated the effectiveness of the $\theta$-projection model for long-term creep extrapolation in power plant steels, showing strong agreement with experimental trends. This study confirms the model’s flexibility, as it achieved the lowest RMSE among all representations considered (Table~\ref{tab:model_errors}).
+
+In comparison, \textit{Dacol and Caetano}~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modeling. Although its simplicity makes it attractive for quick applications, it slightly underperformed relative to the $\theta$-model, particularly in representing the tertiary stage, which often involves sharp curvature and acceleration toward rupture.
+
+
+
 \section{Dimensionality Reduction of Creep Curves}
 
 Principal Component Analysis (PCA) was applied using three different strategies for handling non-uniform input lengths. Zero padding and normalization by rupture time led to high variance capture in fewer components, with the first 2–3 components explaining over 95\% of the total variance (Figures~\ref{fig:pca_variance_zero}, \ref{fig:pca_variance_max}, \ref{fig:pca_variance_norm}). These results suggest that the time-dependent creep behaviour can be effectively compressed into low-dimensional representations, especially under standardized input transformations.
