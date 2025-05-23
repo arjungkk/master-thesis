@@ -201,7 +201,7 @@
 	\textbf{Zero Padding:} The best-performing kernel parameters for zero-padded data were determined using a grid search strategy. Grid search is a systematic hyperparameter optimization technique that evaluates a predefined set of parameter combinations through exhaustive search. For each candidate configuration, Kernel PCA was applied to the dataset, and the reconstruction error was used as the performance metric. The combination that yielded the lowest average reconstruction error on the validation set was selected as optimal.
 	
 	\needspace{3\baselineskip} 
-	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels:
+	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels.
 	
 	\begin{table}[H]
 		\centering
@@ -219,7 +219,7 @@
 	
 	The parameter \texttt{$n\_components$} defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels, smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{$degree$} sets the polynomial order, and \texttt{$coef\_0$} is an additive constant that influences higher-order terms. These hyperparameters jointly control the non-linearity and complexity of the feature space used to capture structure in the data.
 	
-	The reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}.
+	The original vs. reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}.
 	
 	\begin{figure}[H]
 		\centering
