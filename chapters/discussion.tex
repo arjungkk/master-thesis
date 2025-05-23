@@ -30,17 +30,7 @@ Overall, these findings underscore the critical role of careful parameter range 
 
 \section{Creep Curve Representations}
 
-\section{Empirical Model Fits}
-
-Both empirical models, the $\theta$-projection model and the three-parameter exponential model, were evaluated for their ability to represent the simulated creep curves. The $\theta$-projection model achieved superior performance in terms of RMSE and deviation (Figures~\ref{fig:theta_fit_whole_set} and \ref{fig:theta_fit_max_deviation}) from the original creep curves, consistently producing better fits across the dataset.
-
-The three-parameter model, while offering a simplified representation of the creep behaviour, showed a slightly higher deviation (Figure~\ref{fig:three_stage_fit_whole_dataset}). This suggests that although both models are capable of capturing the general creep phases, the $\theta$-projection model is more flexible in representing nuanced variations in creep behaviour. The $\theta$-projection model has two parameters each to represent both the primary and tertiary stages separately, and the four together can represent the secondary stage. The three-parameter model sometimes fail to capture the tertiary stage with just three parameters. 
-
-The use of empirical models for creep prediction has been explored in earlier studies. For instance, \textit{Brown et al.}~\cite{brown2002extrapolation} established the effectiveness of the $\theta$-projection model in long-term creep extrapolation for power plant steels, showing strong agreement with experimental data. The findings in this study confirms this flexibility, as the $\theta$-projection model achieved the lowest RMSE across the dataset (see Table~\ref{tab:model_errors}).
-
-In contrast, recent work by \textit{Dacol and Caetano}~\cite{dacol2022modelling} applied the three-parameter exponential model for unified creep phase modelling. While computationally simple, the results indicate that this model slightly underperformed compared to the $\theta$-model in capturing creep curve shape, especially in the tertiary regimes.
-
-\section{Empirical Model Fits}
+\subsection{Empirical Model Fits}
 
 Both empirical models, the $\theta$-projection model and the three-parameter exponential model, were evaluated for their ability to represent the simulated creep curves. As shown in Figures~\ref{fig:theta_fit_whole_set} and~\ref{fig:theta_fit_max_deviation}, the $\theta$-projection model consistently produced slightly lower RMSE and smaller deviations from the original creep curves, outperforming the three-parameter model across the dataset.
 
