@@ -166,7 +166,7 @@
 		\label{fig:pca_variance_max}
 	\end{figure}
 	
-	The original vs. the reconstructed creep curves with the maximum creep strain padding are shown in figure~\ref{fig:pca_max_fill}. The reconstructed creep curves are having very large deviations from the original creep curves.
+	The original vs. the reconstructed creep curves with the maximum creep strain padding are shown in figure~\ref{fig:pca_max_fill}. For curves with early rupture times, this padding strategy introduces excessive distortion, causing the padded region to dominate the training data. As a result, key features of the original creep behaviour—particularly in the primary and tertiary stages—are diminished, leading to significant reconstruction errors.
 	
 	\begin{figure}[H]
 		\centering
