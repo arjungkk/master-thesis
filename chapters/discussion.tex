@@ -82,6 +82,18 @@ The active learning loop aimed to iteratively explore the parameter space for ph
 
 The selection strategy, based on differential evolution combined with a feasibility filter, showed promise but could benefit from integration with uncertainty quantification or probabilistic feasibility modelling to reduce the rate of failed samples. While previous studies have often relied on static datasets, the integration of active learning in this study represents a novel hybrid strategy combining physics-based solvers with intelligent sampling. Although convergence challenges remain, this approach demonstrates potential for data-efficient exploration of high-dimensional material parameter spaces.
 
+\section{Active Learning Efficiency}
+
+The active learning (AL) loop aimed to iteratively explore the high-dimensional material parameter space while maximizing the efficiency of finite element simulations. The visualizations in Figure~\ref{fig:pairwise_projections} indicate a progressive tightening around the feasible domain, suggesting that the AL algorithm effectively concentrated sampling efforts in regions of interest, i.e., where the solver converged.
+
+Out of 2000 queries proposed during the AL iterations, 980 led to successful simulations. This reflects not just the limitations of the surrogate model, but also the underlying complexity of the parameter space. Notably, the integration of a feasibility filter — implemented using a weighted Isolation Forest — proved essential for reducing the frequency of unproductive simulations. Contrary to initial expectations, convergence challenges were not a residual problem but were actively managed by this filter throughout the process.
+
+The selection strategy combined differential evolution with committee-based uncertainty sampling, where model disagreement served as a proxy for epistemic uncertainty. This mechanism allowed the algorithm to balance exploration of uncertain regions with exploitation of already known feasible areas.
+
+While previous studies have often relied on static datasets, this work demonstrates how embedding AL into a physics-informed workflow — supported by surrogate models and feasibility classifiers — can enable more data-efficient coverage of the simulation space. Future work could enhance this framework further by incorporating explicit probabilistic modelling of feasibility or adaptive sampling techniques guided by uncertainty quantification.
+
+
+
 \section{Model Performance Comparison}
 
 The final evaluation compared all the creep curve representation methods using RMSE, minimum creep rate error, and time to rupture prediction (Table~\ref{tab:model_errors}). Both empirical models outperformed data-driven methods in terms of RMSE and creep rate error, especially the $\theta$-projection model.
