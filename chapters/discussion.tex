@@ -69,6 +69,19 @@ The inverse modelling task involved predicting seven Morch model parameters from
 
 The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) do not show strong agreement between predicted and true values. Some parameters, particularly those with limited variation across the dataset, may impair the signal-to-noise ratio, making them harder to predict accurately. Overall, the performance of these models was relatively low, as indicated in Table~\ref{tab:model_performance}. The reconstructed creep curves (Figure~\ref{fig:curve_recon_model_params}) also did not appear to closely match the original curves.
 
+\subsection{Representation of Creep Curves Using Morch Model Parameters}
+
+The inverse modelling task focused on predicting seven Morch model parameters from simulated creep curves using four ensemble regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. Among these, the Voting Regressor achieved the best overall performance in terms of mean absolute error and $R^2$ score (see Table~\ref{tab:model_performance}). But the error and $R^2$ scores are not very good. so, as this is the best model, it shows that the complete approach is not working. 
+
+The parity plots (Figures~\ref{fig:RF_regression} to \ref{fig:voting_regression}) reveal varied performance across the individual parameters. Some parameters, such as the creep damage exponent $s_c$ and the drag stress $K$, show better alignment along the space diagonal—indicating more accurate predictions. However, other parameters, particularly the viscosity exponent $n$, the hardening parameters $Q$ and $b$, and the damage exponent $k_c$, are poorly predicted and deviate significantly from the ideal diagonal.
+
+This discrepancy can be attributed to multiple factors. First, parameters such as $n$ and $K$ play a dominant role in governing the shape and progression of the creep curve, particularly in the tertiary stage. This introduces a high degree of sensitivity—small errors in these parameters can cause large deviations in creep behaviour, making them harder to estimate robustly from data. Additionally, if the distribution of values for a parameter is narrow or exhibits low variation in the training dataset, the regression models may lack the resolution to learn meaningful mappings.
+
+These challenges are consistent with findings reported in recent literature. In particular, Haruman et al.~\cite{haruman2024challenges} observed similar difficulties when applying surrogate modelling to inverse identification of viscoplastic material parameters. Their study demonstrated that parameters influencing tertiary creep and damage evolution tend to exhibit low identifiability due to coupled effects, limited data sensitivity, and non-uniqueness in inverse mapping.
+
+The reconstructed creep curves using the predicted parameters (Figure~\ref{fig:curve_recon_model_params}) further illustrate these limitations. While some global trends are retained, the curves frequently diverge from the original FEM simulations, especially in the tertiary regime. This highlights the compounded impact of parameter misestimation and the need for regularization or uncertainty quantification in future inverse modelling pipelines.
+
+
 
 \section{Active Learning Efficiency}
 
