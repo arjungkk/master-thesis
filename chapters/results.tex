@@ -473,6 +473,55 @@
 		\end{tabular}
 	\end{table}
 	
+	\section{Active Learning Results}
+	\label{Section::Results_AL}
+	
+	This section presents the outcomes of the active learning (AL) procedure, which was designed to efficiently sample material parameter configurations that lead to valid creep simulations. The AL loop was executed for 2000 iterations, with one new sample proposed per iteration. Parameter ranges were selected as defined in Table~\ref{tab:param_ranges}.
+	
+	\subsection{Sampling Efficiency and Convergence}
+	
+	Out of 2000 proposed samples, only 980 successfully converged when simulated using the \texttt{Lagamine} solver. This demonstrates the challenge of navigating the high-dimensional material parameter space and highlights the importance of incorporating a convergence filter within the sampling loop.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Summary of Active Learning Outcomes}
+		\label{tab:al_summary}
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Description} & \textbf{Value} \\
+			\midrule
+			Total AL queries attempted & 2000 \\
+			Converged simulations & 980 \\
+			Initial training samples & 100 \\
+			Surrogate model & MLP trained on $\theta$-projection parameters \\
+			Sampling strategy & Differential Evolution with Feasibility Filter \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Exploration of the Parameter Space}
+	
+	To visualize how the active learning algorithm explored the material model parameter space, pairwise scatter plots were generated for all combinations of the eight parameters. These plots reveal the regions where convergence was successfully achieved, illustrating the feasible subspace that the AL loop progressively uncovered.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{figures/convergence/pairwise_projections_1.png} % Replace with montage
+		\caption{Pairwise scatter plots of converged samples in the material parameter space. These plots highlight how active learning focuses on regions where the finite element solver achieves convergence.}
+		\label{fig:pairwise_projections}
+	\end{figure}
+	
+	\subsection{Creep Curves from Active Sampling}
+	
+	The creep curves resulting from the converged samples are shown in Figure~\ref{fig:creep_curves_AL_lagamine}. These curves span a wide range of rupture times and deformation behaviours, demonstrating the diversity of creep responses captured through the active learning loop.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/creep_curves_AL_lagamine.png}
+		\caption{Creep strain-time curves corresponding to converged simulations from the active learning process.}
+		\label{fig:creep_curves_AL_lagamine}
+	\end{figure}
+	
+	
 	\clearpage
 	
 	\ifstandalone
