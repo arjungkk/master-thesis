@@ -454,12 +454,12 @@
 	\end{figure}
 	
 	\section{Feasibility modelling with Active Learning}
-	\label{Subsection::Results_AL_ModelAnalysis}
+	\label{Section::Results_AL_ModelAnalysis}
 	
 	The active learning loop employed two key models to guide efficient sampling: an Isolation Forest classifier to filter infeasible parameter sets, and a Multilayer Perceptron (MLP) regressor to predict creep behaviour via $\theta$-projection model parameters.
 		
-	\subsubsection{Isolation Forest: Feasibility Filtering}
-	\label{Subsubsection::Results_IF}
+	\subsection{Isolation Forest: Feasibility Filtering}
+	\label{Subsection::Results_IF}
 	
 	To guide the sampling process during active learning, an Isolation Forest algorithm was employed as a \textbf{feasibility filter}. Rather than acting as a traditional binary classifier, the model assigned anomaly scores to candidate material parameter vectors, enabling \textit{weighted filtering} of the design space.
 	
