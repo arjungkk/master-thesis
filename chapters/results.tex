@@ -493,7 +493,7 @@
 	\begin{itemize}
 		\item \textbf{Input:} Material parameter vector (8 parameters).
 		\item \textbf{Output:} Fitted $\theta$-projection model parameters (4 values).		
-		\item \textbf{Architecture:} MLP with hidden layers (configurable), ReLU activations, and mean squared error loss.
+		\item \textbf{Architecture:} MLP with hidden layers (configurable).
 	\end{itemize}
 	
 	The model was trained on the initially available dataset and incrementally updated as new converged samples were added. The quality of this surrogate model is essential, as its predictions influence the selection of promising samples.
