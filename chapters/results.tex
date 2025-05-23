@@ -284,12 +284,12 @@
 	
 	This section presents the results of predicting the seven Morch material model parameters using four supervised regression models: Random Forest, Gradient Boosting, Stacking, and Voting Regressors. The models were trained on 80\% of the dataset and evaluated on the remaining 20\% test set to assess their generalization performance.
 	
-	For each regression model, parity plots are shown comparing the predicted values to the true values of the Morch parameters from the test set. Each point in the plot represents one sample, with its colour indicating the applied stress level. Ideally, perfect predictions would lie along the 45-degree diagonal line, where predicted values exactly match the true values. Systematic deviations from this line indicate under- or over-predictions, while greater scatter reflects higher prediction error or model uncertainty.
+	For each regression model, parity plots are shown comparing the predicted values to the true values of the Morch parameters (see Section~\ref{Subsection::Morch_model_represntation}) from the test set. Each point in the plot represents one sample, with its colour indicating the applied stress level. Ideally, perfect predictions would lie along the 45-degree diagonal line, where predicted values exactly match the true values. Systematic deviations from this line indicate under- or over-predictions, while greater scatter reflects higher prediction error or model uncertainty.
 	
 	\needspace{3\baselineskip} 
 	\subsubsection*{Random Forest Regression}
 	
-	Figure~\ref{fig:RF_regression} shows the parity plots for the parameters predicted by the Random Forest Regressor. 
+	Figure~\ref{fig:RF_regression} shows the parity plots for the parameters predicted by the Random Forest Regressor. The drag s
 	
 	\begin{figure}[htbp]
 		\centering
