@@ -416,11 +416,9 @@
 	
 	This section presents the outcomes of the active learning (AL) procedure, which was designed to efficiently sample material parameter configurations that lead to valid creep simulations. The AL loop was executed for 2000 iterations, with one new sample proposed per iteration. Parameter ranges were selected as defined in Table~\ref{tab:param_ranges}.
 	
-	\subsection{Sampling Efficiency and Convergence}
+	\subsection{Sampling Efficiency and Convergence}	
 	
-	Out of 2000 proposed samples, only 980 successfully converged. This demonstrates the challenge of navigating the high-dimensional material parameter space and highlights the importance of incorporating a convergence filter within the sampling loop.
-	
-	Table~\ref{tab:al_summary} summarizes the key outcomes of the active learning loop. A total of 2000 samples were proposed, out of which 980 resulted in converged finite element simulations using the \texttt{Lagamine} solver.
+	Table~\ref{tab:al_summary} summarizes the key outcomes of the active learning loop. A total of 2000 samples were proposed, out of which 980 resulted in converged. This demonstrates the challenge of navigating the high-dimensional material parameter space and highlights the importance of incorporating a convergence filter within the sampling loop.
 	
 	The surrogate model used within the active learning loop was a \textbf{Multilayer Perceptron (MLP)} — a type of fully connected feedforward neural network — trained to predict the $\theta$-projection parameters representing the shape of the creep curve. These predictions guided the selection of informative new samples in the parameter space.
 	
