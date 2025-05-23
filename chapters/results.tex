@@ -445,16 +445,7 @@
 	
 	\subsection{Exploration of the Parameter Space}
 	
-	To visualize how the active learning algorithm explored the material model parameter space, pairwise scatter plots were generated for all combinations of the eight parameters. These plots reveal the regions where convergence was successfully achieved, illustrating the feasible subspace that the AL loop progressively uncovered.
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_1.png}
-		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_2.png}
-		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_3.png}
-		\caption{Selected pairwise scatter plots of converged samples in the material parameter space. These plots illustrate how active learning guides sampling toward feasible regions. Colour indicates simulation convergence (red = converged, blue = non-converged). For all pairwise combinations, refer to Appendix~\ref{Appendix::PairwisePlots}.}
-		\label{fig:pairwise_projections_main}
-	\end{figure}
+	
 	
 	\subsection{Creep Curves from Active Sampling}
 	
@@ -490,6 +481,17 @@
 		\item \textbf{Output:} Anomaly score (used for weighted filtering).
 		\item \textbf{Role:} Filters out implausible or risky samples in each AL iteration, improving simulation yield.
 	\end{itemize}
+	
+	To visualize how the active learning algorithm explored the material model parameter space, pairwise scatter plots were generated for all combinations of the eight parameters. These plots reveal the regions where convergence was successfully achieved, illustrating the feasible subspace that the AL loop progressively uncovered.
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_1.png}
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_2.png}
+		\includegraphics[width=0.32\textwidth]{figures/convergence/pairwise_projections_3.png}
+		\caption{Selected pairwise scatter plots of converged samples in the material parameter space. These plots illustrate how active learning guides sampling toward feasible regions. Colour indicates simulation convergence (red = converged, blue = non-converged). For all pairwise combinations, refer to Appendix~\ref{Appendix::PairwisePlots}.}
+		\label{fig:pairwise_projections_main}
+	\end{figure}
 	
 	The increase in convergence rate over the course of the active learning loop indicates that the filter effectively reduced wasted simulation attempts by avoiding infeasible regions.
 	
