@@ -120,7 +120,7 @@ While the presented framework demonstrates promising results in creep modelling 
 		
 	\item \textbf{Poor inverse model accuracy:} The parity plots and performance metrics (e.g., $R^2 < 0.30$) show that inverse modelling of the full set of Morch material parameters approach does not work because of poor parameter prediction.
 	
-	\item \textbf{Rupture prediction limitations:} Empirical models, while offering excellent fit, do not natively support time to rupture prediction, which limits their applicability for long-term life assessments.
+	\item \textbf{Rupture prediction limitations:} Empirical models, while offering excellent fit, do not natively support time to rupture prediction, which limits their applicability for long-term life assessments. The rupture time must be externally provided alongside the fitted parameters with some other auxiliary method.
 	
 	\item \textbf{Active learning convergence challenges:} Although the active learning loop improved sampling efficiency, only 980 out of 2000 queries converged. This indicates that the feasibility filter may not fully capture the solver’s stability domain, leading to wasted queries and computational cost.
 	
