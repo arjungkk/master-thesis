@@ -296,8 +296,7 @@
 		\caption{Parity plots for the material model parameters predicted by Random Forest Regressor colour coded by applied stress.}
 		\label{fig:RF_regression}
 	\end{figure}
-	
-	\needspace{3\baselineskip} 
+		
 	\subsubsection*{Gradient Boosting Regression}
 	
 	Figure~\ref{fig:GB_regression} shows the parity plots for the parameters predicted by the Gradient Boosting Regressor. Similar to Random Forest regressor, the parameters $K$ and $s_c$ exhibit relatively good agreement between predicted and true values while the parameters such as $n$, $Q$, and $k_c$ show poor predictive performance.
@@ -309,7 +308,6 @@
 		\label{fig:GB_regression}
 	\end{figure}
 	
-	\needspace{3\baselineskip} 
 	\subsubsection*{Stacking Regression}
 	
 	Figure~\ref{fig:stacking_regression} shows the parity plots for the parameters predicted by the Stacking Regressor.	It shows similar prediction accuracies like the other two regressors, but slightly better.
@@ -321,7 +319,6 @@
 		\label{fig:stacking_regression}
 	\end{figure}
 	
-	\needspace{3\baselineskip} 
 	\subsubsection*{Voting Regression}
 	
 	Figure~\ref{fig:voting_regression} shows the parity plots for the parameters predicted by the Voting Regressor. It has the best prediction accuracies among the regressors analysed in this study. But still, most of the parameters show significant deviation from the diagonal, indicating high model error. 
