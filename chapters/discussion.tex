@@ -86,27 +86,6 @@ The selection strategy combined differential evolution with committee-based unce
 
 While previous studies have often relied on static datasets, this work demonstrates how embedding AL into a physics-informed workflow, supported by surrogate models and feasibility classifiers, can enable more data-efficient coverage of the simulation space. Future work could enhance this framework further by incorporating explicit probabilistic modelling of feasibility or adaptive sampling techniques guided by uncertainty quantification.
 
-\section{Model Performance Comparison}
-
-The final evaluation compared all the creep curve representation methods using RMSE, minimum creep rate error, and time to rupture prediction (Table~\ref{tab:model_errors}). Both empirical models outperformed data-driven methods in terms of RMSE and creep rate error, especially the $\theta$-projection model.
-
-However, time to rupture predictions were not possible using the empirical models, highlighting a trade-off: empirical models provide accuracy and interpretability, while data-driven models offer generalizability and completeness.
-
-These comparisons underline the importance of choosing representations based on the intended application, whether for interpretability, simulation compatibility, or downstream surrogate modelling.
-
-\section{Integration Potential}
-\label{Section::Discussion_Integration}
-
-The hybrid modelling framework developed in this study exhibits strong potential for integration into broader material modelling and engineering design workflows. By combining finite element simulation, dimensionality reduction, supervised regression, and active learning, the methodology enables efficient approximation of time-dependent creep behaviour without repeated high-fidelity simulations.
-
-In particular, the surrogate models trained on $\theta$-projection parameters or PCA representations can serve as fast evaluators within finite element-based design optimization loops. Instead of solving the full constitutive creep equations during each simulation step, pre-trained regressors can be queried to provide creep predictions at significantly reduced computational cost.
-
-Moreover, the active learning loop presents a scalable approach for generating focused datasets that are tailored to the regions of design interest. This makes the method suitable for use in inverse modelling pipelines, where rapid identification of material parameters from experimental creep data is required.
-
-The interpretability of the empirical model parameters also facilitates integration into digital twin frameworks, where real-time predictions and decision-making require both accuracy and transparency. Furthermore, the ability to reconstruct creep curves from a compact set of parameters allows for compression and storage efficiency in material databases (like the Data-Space Management System at Fraunhofer IWM) and automated testing systems.
-
-Future extensions could incorporate probabilistic modelling, uncertainty quantification, or integration with Bayesian optimization frameworks to further enhance adaptability and decision support.
-
 \section{Model Interpretability}
 \label{Section::Discussion_Interpretability}
 
