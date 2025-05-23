@@ -76,7 +76,7 @@ These findings highlight the inherent difficulty in inferring complete parameter
 
 \section{Active Learning Efficiency}
 
-The active learning (AL) loop aimed to iteratively explore the high-dimensional material parameter space while maximizing the efficiency of finite element simulations. The visualizations in Figure~\ref{fig:pairwise_projections} indicate a progressive tightening around the feasible domain, suggesting that the AL algorithm effectively concentrated sampling efforts in regions of interest, i.e., where the solver converged.
+The active learning (AL) loop aimed to iteratively explore the high-dimensional material parameter space while maximizing the efficiency of finite element simulations. The visualizations in Figure~\ref{fig:pairwise_projections_main} indicate a progressive tightening around the feasible domain, suggesting that the AL algorithm effectively concentrated sampling efforts in regions of interest, i.e., where the solver converged.
 
 Out of 2000 queries proposed during the AL iterations, 980 led to successful simulations. This reflects not just the limitations of the surrogate model, but also the underlying complexity of the parameter space. Notably, the integration of a feasibility filter, implemented using a weighted Isolation Forest, proved essential for reducing the frequency of unproductive simulations. 
 
