@@ -158,6 +158,7 @@
 		\label{fig:pca_zero_fill}
 	\end{figure}
 	
+	\vspace{1em} 
 	\textbf{Max Creep Strain Padding:} The variance captured by each principal component is summarized in Figure~\ref{fig:pca_variance_max}. Approximately 95\% of the total variance is captured within the first five components, suggesting that the high-dimensional creep curve data can be effectively reduced to a five-dimensional subspace while retaining most of the original information.
 	
 	\begin{figure}[htbp]
@@ -176,6 +177,7 @@
 		\label{fig:pca_max_fill}
 	\end{figure}
 	
+	\vspace{1em} 
 	\textbf{Normalization by Rupture time:}	The variance captured by each principal component is summarized in Figure~\ref{fig:pca_variance_norm}. The first principal component alone captures over 95\% of the total variance in the dataset. This indicates that the normalized creep curves exhibit strong similarity in their dominant trends, such that a single direction in the feature space accounts for nearly all of the variability. In practical terms, this suggests that the majority of the time-dependent creep behaviour, once normalized by rupture time, can be represented by a single basis vector, drastically simplifying the structure of the data while preserving its essential characteristics.
 	
 	\begin{figure}[htbp]
@@ -198,7 +200,7 @@
 	
 	Kernel PCA was applied to the preprocessed creep strain-time data using both polynomial and RBF kernels. As with PCA, different preprocessing strategies yielded varying reconstruction performance.
 	
-	%\needspace{3\baselineskip} 
+	\vspace{1em} 
 	\textbf{Zero Padding:} The best-performing kernel parameters for zero-padded data were determined using a grid search strategy. Grid search is a systematic hyperparameter optimization technique that evaluates a predefined set of parameter combinations through exhaustive search. For each candidate configuration, kernel PCA was applied to the dataset, and the reconstruction error was used as the performance metric. The combination that yielded the lowest average reconstruction error on the validation set was selected as optimal.
 		
 	\begin{table}[ht]
@@ -226,7 +228,8 @@
 		\label{fig:kpca_zero_fill}
 	\end{figure}
 	
-	\needspace{3\baselineskip} 
+	\needspace{3\baselineskip}
+	\vspace{1em} 
 	\textbf{Max Creep Strain Padding:} Table~\ref{tab:best_params_max_fill} summarizes the best parameter settings for both the RBF and polynomial kernels with maximum creep strain padding.
 		
 	\begin{table}[H]
@@ -254,6 +257,7 @@
 	\end{figure}
 	
 	\needspace{3\baselineskip} 
+	\vspace{1em} 
 	\textbf{Normalization by Rupture time:} Table~\ref{tab:best_params_norm} summarizes the best parameter settings for both the RBF and polynomial kernels with the normalization by rupture time approach.
 	
 	\begin{table}[ht]
