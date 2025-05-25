@@ -138,7 +138,8 @@
 	\subsubsection{Principal Component Analysis (PCA)}
 	
 	PCA was applied to the preprocessed creep strain-time data. The three strategies to handle the different input vector lengths had different results. For visualization, six random curves from the test set were selected and plotted, showing the original creep curve against its reconstructed version. This is done for all the three preprocessing strategies. 
-		
+	
+	\vspace{1em} 	
 	\textbf{Zero Padding:} The explained variance for each principal component is illustrated in Figure~\ref{fig:pca_variance_zero}. The first two components account for the majority of the total variance, indicating that the high-dimensional creep curve data can be effectively reduced to a two-dimensional subspace. This dimensionality reduction retains most of the original information while substantially simplifying the data representation. 
 	
 	\begin{figure}[htbp]
@@ -214,7 +215,7 @@
 		\label{tab:best_params_zero_fill}
 	\end{table}
 	
-	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels with zero padding. The parameter \texttt{$n\_components$} defines the number of principal components retained after transformation. In Kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels, smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{$degree$} sets the polynomial order, and \texttt{$coef\_0$} is an additive constant that influences higher-order terms. These hyperparameters jointly control the non-linearity and complexity of the feature space used to capture structure in the data.
+	Table~\ref{tab:best_params_zero_fill} summarizes the best parameter settings for both the RBF and polynomial kernels with zero padding. The parameter \texttt{$n\_components$} defines the number of principal components retained after transformation. In kernel PCA, this directly affects the dimensionality of the reduced feature space. The parameter $\gamma$ controls the influence of a single training sample in the RBF and polynomial kernels, smaller values lead to smoother decision boundaries, while larger values result in more complex models. For the polynomial kernel, the \texttt{$degree$} sets the polynomial order, and \texttt{$coef\_0$} is an additive constant that influences higher-order terms. These hyperparameters jointly control the non-linearity and complexity of the feature space used to capture structure in the data.
 	
 	The original and reconstructed creep curves using zero padding are shown in Figure~\ref{fig:kpca_zero_fill}. The polynomial kernel provides reasonable approximations for curves with long rupture times (exceeding 30 years), although it still fails to capture the non-linear characteristics of the tertiary stage. For curves with early rupture times, however, the influence of zero padding dominates the input, overshadowing the original creep features and leading to poor reconstruction fidelity.
 	
