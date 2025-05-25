@@ -319,7 +319,7 @@
 		
 		where $f_i(x)$ is the prediction from the $i$-th committee model and $M$ is the number of committee members. The DE optimizer maximizes \( s^2(x) \) (i.e., maximizes disagreement) over the feasible design space, constrained by the Isolation Forest filter.	This strategy ensures that sampling focuses on unexplored, high-uncertainty regions likely to improve the surrogate model most effectively.
 		
-		\item \textbf{Oracle} (\texttt{LAGAMINE})\textbf{:} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping).
+		\item \textbf{Oracle} (\texttt{LAGAMINE})\textbf{:} Each query $X^*$ is submitted to the \texttt{LAGAMINE} solver, which returns a valid creep curve (converted into $Y^*$ via $\theta$-mapping) if converged or returns a flag if failed.
 		
 		\item \textbf{Update:} After each query, the input \( X^* \) is added to the dataset, along with a convergence flag. If the simulation converges, the resulting output \( Y^* \) (obtained via $\theta$-projection) is stored and the pair \( (X^*, Y^*) \) is used to retrain the regression model. If the simulation fails to converge, the flag is recorded accordingly. In both cases, the Isolation Forest is updated to refine its understanding of the convergence domain, enabling more accurate feasibility filtering in subsequent iterations.		
 		
