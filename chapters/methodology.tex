@@ -44,7 +44,7 @@
 	\section{Creep Curve Representation}
 	\label{Section::Curve_Features}
 	
-	Each finite element simulation outputs a creep strain–time curve data along with the material model parameters. To enable machine learning (ML), these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The synthetic dataset are partitioned into training and test sets, following an 80\%–20\% ratio. This allows unbiased performance assessment of subsequent machine learning models. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation. Figure~\ref{fig:model_flow} represents the general workflow of creep representation using different models.
+	Each finite element simulation outputs a creep strain-time curve data along with the material model parameters. To enable machine learning (ML), these curves are transformed into low-dimensional representations using a combination of mathematical fitting and data-driven feature extraction techniques. The synthetic dataset are partitioned into training and test sets, following an 80\%–20\% ratio. This allows unbiased performance assessment of subsequent machine learning models. The transformation is trained on creep curves from the synthetic dataset and used to project the test set into a lower-dimensional space. The inverse transformation reconstructs the approximated creep curves from the reduced representation. Figure~\ref{fig:model_flow} represents the general workflow of creep representation using different models.
 	
 	\begin{figure}[H]
 		\centering
@@ -104,7 +104,7 @@
 		\item \( \alpha \) and \( \beta \) are material-dependent fitting parameters, subject to \( \alpha > 0 \), \( \beta < 1 \), and \( \alpha \ll \beta \).
 	\end{itemize}
 	
-	This model enables a continuous representation of the primary, secondary, and tertiary creep stages in a compact exponential-power law formulation, and is particularly suitable for long-term extrapolation of creep data.
+	This model enables a continuous representation of the primary, secondary, and tertiary creep stages in a compact exponential-power law formulation, and is particularly suitable for long-term extrapolation of creep data. The model does not account for the rupture time similar to the $\theta$-projection model.
 
 	
 	\subsection{Data-Driven Representations}
