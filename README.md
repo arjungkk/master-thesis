@@ -1,36 +1,63 @@
-# EMES Template for Bachelor’s or Master’s Thesis
-This template aims to give students a template for their bachelor's or master's thesis.
 
-This template is brought to you by the
-Laboratory for Electrical Instrumentation and Embedded Systems
-at the Albert-Ludwigs-Universität in Freiburg
-
-Please note: We do not provide technical support for this template.
-However, please feel free to contribute to this template on GitHub:
-https://github.com/imtekalex/emes_template
-
-Authors: Alexander Richter, Till Steinmann, Andreas Reichenbach
-
-# ToDo:
-- Centralize Language settings so that individual chapters are also built correctly.
-- Speed up build process
-- Cover: I would check the margins and the position of the seal and logo against the CD manual again, and the extra margin (BCOR?) on the left looks strange on the screen.
-- Cover: At least in Chrome the colors of the Unilogo are displayed incorrectly, in Acrobat correctly.
-- Cover: I find it unusual that the author's name is the smallest and about in the middle of the page. Suggestion: Name further up
-- Cover: No typographic separation (other than font size) is unusual. Suggestion: "Master's Thesis" in italics, title in bold.
-- Page numbering: the first three pages are also numbered in Arabic.
-- The cover does not usually count towards the page numbering
-- The (non-existent) title page would be page i.
-- I am missing a title page or the title on p. 3
-- P. 3: Centering seems unusual to me, since nothing is centered on the cover (or anywhere else).
-- S. 3: I would prevent the breaks in the lab names.
-- Symbols, etc.: The indentation of the first column compared to the table heading is "distracting".
-- Figure Index, etc.: Indentation "interferes".
-- It is at least unusual that there are no page numbers on the first pages of the chapters, although there is normal text. If text, then page number.
-- The chapter name in the header on both pages is also unusual.
-- Table 2.1: Table entries are not left-aligned only in exceptional cases.
-- The bibliography is usually placed at the end.
-- Bibliography: References to books always contain publisher and place.
-- Bib.: DOI should be at the end without a period.
-- Glossary: The spaces at "e.g." are inconsistent.
-- Arabic page numbering usually continues to the end.
+# Analysis of the Creep Behaviour of Metallic Materials using Machine Learning and Numerical Simulation
+ 
+LaTeX source of my M.Sc. thesis in Embedded Systems Engineering (AI specialization) at the University of Freiburg, written at Fraunhofer IWM within the EU project AID4GREENEST.
+ 
+| | |
+|---|---|
+| **Author** | Arjun Gopalakrishnan |
+| **Type** | Master's Thesis |
+| **Institute** | IMTEK, Department of Microsystems Engineering, University of Freiburg |
+| **Chair** | Laboratory for Micro and Materials Mechanics |
+| **First examiner** | Prof. Dr. Christoph Eberl (University of Freiburg) |
+| **Second examiner** | Prof. Dr. Anne Marie Habraken (ULiège) |
+| **Supervisor** | Dr. Lukas Morand (Fraunhofer IWM, Machine Learning for Manufacturing Processes) |
+| **Editing time** | November 1, 2024 to May 26, 2025 |
+| **Submitted** | May 26, 2025 |
+ 
+**Read the thesis:** [Thesis PDF](https://github.com/arjungkk/master-thesis/blob/main/main.pdf)
+ 
+## Summary
+ 
+Creep tests on metallic materials can run for thousands of hours. This thesis explores whether machine learning and finite element simulation can predict long-term creep behaviour from much shorter, accelerated tests.
+ 
+- **Data generation:** 3,376 synthetic creep curves were produced with Morch's damage model, evaluated via finite element simulation in LAGAMINE, with parameters sampled by Latin hypercube sampling (LHS).
+- **Curve representations:** theta projection, a three-parameter model, PCA and kernel PCA were compared as compact descriptions of creep curves.
+- **Parameter recovery:** random forest, gradient boosting, stacking and voting regressors were trained to map curves back to material parameters. For most parameters this inverse problem turned out to be ill-posed.
+- **Active learning:** a loop combining query-by-committee (MLP learner), an Isolation Forest region filter and a differential evolution optimizer, with FEA as the oracle, was evaluated against LHS for covering the data space more evenly. Results were mixed: fewer very early ruptures and more balanced flat curves, but fewer ruptured curves overall.
+- **Outlook:** microstructure-based prediction and validation with real experiments.
+## Skills demonstrated
+ 
+Python, scientific machine learning (scikit-learn style regression, dimensionality reduction, active learning), finite element simulation workflows, experiment design and sampling strategies, and scientific writing in LaTeX.
+ 
+## Repository structure
+ 
+```
+.
+├── main.tex            # Entry point: metadata, front matter, chapter includes
+├── settings+/          # Template settings (document class, language, covers, lists)
+└── chapters/
+    ├── abstract.tex
+    ├── introduction.tex
+    ├── theory.tex
+    ├── methodology.tex
+    ├── results.tex
+    ├── discussion.tex
+    ├── summary.tex
+    ├── acknowledgments.tex
+    └── appendix.tex
+```
+ 
+The bibliography is handled with BibLaTeX. Figures and bibliography files are stored alongside the chapters.
+ 
+## Template
+ 
+Built on the [EMES LaTeX template](https://github.com/imtekalex/emes_template) from the Laboratory for Electrical Instrumentation and Embedded Systems, University of Freiburg (Alexander Richter, Till Steinmann, Andreas Reichenbach).
+ 
+## Related
+ 
+- Code and experiments: [not public]
+## Contact
+ 
+Arjun Gopalakrishnan, [[LinkedIn](https://www.linkedin.com/in/arjungopalakrishnan/) / arjungcodes@gmail.com]
+ 
